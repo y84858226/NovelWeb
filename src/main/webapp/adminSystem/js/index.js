@@ -38,7 +38,11 @@
                 lockBgSrc: 'images/bg_04.jpg'
             },  //如果本地配置为空则给默认值
             desktop: {
-                options: {},    //可以为{}  默认 请求 json/desktopmenu.json
+                options: {
+                	url: 'json/desktopmenu.json',
+                    method: 'get',
+                    data:{}
+                },    //可以为{}  默认 请求 json/desktopmenu.json
                 done: function (desktopApp) {
                     desktopApp.ondblclick(function (id, elem) {
                         OpenWindow(elem);
@@ -63,8 +67,7 @@
             menu: {
                 options: {
                     url: 'json/allmenu.json',
-                    method: 'get',
-                    data: { nihaoa: '' }
+                    method: 'get'
                 },
                 done: function (menuItem) {
                     //监听开始菜单点击
@@ -97,7 +100,7 @@
                 }
             }
         }).init({
-            audioPlay: false, //是否播放音乐（开机音乐只会播放一次，第二次播放需要关闭当前页面从新打开，刷新无用）
+            audioPlay: true, //是否播放音乐（开机音乐只会播放一次，第二次播放需要关闭当前页面从新打开，刷新无用）
             renderBg: true //是否渲染背景图 （由于js是写在页面底部，所以不太推荐使用这个来渲染，背景图应写在css或者页面头部的时候就开始加载）
         }, function () {
             //初始化完毕回调
