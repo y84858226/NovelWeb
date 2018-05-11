@@ -1,4 +1,4 @@
-package com.papamh.controller;
+package com.novel.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.papamh.pojo.User;
-import com.papamh.service.UserService;
+import com.novel.pojo.User;
+import com.novel.service.UserService;
 
 
 /**

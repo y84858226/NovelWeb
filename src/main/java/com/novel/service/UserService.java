@@ -1,7 +1,7 @@
-package com.papamh.service;
+package com.novel.service;
 import java.util.List;
 
-import com.papamh.pojo.User;
+import com.novel.pojo.User;
 
 public interface UserService {
     /**

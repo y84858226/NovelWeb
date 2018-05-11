@@ -1,4 +1,4 @@
-package com.papamh.pojo;
+package com.novel.pojo;
 
 public class User {
 	private Integer id;

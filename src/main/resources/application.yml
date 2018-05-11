@@ -1,0 +1,52 @@
+# mysql 的数据库配置
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/novel?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+server:
+  port: 8080
+  context-path: /novel # 访问地址：http://localhost:8080/novel/hi
+  tomcat:
+    uri-encoding: UTF-8
+  session:
+    timeout: 5000
+
+# jsp
+#  mvc:
+#   view:
+#     prefix: /WEB-INF/ # 页面默认前缀目录
+#     suffix: .jsp # 响应页面默认后缀
+
+#热部署
+  devtools:
+    restart:
+      enabled: true #热部署生效
+      #设置重启的目录
+      additional-paths: src/main/java
+      exclude: WEB-INF/** #classpath目录下的WEB-INF文件夹内容修改不重启
+
+# spring mvc 视图解析器
+  mvc:
+    view:
+      prefix: /WEB-INF/views
+      suffix: .html
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: update # create (自动创建表,要先创建类,每次都是先删再创建) update：如果表存在则不创建，只在第一次初始化时创建表
+#    show-sql: true
+
+mybatis:
+  mapper-locations: classpath*:mybatis/*Mapper.xml
+  type-aliases-package: com.novel.pojo
+
+#spring:
+#  profiles:
+#    active: dev
+
+#spring:
+#  profiles:
+#    active: prod

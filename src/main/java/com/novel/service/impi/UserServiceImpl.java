@@ -1,12 +1,12 @@
-package com.papamh.service.impi;
+package com.novel.service.impi;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.papamh.dao.UserQueryAll;
-import com.papamh.pojo.User;
-import com.papamh.service.UserService;
+import com.novel.dao.UserQueryAll;
+import com.novel.pojo.User;
+import com.novel.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{
