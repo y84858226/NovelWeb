@@ -5,7 +5,7 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
-
+#server的配置
 server:
   port: 8080
   context-path: /novel # 访问地址：http://localhost:8080/novel/hi
@@ -39,6 +39,7 @@ server:
 #      ddl-auto: update # create (自动创建表,要先创建类,每次都是先删再创建) update：如果表存在则不创建，只在第一次初始化时创建表
 #    show-sql: true
 
+#mybatis的配置
 mybatis:
   mapper-locations: classpath*:mybatis/*Mapper.xml
   type-aliases-package: com.novel.pojo
