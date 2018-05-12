@@ -1,7 +1,7 @@
-package com.novel.service;
+package com.novel.background.service;
 import java.util.List;
 
-import com.novel.pojo.User;
+import com.novel.background.pojo.User;
 
 public interface UserService {
     /**

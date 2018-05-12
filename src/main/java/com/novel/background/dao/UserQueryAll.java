@@ -1,4 +1,4 @@
-package com.novel.dao;
+package com.novel.background.dao;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
-import com.novel.pojo.User;
+import com.novel.background.pojo.User;
 
 @Mapper // 声明是一个Mapper,与springbootApplication中的@MapperScan二选一写上即可
 @Repository

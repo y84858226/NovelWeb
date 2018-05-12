@@ -1,4 +1,4 @@
-package com.novel.controller;
+package com.novel.background.controller;
 
 import java.util.List;
 
@@ -13,17 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.novel.pojo.User;
-import com.novel.service.UserService;
+import com.novel.background.pojo.User;
+import com.novel.background.service.UserService;
 
 
-/**
- * Created by beyondLi on 2017/6/19.
- */
-//证明是controller层并且返回json
+
+//证明是controller层并且返回json，不能返回html页面 @controller有视图解析器，可以返回html页面
 @RestController
 @EnableAutoConfiguration
-@ComponentScan(basePackages={"com.papamh.service"})//添加的注解
+@ComponentScan(basePackages={"com.novel.background.service"})//添加的注解
 public class UserQueryController {
     //依赖注入
     @Autowired

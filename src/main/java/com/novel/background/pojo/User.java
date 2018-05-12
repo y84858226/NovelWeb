@@ -1,4 +1,4 @@
-package com.novel.pojo;
+package com.novel.background.pojo;
 
 public class User {
 	private Integer id;
