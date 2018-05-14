@@ -1,4 +1,4 @@
-package com.novel.background.service.impi;
+package com.novel.background.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
