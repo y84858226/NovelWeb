@@ -1,5 +1,6 @@
 package com.novel.background.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.jsoup.Jsoup;
@@ -116,8 +117,20 @@ public class CrawlerServiceImpl implements CrawlerService {
 	}
 
 	@Override
-	public Crawler selectCrawler() {
-		return crawlerDao.selectCrawler();
+	public List<Crawler> selectCrawler(int page,int limit) {
+		int start=(page-1)*limit;
+		int end=limit;
+		return crawlerDao.selectCrawler(start,end);
+	}
+
+	@Override
+	public void deleteCrawler(Crawler crawler) {
+		crawlerDao.deleteCrawler(crawler);
+	}
+
+	@Override
+	public int selectCrawlerCount() {
+		return crawlerDao.selectCrawlerCount();
 	}
 
 }

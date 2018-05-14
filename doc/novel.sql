@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2018-05-14 12:21:26
+Date: 2018-05-14 17:25:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,13 +23,15 @@ CREATE TABLE `crawler` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `crawlerName` varchar(255) DEFAULT '',
   `crawlerUrl` varchar(255) DEFAULT '',
+  `crawlerStatus` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of crawler
 -- ----------------------------
-INSERT INTO `crawler` VALUES ('1', '笔趣阁爬虫', 'https://www.biquge5200.cc/');
+INSERT INTO `crawler` VALUES ('1', '笔趣阁爬虫', 'https://www.biquge5200.cc/', '1');
+INSERT INTO `crawler` VALUES ('2', '笔趣阁爬虫2', 'https://www.biquge5200.cc/', '0');
 
 -- ----------------------------
 -- Table structure for crawlerconfig
@@ -58,7 +60,7 @@ INSERT INTO `crawlerconfig` VALUES ('4', '1', '小说作者', '#info p', '0', 'h
 INSERT INTO `crawlerconfig` VALUES ('5', '1', '小说类型', '.con_top a', '2', 'html', '[\\s\\S]*', '', '0');
 INSERT INTO `crawlerconfig` VALUES ('6', '1', '小说描述', '#intro p', '0', 'html', '[\\s\\S]*', '', '0');
 INSERT INTO `crawlerconfig` VALUES ('7', '1', '小说主图地址', '#fmimg img', '0', 'src', '[\\s\\S]*', '', '0');
-INSERT INTO `crawlerconfig` VALUES ('8', '1', '小说章节链接', '#list dd', 'all', 'html', '[\\s\\S]*', '', '0');
+INSERT INTO `crawlerconfig` VALUES ('8', '1', '小说章节标签', '#list dd', 'all', 'html', '[\\s\\S]*', '', '0');
 INSERT INTO `crawlerconfig` VALUES ('9', '1', '小说章节地址', 'a', '0', 'html', '[\\s\\S]*', '', '0');
 INSERT INTO `crawlerconfig` VALUES ('10', '1', '小说章节编号', 'a', '0', 'html', '第(.*)章', '', '1');
 INSERT INTO `crawlerconfig` VALUES ('11', '1', '小说章节名称', 'a', '0', 'html', '[\\s\\S]*', '', '0');

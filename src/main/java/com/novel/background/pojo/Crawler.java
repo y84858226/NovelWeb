@@ -4,6 +4,7 @@ public class Crawler {
 	private Integer id;
 	private String crawlerName;
 	private String crawlerUrl;
+	private String crawlerStatus;
 	public Integer getId() {
 		return id;
 	}
@@ -22,11 +23,16 @@ public class Crawler {
 	public void setCrawlerUrl(String crawlerUrl) {
 		this.crawlerUrl = crawlerUrl;
 	}
-	
+	public String getCrawlerStatus() {
+		return crawlerStatus;
+	}
+	public void setCrawlerStatus(String crawlerStatus) {
+		this.crawlerStatus = crawlerStatus;
+	}
 	@Override
 	public String toString() {
-		return "Crawler [id=" + id + ", crawlerName=" + crawlerName + ", crawlerUrl=" + crawlerUrl
-			+ "]";
+		return "Crawler [id=" + id + ", crawlerName=" + crawlerName + ", crawlerUrl=" + crawlerUrl + ", crawlerStatus="
+				+ crawlerStatus + "]";
 	}
 	
 }

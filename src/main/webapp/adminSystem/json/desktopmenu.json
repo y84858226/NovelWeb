@@ -36,7 +36,7 @@
 		},
 		{
 			"title": "采集系统",
-			"pageURL": "views/echarts/demo.html",
+			"pageURL": "views/crawler/list.html",
 			"name": "采集系统",
 			"icon": "fa-bug",
 			"openType": 2,

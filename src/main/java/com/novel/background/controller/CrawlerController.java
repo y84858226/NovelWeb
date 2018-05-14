@@ -1,5 +1,10 @@
 package com.novel.background.controller;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,7 +29,6 @@ public class CrawlerController {
 	@Autowired
 	CrawlerService crawlerService;
 
-
 	@RequestMapping("runCrawler")
 	public void runCrawler() {
 		crawlerService.crawlerNovelData("https://www.biquge5200.cc/");
@@ -36,7 +40,21 @@ public class CrawlerController {
 	}
 	
 	@RequestMapping("selectCrawler")
-	public Crawler selectCrawler() {
-		return crawlerService.selectCrawler();
+	public Map<String,Object> selectCrawler(int page,int limit) {
+		Map<String,Object> map=new LinkedHashMap<String,Object>();
+		map.put("code",0);
+		map.put("msg","");
+		int count=crawlerService.selectCrawlerCount();
+		map.put("count",count);
+		List<Crawler> crawlerList=crawlerService.selectCrawler(page,limit);
+		map.put("data",crawlerList);
+		return map;
 	}
+	
+	@RequestMapping("deleteCrawler")
+	public void deleteCrawler(Crawler crawler) {
+		crawlerService.deleteCrawler(crawler);
+	}
+	
+	
 }
