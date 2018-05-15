@@ -100,9 +100,36 @@
 
 	// 打开添加页面
 	function addRole() {
-		top.winui.window.msg("自行脑补画面", {
-			icon : 2,
-			time : 2000
+		var content;
+		var index = layer.load(1);
+		$.ajax({
+			type : 'get',
+			url : 'config.html',
+			async : true,
+			success : function(data) {
+				layer.close(index);
+				content = data;
+				// 从桌面打开
+				top.winui.window.open({
+					id : 'config',
+					type : 1,
+					title : '配置规则',
+					content : content,
+					area : [ '60vw', '70vh' ],
+					offset : [ '15vh', '20vw' ],
+				});
+				// top.winui.window.msg("选择框带联动的,尽情享用", {
+				// time : 2000
+				// });
+			},
+			error : function(xml) {
+				layer.close(index);
+				top.winui.window.msg("获取页面失败", {
+					icon : 2,
+					time : 2000
+				});
+				console.log(xml.responseText);
+			}
 		});
 	}
 	// 删除爬虫

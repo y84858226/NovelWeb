@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2018-05-14 17:25:15
+Date: 2018-05-15 10:01:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,6 @@ CREATE TABLE `crawler` (
 -- Records of crawler
 -- ----------------------------
 INSERT INTO `crawler` VALUES ('1', '笔趣阁爬虫', 'https://www.biquge5200.cc/', '1');
-INSERT INTO `crawler` VALUES ('2', '笔趣阁爬虫2', 'https://www.biquge5200.cc/', '0');
 
 -- ----------------------------
 -- Table structure for crawlerconfig
@@ -45,25 +44,26 @@ CREATE TABLE `crawlerconfig` (
   `num` varchar(255) DEFAULT '',
   `attrName` varchar(255) DEFAULT '',
   `reg` varchar(255) DEFAULT '',
-  `appendResult` varchar(255) DEFAULT '',
   `regGroupNum` varchar(255) DEFAULT '',
+  `appendResult` varchar(255) DEFAULT '',
+  `sort` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of crawlerconfig
 -- ----------------------------
-INSERT INTO `crawlerconfig` VALUES ('1', '1', '小说列表页', 'a', 'all', 'href', 'www.biquge5200.cc/[A-Za-z]+/$', 'https://', '0');
-INSERT INTO `crawlerconfig` VALUES ('2', '1', '小说页', 'a', 'all', 'href', 'www.biquge5200.cc/\\d+_\\d+/$', 'https://', '0');
-INSERT INTO `crawlerconfig` VALUES ('3', '1', '小说名称', '#info h1', '0', 'html', '[\\s\\S]*', '', '0');
-INSERT INTO `crawlerconfig` VALUES ('4', '1', '小说作者', '#info p', '0', 'html', '([^：]+)$', '', '0');
-INSERT INTO `crawlerconfig` VALUES ('5', '1', '小说类型', '.con_top a', '2', 'html', '[\\s\\S]*', '', '0');
-INSERT INTO `crawlerconfig` VALUES ('6', '1', '小说描述', '#intro p', '0', 'html', '[\\s\\S]*', '', '0');
-INSERT INTO `crawlerconfig` VALUES ('7', '1', '小说主图地址', '#fmimg img', '0', 'src', '[\\s\\S]*', '', '0');
-INSERT INTO `crawlerconfig` VALUES ('8', '1', '小说章节标签', '#list dd', 'all', 'html', '[\\s\\S]*', '', '0');
-INSERT INTO `crawlerconfig` VALUES ('9', '1', '小说章节地址', 'a', '0', 'html', '[\\s\\S]*', '', '0');
-INSERT INTO `crawlerconfig` VALUES ('10', '1', '小说章节编号', 'a', '0', 'html', '第(.*)章', '', '1');
-INSERT INTO `crawlerconfig` VALUES ('11', '1', '小说章节名称', 'a', '0', 'html', '[\\s\\S]*', '', '0');
+INSERT INTO `crawlerconfig` VALUES ('1', '1', '小说列表页', 'a', 'all', 'href', 'www.biquge5200.cc/[A-Za-z]+/$', '0', 'https://', '1');
+INSERT INTO `crawlerconfig` VALUES ('2', '1', '小说页', 'a', 'all', 'href', 'www.biquge5200.cc/\\d+_\\d+/$', '0', 'https://', '2');
+INSERT INTO `crawlerconfig` VALUES ('3', '1', '小说名称', '#info h1', '0', 'html', '[\\s\\S]*', '0', '', '3');
+INSERT INTO `crawlerconfig` VALUES ('4', '1', '小说作者', '#info p', '0', 'html', '([^：]+)$', '0', '', '4');
+INSERT INTO `crawlerconfig` VALUES ('5', '1', '小说类型', '.con_top a', '2', 'html', '[\\s\\S]*', '0', '', '5');
+INSERT INTO `crawlerconfig` VALUES ('6', '1', '小说描述', '#intro p', '0', 'html', '[\\s\\S]*', '0', '', '6');
+INSERT INTO `crawlerconfig` VALUES ('7', '1', '小说主图地址', '#fmimg img', '0', 'src', '[\\s\\S]*', '0', '', '7');
+INSERT INTO `crawlerconfig` VALUES ('8', '1', '小说章节标签', '#list dd', 'all', 'html', '[\\s\\S]*', '0', '', '8');
+INSERT INTO `crawlerconfig` VALUES ('9', '1', '小说章节地址', 'a', '0', 'html', '[\\s\\S]*', '0', '', '9');
+INSERT INTO `crawlerconfig` VALUES ('10', '1', '小说章节编号', 'a', '0', 'html', '第(.*)章', '1', '', '10');
+INSERT INTO `crawlerconfig` VALUES ('11', '1', '小说章节名称', 'a', '0', 'html', '[\\s\\S]*', '0', '', '11');
 
 -- ----------------------------
 -- Table structure for novel
