@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2018-05-15 10:01:40
+Date: 2018-05-18 09:50:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,7 +25,7 @@ CREATE TABLE `crawler` (
   `crawlerUrl` varchar(255) DEFAULT '',
   `crawlerStatus` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of crawler
@@ -79,6 +79,7 @@ CREATE TABLE `novel` (
   `mainImage` varchar(255) DEFAULT '',
   `createTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT '',
   `updateTime` varchar(255) DEFAULT '',
+  `clickView` int(11) DEFAULT NULL,
   `status` varchar(255) DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
@@ -124,7 +125,7 @@ CREATE TABLE `novelchapterlist` (
 DROP TABLE IF EXISTS `noveltype`;
 CREATE TABLE `noveltype` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `typename` varchar(255) DEFAULT '',
+  `typeName` varchar(255) DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
