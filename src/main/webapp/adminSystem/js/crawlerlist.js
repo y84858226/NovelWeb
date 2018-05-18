@@ -9,7 +9,7 @@
 	var table = layui.table, $ = layui.$, tableId = 'tableid';
 	// 表格渲染
 	table.render({
-		id: tableId,
+		id : tableId,
 		elem : '#crawler',
 		url : '../../../selectCrawler',
 		even : true, // 隔行变色
@@ -29,10 +29,10 @@
 		}, {
 			field : 'crawlerUrl',
 			title : '网址',
-			width : 300
+			width : 220
 		}, {
 			field : 'crawlerStatus',
-			title : '状态',
+			title : '自动运行',
 			width : 100,
 			templet : '#stateTpl'
 		}, {
@@ -40,7 +40,7 @@
 			fixed : 'right',
 			align : 'center',
 			toolbar : '#crawlerOption',
-			width : 220
+			width : 320
 		} ] ]
 	});
 	// 监听工具条
@@ -89,8 +89,28 @@
 					console.log(xml.responseText);
 				}
 			});
+		} else if (layEvent === 'configList') {
+			alert("稍后在做");
 		} else if (layEvent === 'run') {
-
+			$.ajax({
+				type : 'get',
+				url : '../../../runCrawler?id=' + data.id,
+				async : true,
+				success : function(data) {
+					layer.close(index);
+					top.winui.window.msg(data, {
+						time : 2000
+					});
+				},
+				error : function(xml) {
+					layer.close(index);
+					top.winui.window.msg("获取页面失败", {
+						icon : 2,
+						time : 2000
+					});
+					console.log(xml.responseText);
+				}
+			});
 		}
 	});
 	// 表格重载

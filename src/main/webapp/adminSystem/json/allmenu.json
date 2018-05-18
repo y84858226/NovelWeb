@@ -53,16 +53,6 @@
       "id": 62
     },
     {
-      "title": "不落阁",
-      "pageURL": "http://www.lyblogs.cn",
-      "name": "作者博客",
-      "icon": "http://www.lyblogs.cn/Images/Global/Logo_40.png",
-      "openType": 2,
-      "extend": false,
-      "childs": null,
-      "id": 66
-    },
-    {
       "title": "系统设置",
       "pageURL": null,
       "name": "系统设置",
