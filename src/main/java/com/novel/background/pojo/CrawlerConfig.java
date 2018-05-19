@@ -1,20 +1,20 @@
 package com.novel.background.pojo;
 
 public class CrawlerConfig {
-	private int id;
+	private Integer id;
 	private String configId;
 	private String configName;
 	private String select;
 	private String num;
 	private String attrName;
 	private String reg;
-	private String regGroupNum;
+	private Integer regGroupNum;
 	private String appendResult;
-	private int sort;
-	public int getId() {
+	private Integer sort;
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getConfigId() {
@@ -53,10 +53,10 @@ public class CrawlerConfig {
 	public void setReg(String reg) {
 		this.reg = reg;
 	}
-	public String getRegGroupNum() {
+	public Integer getRegGroupNum() {
 		return regGroupNum;
 	}
-	public void setRegGroupNum(String regGroupNum) {
+	public void setRegGroupNum(Integer regGroupNum) {
 		this.regGroupNum = regGroupNum;
 	}
 	public String getAppendResult() {
@@ -65,14 +65,14 @@ public class CrawlerConfig {
 	public void setAppendResult(String appendResult) {
 		this.appendResult = appendResult;
 	}
-	public int getSort() {
+	public Integer getSort() {
 		return sort;
 	}
-	public void setSort(int sort) {
+	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
-	public CrawlerConfig(int id, String configId, String configName, String select, String num, String attrName,
-			String reg, String regGroupNum, String appendResult, int sort) {
+	public CrawlerConfig(Integer id, String configId, String configName, String select, String num, String attrName,
+			String reg, Integer regGroupNum, String appendResult, Integer sort) {
 		this.id = id;
 		this.configId = configId;
 		this.configName = configName;

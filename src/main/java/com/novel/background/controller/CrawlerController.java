@@ -3,10 +3,11 @@ package com.novel.background.controller;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,7 +42,7 @@ public class CrawlerController {
 		map.put("msg", "");
 		int count = crawlerService.selectCrawlerCount();
 		map.put("count", count);
-		List<Crawler> crawlerList = crawlerService.selectCrawler(page, limit);
+		List<Crawler> crawlerList = crawlerService.selectCrawlerByPage(page, limit);
 		map.put("data", crawlerList);
 		return map;
 	}
@@ -53,8 +54,21 @@ public class CrawlerController {
 
 	@RequestMapping("runCrawler")
 	public String runCrawler(Crawler crawler) {
-		System.out.println(crawler);
-		return crawler.getCrawlerName()+":已经运行";
-//		crawlerService.crawlerNovelData("");
+		List<Crawler> list = crawlerService.selectCrawler(crawler);
+		crawler = list.get(0);
+		crawlerService.crawlerNovelData(crawler);
+
+		return crawler.getCrawlerName() + ":运行结束";
+	}
+
+	@RequestMapping("validReg")
+	public String validReg(String text, String reg, String regGroupNum) {
+		Pattern pattern = Pattern.compile(reg);
+		Matcher matcher = pattern.matcher(text);
+		String result = null;
+		if (matcher.find()) {
+			result = matcher.group(Integer.parseInt(regGroupNum));
+		}
+		return result;
 	}
 }

@@ -1,7 +1,7 @@
 package com.novel.background.pojo;
 
 public class Novel {
-	private int id;
+	private Integer id;
 	private String url;
 	private String name;
 	private String author;
@@ -10,14 +10,14 @@ public class Novel {
 	private String mainImage;
 	private String createTime;
 	private String updateTime;
-	private int clickView;
+	private Integer clickView;
 	private String status;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -85,11 +85,11 @@ public class Novel {
 		this.updateTime = updateTime;
 	}
 
-	public int getClickView() {
+	public Integer getClickView() {
 		return clickView;
 	}
 
-	public void setClickView(int clickView) {
+	public void setClickView(Integer clickView) {
 		this.clickView = clickView;
 	}
 
@@ -101,8 +101,8 @@ public class Novel {
 		this.status = status;
 	}
 
-	public Novel(int id, String url, String name, String author, String typeName, String description, String mainImage,
-			String createTime, String updateTime, int clickView, String status) {
+	public Novel(Integer id, String url, String name, String author, String typeName, String description, String mainImage,
+			String createTime, String updateTime, Integer clickView, String status) {
 		this.id = id;
 		this.url = url;
 		this.name = name;

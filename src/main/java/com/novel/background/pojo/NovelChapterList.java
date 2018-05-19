@@ -1,16 +1,16 @@
 package com.novel.background.pojo;
 
 public class NovelChapterList {
-	private int id;
+	private Integer id;
 	private String novelId;
 	private String chapterName;
-	private String chapterNum;
+	private String chapterLink;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -30,19 +30,19 @@ public class NovelChapterList {
 		this.chapterName = chapterName;
 	}
 
-	public String getChapterNum() {
-		return chapterNum;
+	public String getChapterLink() {
+		return chapterLink;
 	}
 
-	public void setChapterNum(String chapterNum) {
-		this.chapterNum = chapterNum;
+	public void setChapterLink(String chapterLink) {
+		this.chapterLink = chapterLink;
 	}
 
-	public NovelChapterList(int id, String novelId, String chapterName, String chapterNum) {
+	public NovelChapterList(Integer id, String novelId, String chapterName, String chapterLink) {
 		this.id = id;
 		this.novelId = novelId;
 		this.chapterName = chapterName;
-		this.chapterNum = chapterNum;
+		this.chapterLink = chapterLink;
 	}
 
 	public NovelChapterList() {
@@ -50,8 +50,8 @@ public class NovelChapterList {
 
 	@Override
 	public String toString() {
-		return "NovelChapterList [id=" + id + ", novelId=" + novelId + ", chapterName=" + chapterName + ", chapterNum="
-				+ chapterNum + "]";
+		return "NovelChapterList [id=" + id + ", novelId=" + novelId + ", chapterName=" + chapterName + ", chapterLink="
+				+ chapterLink + "]";
 	}
 
 }

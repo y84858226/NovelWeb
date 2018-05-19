@@ -24,12 +24,10 @@
 			type : 'checkbox'
 		}, {
 			field : 'crawlerName',
-			title : '名称',
-			width : 220
+			title : '名称'
 		}, {
 			field : 'crawlerUrl',
-			title : '网址',
-			width : 220
+			title : '网址'
 		}, {
 			field : 'crawlerStatus',
 			title : '自动运行',
@@ -93,7 +91,7 @@
 			alert("稍后在做");
 		} else if (layEvent === 'run') {
 			$.ajax({
-				type : 'get',
+				type : 'post',
 				url : '../../../runCrawler?id=' + data.id,
 				async : true,
 				success : function(data) {

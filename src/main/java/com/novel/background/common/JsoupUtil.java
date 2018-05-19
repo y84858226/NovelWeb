@@ -2,7 +2,9 @@ package com.novel.background.common;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,6 +51,7 @@ public class JsoupUtil {
 			webClient.getOptions().setCssEnabled(false);
 			webClient.getOptions().setThrowExceptionOnScriptError(false);
 			webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
+			webClient.getOptions().setThrowExceptionOnScriptError(false);
 			webClient.getOptions().setTimeout(5000);
 			webClient.setAjaxController(new NicelyResynchronizingAjaxController());//很重要，设置支持AJAX
 			webClient.getOptions().setUseInsecureSSL(true);
@@ -100,7 +103,7 @@ public class JsoupUtil {
 			document = jsoupUtil.getDoc();
 		}
 		// 存放正则后的的attr
-		Set<String> set = new HashSet<String>();
+		Set<String> set = new LinkedHashSet<String>();
 		/**
 		 * 获取全部属性
 		 */

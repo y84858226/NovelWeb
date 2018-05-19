@@ -1,14 +1,14 @@
 package com.novel.background.pojo;
 
 public class NovelType {
-	private int id;
+	private Integer id;
 	private String typeName;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -20,7 +20,7 @@ public class NovelType {
 		this.typeName = typeName;
 	}
 
-	public NovelType(int id, String typeName) {
+	public NovelType(Integer id, String typeName) {
 		this.id = id;
 		this.typeName = typeName;
 	}

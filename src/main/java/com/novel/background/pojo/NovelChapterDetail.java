@@ -1,15 +1,15 @@
 package com.novel.background.pojo;
 
 public class NovelChapterDetail {
-	private int id;
+	private Integer id;
 	private String novelChapterListId;
 	private String content;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -29,7 +29,7 @@ public class NovelChapterDetail {
 		this.content = content;
 	}
 
-	public NovelChapterDetail(int id, String novelChapterListId, String content) {
+	public NovelChapterDetail(Integer id, String novelChapterListId, String content) {
 		this.id = id;
 		this.novelChapterListId = novelChapterListId;
 		this.content = content;
