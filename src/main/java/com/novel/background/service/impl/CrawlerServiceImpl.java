@@ -127,25 +127,31 @@ public class CrawlerServiceImpl implements CrawlerService {
 				//执行数据库添加	返回id号
 					novelDao.addNovel(novel);
 				Integer novelId=novel.getId();
-				// 全部章节
-				Set<String> chapterSet = util.getHtmlAttr(null, doc, config.get(8).getSelect(),config.get(8).getNum(),config.get(8).getAttrName(),config.get(8).getReg(),config.get(8).getAppendResult(), config.get(8).getRegGroupNum());;
-				for (String chapterA : chapterSet) {
-					NovelChapterList chapterList=new NovelChapterList();
-					chapterList.setNovelId(String.valueOf(novelId));
-					Document chapterDoc = Jsoup.parse(chapterA);
-					Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc, config.get(9).getSelect(),config.get(9).getNum(),config.get(9).getAttrName(),config.get(9).getReg(),config.get(9).getAppendResult(), config.get(9).getRegGroupNum());
-					for (String chapterLink : chapterLinkSet) {
-						System.out.println("章节地址:" + chapterLink);
-						chapterList.setChapterLink(chapterLink);
+				// 全部章节列表  起一步过滤
+				Set<String> chapterListSet = util.getHtmlAttr(null, doc, config.get(8).getSelect(),config.get(8).getNum(),config.get(8).getAttrName(),config.get(8).getReg(),config.get(8).getAppendResult(), config.get(8).getRegGroupNum());;
+				for (String chapterListHtml : chapterListSet) {
+					System.out.println(chapterListHtml);
+					Document chapterListDoc = Jsoup.parse(chapterListHtml);
+					//全部章节
+					Set<String> chapterSet = util.getHtmlAttr(null, chapterListDoc, config.get(9).getSelect(),config.get(9).getNum(),config.get(9).getAttrName(),config.get(9).getReg(),config.get(9).getAppendResult(), config.get(9).getRegGroupNum());;
+					for (String chapterA : chapterSet) {
+						NovelChapterList chapterList=new NovelChapterList();
+						chapterList.setNovelId(String.valueOf(novelId));
+						Document chapterDoc = Jsoup.parse(chapterA);
+						Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc, config.get(10).getSelect(),config.get(10).getNum(),config.get(10).getAttrName(),config.get(10).getReg(),config.get(10).getAppendResult(), config.get(10).getRegGroupNum());
+						for (String chapterLink : chapterLinkSet) {
+							System.out.println("章节地址:" + chapterLink);
+							chapterList.setChapterLink(chapterLink);
+						}
+	
+						Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc, config.get(11).getSelect(),config.get(11).getNum(),config.get(11).getAttrName(),config.get(11).getReg(),config.get(11).getAppendResult(), config.get(11).getRegGroupNum());;
+						for (String chapterName : chapterNameSet) {
+							System.out.println("章节名称:" + chapterName);
+							chapterList.setChapterName(chapterName);
+						}
+						//执行添加数据库
+						chapterListDao.addNovelChapterList(chapterList);
 					}
-
-					Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc, config.get(10).getSelect(),config.get(10).getNum(),config.get(10).getAttrName(),config.get(10).getReg(),config.get(10).getAppendResult(), config.get(10).getRegGroupNum());;
-					for (String chapterName : chapterNameSet) {
-						System.out.println("章节名称:" + chapterName);
-						chapterList.setChapterName(chapterName);
-					}
-					//执行添加数据库
-					chapterListDao.addNovelChapterList(chapterList);
 				}
 			}
 		}

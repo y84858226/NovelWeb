@@ -120,6 +120,9 @@ public class JsoupUtil {
 				} else {
 					attr = element.attr(attrName);
 				}
+				attr=attr.replaceAll("\n","");
+				attr=attr.replaceAll("\r","");
+				attr=attr.trim();
 				Matcher matcher = pattern.matcher(attr);
 				if (matcher.find()) {
 					set.add(appendResult + matcher.group(regGroupNum));
@@ -136,6 +139,9 @@ public class JsoupUtil {
 			} else {
 				attr = element.attr(attrName);
 			}
+			attr=attr.replaceAll("\n","");
+			attr=attr.replaceAll("\r","");
+			attr=attr.trim();
 			Pattern pattern = Pattern.compile(reg);
 			Matcher matcher = pattern.matcher(attr);
 			if (matcher.find()) {
