@@ -122,7 +122,7 @@
 		var index = layer.load(1);
 		$.ajax({
 			type : 'get',
-			url : 'config.html',
+			url : 'crawleradd.html',
 			async : true,
 			success : function(data) {
 				layer.close(index);
@@ -152,6 +152,7 @@
 	}
 	// 删除爬虫
 	function deleteRole(ids, obj) {
+		console.log(ids)
 		var msg = obj ? '确认删除爬虫【' + obj.data.crawlerName + '】吗？' : '确认删除选中数据吗？'
 		top.winui.window.confirm(msg, {
 			icon : 3,
@@ -164,7 +165,7 @@
 				type : "post",
 				dataType : "json",
 				data : {
-					"id" : obj.data.id
+					"ids" : ids
 				},
 				success : function() {
 				}
@@ -177,7 +178,7 @@
 				});
 				obj.del(); // 删除对应行（tr）的DOM结构
 			} else {
-				top.winui.window.msg('向服务端发送删除指令后刷新表格即可', {
+				top.winui.window.msg('删除成功', {
 					time : 2000
 				});
 				reloadTable(); // 直接刷新表格

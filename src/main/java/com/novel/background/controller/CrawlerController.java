@@ -48,8 +48,15 @@ public class CrawlerController {
 	}
 
 	@RequestMapping("deleteCrawler")
-	public void deleteCrawler(Crawler crawler) {
-		crawlerService.deleteCrawler(crawler);
+	public void deleteCrawler(String ids) {
+		String id[] = ids.split(",");
+		for (String string : id) {
+			if (!string.equals("")) {
+				Crawler crawler = new Crawler();
+				crawler.setId(Integer.parseInt(string));
+				crawlerService.deleteCrawler(crawler);
+			}
+		}
 	}
 
 	@RequestMapping("runCrawler")

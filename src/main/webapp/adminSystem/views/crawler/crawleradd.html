@@ -1,0 +1,61 @@
+﻿<fieldset class="layui-elem-field layui-field-title"
+	style="margin-top: 20px;">
+	<legend>新建爬虫</legend>
+</fieldset>
+
+<form class="layui-form" action="">
+	<div class="layui-form-item">
+		<label class="layui-form-label">名称</label>
+		<div class="layui-input-block">
+			<input name="crawlerName" lay-verify="required" autocomplete="off"
+				placeholder="请输入名称" class="layui-input" type="text">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">网址</label>
+		<div class="layui-input-block">
+			<input name="crawlerUrl" lay-verify="url" autocomplete="off"
+				placeholder="请输入网址" class="layui-input" type="text">
+			<input style="display: none" name="crawlerStatus" value="1" lay-verify="title" autocomplete="off"
+				placeholder="请输入状态" class="layui-input" type="text">
+		</div>
+	</div>
+
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<button class="layui-btn" lay-submit="" lay-filter="mustSubmit">立即提交</button>
+			<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		</div>
+	</div>
+</form>
+
+<script>
+	var $ = layui.jquery;
+	var form = layui.form;
+	var layer = layui.layer;
+	//Demo
+	layui.use('form', function() {
+		form.on('submit(mustSubmit)', function(data) {
+			$.ajax({
+				type : 'post',
+				url : '../addCrawler',
+				data : data.field,
+				success : function(result) {
+					top.winui.window.msg("添加成功!,请手动刷新表格。", {
+						time : 2000
+					});
+				},
+				error : function(xml) {
+					layer.close(index);
+					top.winui.window.msg("获取页面失败", {
+						icon : 2,
+						time : 2000
+					});
+					console.log(xml.responseText);
+				}
+			});
+			return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+		});
+		form.render();
+	});
+</script>
