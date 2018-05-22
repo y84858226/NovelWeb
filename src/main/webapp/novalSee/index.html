@@ -91,123 +91,41 @@
                 <span class="b_l">
                 </span>
     </h3>
-    <div class="blist">
+    <div class="blist" ng-controller="recommondBooksController">
         <ul>
-            <li>
+            <li ng-repeat="book in recommendImageBooks">
                 <a href='novelinfo/70159.html'>
                     <div class="bcover fl">
-                        <img src="http://file1.kanshu.com/upload/article/70159/70159_m.jpg"
+                        <img ng-src="{{book.mainImage}}"
                              onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                              alt="" height="130" width="85"/>
                     </div>
                     <div class="bintro pl10">
                         <h4>
-                            暧昧办公室:妖娆俏老板
+                            {{book.name}}
                         </h4>
                         <p>
-                            都市言情. (连载中) . 74.0万字
+                            {{book.typeName}}
                             <br>
-                            桃花运到，挡也挡不住。钟晓飞先在机场捡了一个青春性感的小姨子，接着又捡到了梦中女神的贴身之物。一时间，美女投怀送抱，艳遇接连不断！美女太多了，应接不暇之际，一个巨大的危险已经悄然而至。为了日后的‘幸’福，他决定发彪，男人统统打倒，美女全部推倒！
+                            {{book.description}}
                         </p>
                     </div>
                 </a>
-            <li>
-                <a href='novelinfo/70159.html'>
-                    <div class="bcover fl">
-                        <img src="http://file5.kanshu.com/upload/article/66905/66905_m.jpg"
-                             onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                             alt="" height="130" width="85"/>
-                    </div>
-                    <div class="bintro pl10">
-                        <h4>
-                            实习帅渣男:艳福穷小子
-                        </h4>
-                        <p>
-                            都市言情. (连载中) . 207.2万字
-                            <br>
-                            穷屌丝被炒了鱿鱼，一不小心成了拯救九重天神域的实习天神，（书友群： 100010632）
-                        </p>
-                    </div>
-                </a>
-            <li>
-                <a href='novelinfo/70159.html'>
-                    <div class="bcover fl">
-                        <img src="http://file.kanshu.com/upload/article/67296/67296_m.jpg"
-                             onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                             alt="" height="130" width="85"/>
-                    </div>
-                    <div class="bintro pl10">
-                        <h4>
-                            天才村医:神级美女伴侣
-                        </h4>
-                        <p>
-                            都市言情. (连载中) . 137.3万字
-                            <br>
-                            流氓会武术，谁也挡不住！乡村小子苏羽，身具神奇医术，以拯救万千女性为己任，在乡村混迹的风生水起。斗恶霸泡美妞，顺便和大闺女、小寡妇探讨人生……
-                            每晚八点至九点更新。最新动态请加群，公众群号：99052577 vip书友群：210815847入群需订阅截图
-                        </p>
-                    </div>
-                </a>
-            <li>
+            </li>
+            <li ng-repeat="book in recommendBooks">
                 <a href='novelinfo/70159.html'>
                     <div class="bintro">
                         <h4>
-                            泡嫩模当导演:超级影视
+                            {{book.name}}
                         </h4>
                         <p>
-                            玄幻奇幻 . (连载中) . 33.4万字
+                            {{book.typeName}}
                             <br>
+                            {{book.description}}
                         </p>
                     </div>
                 </a>
-            <li>
-                <a href='novelinfo/70159.html'>
-                    <div class="bintro">
-                        <h4>
-                            邪恶小嫩妃:妖媚很难挡
-                        </h4>
-                        <p>
-                            现代言情 . (全本) . 202.9万字
-                            <br>
-                        </p>
-                    </div>
-                </a>
-            <li>
-                <a href='novelinfo/70159.html'>
-                    <div class="bintro">
-                        <h4>
-                            特种征服:老公求你饶我
-                        </h4>
-                        <p>
-                            现代言情 . (连载中) . 22.4万字
-                            <br>
-                        </p>
-                    </div>
-                </a>
-            <li>
-                <a href='novelinfo/70159.html'>
-                    <div class="bintro">
-                        <h4>
-                            [免费爽文]乡野相师
-                        </h4>
-                        <p>
-                            都市言情 . (连载中) . 9.0万字
-                            <br>
-                        </p>
-                    </div>
-                </a>
-            <li>
-                <a href='novelinfo/70159.html'>
-                    <div class="bintro">
-                        <h4>
-                            [大神新作]龙血战尊
-                        </h4>
-                        <p>
-                            玄幻奇幻 . (连载中) . 27.9万字
-                            <br>
-                        </p>
-                    </div>
-                </a>
+            </li>
         </ul>
     </div>
 </div>
@@ -264,7 +182,7 @@
         </ul>
     </div>
 </div>-->
-<div class="section">
+<div class="section" ng-controller="hotBookController">
     <h3 class="title">
                 <span class="b_l">
                     热门小说
@@ -273,83 +191,35 @@
     <div class="box tab-pane clearfix">
         <div class="blist tab-content active">
             <ul>
-                <li>
+                <li ng-repeat="book in hotImageBooks">
                     <a href='novelinfo/70159.html'>
                         <div class="bcover fl">
-                            <img src="http://file4.kanshu.com/upload/article/30508/30508_m.jpg" alt="超能保镖"
+                            <img ng-src="{{book.mainImage}}" alt="超能保镖"
                                  onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                                  height="130" width="85"/>
                         </div>
                         <div class="bintro pl10">
                             <h4>
-                                黑白两道通吃:恶鬼保镖
+                                {{book.name}}
                             </h4>
                             <p>
-                                都市言情 . (全本) . 284.1万字
+                                {{book.typeName}}
                                 <br>
-                                新书《踏平巅峰》
+                                {{book.description}}
                             </p>
                         </div>
                     </a>
                 </li>
-                <li>
+                <li ng-repeat="book in hotBooks">
                     <a href='novelinfo/70159.html'>
                         <div class="bintro">
                             <h4>
-                                终极双修大法:九阳邪君
+                                {{book.name}}
                             </h4>
                             <p>
-                                玄幻奇幻 . (全本) . 391.7万字
+                                {{book.typeName}}
                                 <br>
-                                天地之间，有九种最为神奇，威力莫测的力量，名为九阳之力。传说九阳之中，蕴藏天地间的终极奥义。谁能发现这个秘密，就能成为绝世强者，君临天下！修炼五大层次：练血！练气！练神！法天！天人！PS:小妖新书《绝品透视》，4月1日开始上传更新，欢迎新老读者捧场。
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/70159.html'>
-                        <div class="bintro">
-                            <h4>
-                                穿越记:天才宝贝腹黑娘
-                            </h4>
-                            <p>
-                                古代言情 . (全本) . 80.3万字
-                                <br>
-                                前世她是特工，穿越到一个因为难产而香消玉殒的郡主身上，背负起了她未婚先孕的耻辱，至于孩子爹爹是谁－－－不详。
-                                五年后，表面上她依旧是人人唾弃鄙夷的草包破鞋，而实际上，她却是武学奇才，拥有异能空间戒指的她呼风唤雨，翻云覆雨之间，竟能让整个泱泱大国动摇。豪门后宅院，母子二人大展手脚，扮猪吃老虎，那些欺凌她的庶女小妾一个都别想好过，该打的打，该修理的修理，绝对不含糊。
-                                从废柴到天才，从嘲笑鄙夷到惊才绝艳，随着她和天才儿子的才华渐露，曾经嘲笑她们的人纷纷傻了眼…
-                                尉迟娉婷，前世是特工，身怀绝世武学。再加上手上的异世空间手镯，让她在这个男尊女卑的世道活的风生水起。尉迟墨，天真可爱的萌宝宝，拥有异能却不为人知。
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/70159.html'>
-                        <div class="bintro">
-                            <h4>
-                                人族纵横:网游洪荒至尊
-                            </h4>
-                            <p>
-                                网游竞技 . (全本) . 151.3万字
-                                <br>
-                                2012地球破灭前夕，一款跨时代意义的虚拟网游《洪荒求索》重新出世，没有人知道后面开发游戏的是谁。但是，它却将人类带入了一个全新的世界，也是地球破灭前人类自救的唯一机会。
-                                秦南从小就是一个孤儿，没钱没势，进入游戏当中却好运连连，先是成为人族部落族长，然后又成为兽修祖先。在别人还在苦苦寻找初级功法的时候，秦南已经手握最顶级的先天功法了。
-                                驾着各类妖兽，带领人族，泡MM是他不变的使命，什么MM？自然是npc天仙MM，美女玩家也凑合，最好的就是圣人女娲啦，连纣王都垂涎的美色，身为主角，没有理由不尝尝……
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/70159.html'>
-                        <div class="bintro">
-                            <h4>
-                                骑爷难下:痞妃的美男团
-                            </h4>
-                            <p>
-                                古代言情 . (全本) . 70.5万字
-                                <br>
-                                新文《毒妃倾天下》已发表。他，贵为青龙国七皇子，外表柔弱，实则腹黑睿智，处处受她保护，她横眉傲视天下：伤我夫者，死！
-                                一袭将军袍，坐在马背上的少女，英姿飒爽的举起长枪，低吼一声：“若不交出我相公，就别怪老娘下手无情。”她为他夺得皇位，怎料他登基之日，便是休妻之时，后宫佳丽三千，她不过是他夺位的棋子……龙净沉：我活着，你活着，我死了，你替我活着。独孤岩：闯了祸，就应该乖乖地躲在我身后。步惊云：这世界上除了我谁都没资格陪在你身边。
+                                {{book.description}}
                             </p>
                         </div>
                     </a>
