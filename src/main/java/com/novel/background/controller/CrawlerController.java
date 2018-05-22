@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Scope;
@@ -59,15 +61,6 @@ public class CrawlerController {
 		}
 	}
 
-	@RequestMapping("runCrawler")
-	public String runCrawler(Crawler crawler) {
-		List<Crawler> list = crawlerService.selectCrawler(crawler);
-		crawler = list.get(0);
-		crawlerService.crawlerNovelData(crawler);
-
-		return crawler.getCrawlerName() + ":运行结束";
-	}
-
 	@RequestMapping("validReg")
 	public String validReg(String text, String reg, String regGroupNum) {
 		Pattern pattern = Pattern.compile(reg);
@@ -77,5 +70,13 @@ public class CrawlerController {
 			result = matcher.group(Integer.parseInt(regGroupNum));
 		}
 		return result;
+	}
+	
+	@RequestMapping("runCrawler")
+	public String runCrawler(HttpServletRequest request,Crawler crawler) {
+		List<Crawler> list = crawlerService.selectCrawler(crawler);
+		crawler = list.get(0);
+		crawlerService.crawlerNovelData(request,crawler);
+		return crawler.getCrawlerName() + ":运行结束";
 	}
 }

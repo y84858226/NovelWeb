@@ -2,7 +2,7 @@ package com.novel.background.pojo;
 
 public class Novel {
 	private Integer id;
-	private String url;
+	private String path;
 	private String name;
 	private String author;
 	private String typeName;
@@ -12,6 +12,7 @@ public class Novel {
 	private String updateTime;
 	private Integer clickView;
 	private String status;
+	private String display;
 
 	public Integer getId() {
 		return id;
@@ -21,12 +22,12 @@ public class Novel {
 		this.id = id;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getPath() {
+		return path;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	public String getName() {
@@ -101,10 +102,18 @@ public class Novel {
 		this.status = status;
 	}
 
-	public Novel(Integer id, String url, String name, String author, String typeName, String description, String mainImage,
-			String createTime, String updateTime, Integer clickView, String status) {
+	public String getDisplay() {
+		return display;
+	}
+
+	public void setDisplay(String display) {
+		this.display = display;
+	}
+
+	public Novel(Integer id, String path, String name, String author, String typeName, String description,
+			String mainImage, String createTime, String updateTime, Integer clickView, String status, String display) {
 		this.id = id;
-		this.url = url;
+		this.path = path;
 		this.name = name;
 		this.author = author;
 		this.typeName = typeName;
@@ -114,6 +123,7 @@ public class Novel {
 		this.updateTime = updateTime;
 		this.clickView = clickView;
 		this.status = status;
+		this.display = display;
 	}
 
 	public Novel() {
@@ -121,9 +131,10 @@ public class Novel {
 
 	@Override
 	public String toString() {
-		return "Novel [id=" + id + ", url=" + url + ", name=" + name + ", author=" + author + ", typeName=" + typeName
+		return "Novel [id=" + id + ", path=" + path + ", name=" + name + ", author=" + author + ", typeName=" + typeName
 				+ ", description=" + description + ", mainImage=" + mainImage + ", createTime=" + createTime
-				+ ", updateTime=" + updateTime + ", clickView=" + clickView + ", status=" + status + "]";
+				+ ", updateTime=" + updateTime + ", clickView=" + clickView + ", status=" + status + ", display="
+				+ display + "]";
 	}
 
 }

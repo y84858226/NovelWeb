@@ -17,7 +17,7 @@ public class CrawlerConfigProvider {
 			{
 				SELECT("*");
 				FROM("crawlerconfig");
-				if (crawlerConfig.getId()!=null) {
+				if (crawlerConfig.getId() != null) {
 					WHERE("id=#{id}");
 				}
 				if (crawlerConfig.getConfigId() != null) {
@@ -38,8 +38,14 @@ public class CrawlerConfigProvider {
 				if (crawlerConfig.getRegGroupNum() != null) {
 					WHERE("regGroupNum=#{regGroupNum}");
 				}
-				if (crawlerConfig.getAppendResult() != null) {
-					WHERE("appendResult=#{appendResult}");
+				if (crawlerConfig.getHeadAppendResult() != null) {
+					WHERE("appendResult=#{headAppendResult}");
+				}
+				if (crawlerConfig.getTailAppendResult() != null) {
+					WHERE("appendResult=#{tailAppendResult}");
+				}
+				if (crawlerConfig.getReplaceResult() != null) {
+					WHERE("appendResult=#{replaceResult}");
 				}
 				if (crawlerConfig.getSort() != null) {
 					WHERE("sort=#{sort}");

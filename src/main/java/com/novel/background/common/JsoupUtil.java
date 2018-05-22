@@ -1,10 +1,9 @@
 package com.novel.background.common;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.net.MalformedURLException;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,7 +15,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
+import com.gargoylesoftware.htmlunit.ScriptException;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
@@ -25,9 +26,9 @@ public class JsoupUtil {
 	private Document doc;
 
 	public JsoupUtil() {
-		
+
 	}
-	
+
 	public JsoupUtil(String url) {
 		this.url = url;
 		init();
@@ -38,14 +39,14 @@ public class JsoupUtil {
 	 */
 	public void init() {
 		try {
-			//构造一个webClient 模拟Chrome 浏览器
+			// 构造一个webClient 模拟Chrome 浏览器
 			WebClient webClient = new WebClient(BrowserVersion.CHROME);
-			//屏蔽日志信息
+			// 屏蔽日志信息
 			LogFactory.getFactory().setAttribute("org.apache.commons.logging.Log",
-			        "org.apache.commons.logging.impl.NoOpLog");
+					"org.apache.commons.logging.impl.NoOpLog");
 			java.util.logging.Logger.getLogger("com.gargoylesoftware").setLevel(Level.OFF);
-			//支持JavaScript
-			webClient.getOptions().setJavaScriptEnabled(true);
+			// 支持JavaScript
+			webClient.getOptions().setJavaScriptEnabled(false);
 			webClient.getOptions().setCssEnabled(false);
 			webClient.getOptions().setActiveXNative(false);
 			webClient.getOptions().setCssEnabled(false);
@@ -53,20 +54,27 @@ public class JsoupUtil {
 			webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
 			webClient.getOptions().setThrowExceptionOnScriptError(false);
 			webClient.getOptions().setTimeout(5000);
-			webClient.setAjaxController(new NicelyResynchronizingAjaxController());//很重要，设置支持AJAX
+			webClient.setAjaxController(new NicelyResynchronizingAjaxController());// 很重要，设置支持AJAX
 			webClient.getOptions().setUseInsecureSSL(true);
 			HtmlPage rootPage = webClient.getPage(url);
-			
-			//设置一个运行JavaScript的时间
+
+			// 设置一个运行JavaScript的时间
 			webClient.waitForBackgroundJavaScript(5000);
 			String html = rootPage.asXml();
 			doc = Jsoup.parse(html);
-//			doc = Jsoup.connect(url)
-//					.header("Accept-Encoding", "gzip, deflate")
-//					.userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0")
-//					.maxBodySize(0)
-//					.timeout(600000)
-//					.get();
+			// doc = Jsoup.connect(url)
+			// .header("Accept-Encoding", "gzip, deflate")
+			// .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101
+			// Firefox/23.0")
+			// .maxBodySize(0)
+			// .timeout(600000)
+			// .get();
+		} catch (ScriptException e) {
+			// e.printStackTrace();
+		} catch (FailingHttpStatusCodeException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -75,7 +83,7 @@ public class JsoupUtil {
 	public Document getDoc() {
 		return doc;
 	}
-	
+
 	/**
 	 * 
 	 * @param url
@@ -96,57 +104,79 @@ public class JsoupUtil {
 	 *            设置读取哪一组的数据
 	 * @return
 	 */
-	public static Set<String> getHtmlAttr(String url, Document document, String select, String num, String attrName,
-			String reg, String appendResult, int regGroupNum) {
-		if (url != null) {
-			JsoupUtil jsoupUtil = new JsoupUtil(url);
-			document = jsoupUtil.getDoc();
-		}
+	public Set<String> getHtmlAttr(String url, Document document, String select, String num, String attrName,
+			String reg, String headAppendResult, String tailAppendResult, String replaceResult, int regGroupNum) {
 		// 存放正则后的的attr
 		Set<String> set = new LinkedHashSet<String>();
-		/**
-		 * 获取全部属性
-		 */
-		if (num.equals("all")) {
-			// 获取全部的attr
-			Elements elements = document.select(select);
-			// 设置正则
-			Pattern pattern = Pattern.compile(reg);
-			// 循环访问全部attr标签
-			for (Element element : elements) {
+		try {
+			if (url != null) {
+				JsoupUtil jsoupUtil = new JsoupUtil(url);
+				document = jsoupUtil.getDoc();
+			}
+
+			/**
+			 * 获取全部属性
+			 */
+			if (num.equals("all")) {
+				// 获取全部的attr
+				Elements elements = document.select(select);
+				// 设置正则
+				Pattern pattern = Pattern.compile(reg);
+				// 循环访问全部attr标签
+				for (Element element : elements) {
+					String attr = null;
+					if (attrName.equals("html")) {
+						attr = element.html();
+					} else {
+						attr = element.attr(attrName);
+					}
+					attr = attr.replaceAll("\n", "");
+					attr = attr.replaceAll("\r", "");
+					attr = attr.trim();
+					Matcher matcher = pattern.matcher(attr);
+					if (matcher.find()) {
+						String result = headAppendResult + matcher.group(regGroupNum) + tailAppendResult;
+						if (!replaceResult.equals("")) {
+							String replaces[] = replaceResult.split(",");
+							for (String groupReplace : replaces) {
+								String replace[] = groupReplace.split("&&&&");
+								result = result.replaceAll(replace[0], replace[1]);
+							}
+						}
+						set.add(result);
+					}
+				}
+			} else {
+				/**
+				 * 获取第num个属性
+				 */
+				Element element = document.select(select).get(Integer.parseInt(num));
 				String attr = null;
 				if (attrName.equals("html")) {
 					attr = element.html();
 				} else {
 					attr = element.attr(attrName);
 				}
-				attr=attr.replaceAll("\n","");
-				attr=attr.replaceAll("\r","");
-				attr=attr.trim();
+				attr = attr.replaceAll("\n", "");
+				attr = attr.replaceAll("\r", "");
+				attr = attr.trim();
+				Pattern pattern = Pattern.compile(reg);
 				Matcher matcher = pattern.matcher(attr);
 				if (matcher.find()) {
-					set.add(appendResult + matcher.group(regGroupNum));
+					String result = headAppendResult + matcher.group(regGroupNum) + tailAppendResult;
+					if (!replaceResult.equals("")) {
+						String replaces[] = replaceResult.split(",");
+						for (String groupReplace : replaces) {
+							String replace[] = groupReplace.split("&&&&");
+							result = result.replaceAll(replace[0], replace[1]);
+						}
+					}
+					set.add(result);
 				}
 			}
-		} else {
-			/**
-			 * 获取第num个属性
-			 */
-			Element element = document.select(select).get(Integer.parseInt(num));
-			String attr = null;
-			if (attrName.equals("html")) {
-				attr = element.html();
-			} else {
-				attr = element.attr(attrName);
-			}
-			attr=attr.replaceAll("\n","");
-			attr=attr.replaceAll("\r","");
-			attr=attr.trim();
-			Pattern pattern = Pattern.compile(reg);
-			Matcher matcher = pattern.matcher(attr);
-			if (matcher.find()) {
-				set.add(appendResult + matcher.group(regGroupNum));
-			}
+		} catch (Exception e) {
+			set = getHtmlAttr(url, document, select, num, attrName, reg, headAppendResult, tailAppendResult,
+					replaceResult, regGroupNum);
 		}
 		return set;
 	}
