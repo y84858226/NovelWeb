@@ -79,4 +79,5 @@ public class CrawlerController {
 		crawlerService.crawlerNovelData(request,crawler);
 		return crawler.getCrawlerName() + ":运行结束";
 	}
+	
 }
