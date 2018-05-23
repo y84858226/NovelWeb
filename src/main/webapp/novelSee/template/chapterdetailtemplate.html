@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="${keywords}" />
+<meta name="description" content="${description}" />
+<link rel="canonical" href="${canonical}" />
+<title>${title}</title>
+<link href="../favicon.png" rel="apple-touch-icon-precomposed" />
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="../public/css/style.css">
+</head>
+
+<body>
+	<script type="text/javascript">
+		var ks_host = "../3g";
+		var ks_uid = 0;
+	</script>
+	<script src="../public/js/require.js">
+		
+	</script>
+	<div class="wrap">
+		<!--导航区-->
+		<div class="t-nav" id="t-nav">
+			<span class="nav_left"> 
+				<a href="#"> 简介 </a>
+			</span> 
+			<span class="nav_right">
+				<a href="#">首页 </a>
+			</span>
+			<h1>
+				<a href="#"> 目录 </a> 
+				<a href="#"> 书架 </a> 
+				<a rel="internal" href="#"> 男生 </a>
+			</h1>
+		</div>
+		<!--翻页-->
+		<div class="t-page t-prev" id="t-prev">
+			<a href="${lastChapter}" id="t-b-p"> 上一章 </a>
+		</div>
+		<div class="t-page t-next" id="t-next">
+			<a href="${nextChapter}" id="t-b-n"> 下一章 </a>
+		</div>
+		<div class="chapter" id="chapter">
+			<div class="chapter-inner">
+				<p class="chapname">
+					<span class="bname" id="chaptitle"> ${chapterName} </span> 
+					<span class="binfo" id="chapbname"> ${novelName} </span>
+				</p>
+				<p id="chapcont">${chapterContent}</p>
+			</div>
+		</div>
+		<div class="chaplink">
+			<a href="${lastChapter}" class="prevchap bggy" id="btn_prev"> 上一章</a>
+			<a href="${nextChapter}" class="nextchap bgye" id="btn_next"> 下一章 </a>
+		</div>
+	</div>
+	<!-- 功能区 begin -->
+	<div class="t-cover"></div>
+	<div class="t-scroll-lock"></div>
+	<!--工具条-->
+	<div class="t-wrap t-menu t4" id="t-menu">
+		<a href="javascript:;" id="t-m-clt"> <i class="icons icon-fav">
+		</i> <b> 收藏 </b>
+		</a> <a href="javascript:;" id="t-m-cmt"> <i class="icons icon-cmt">
+		</i> <b> 评论 </b>
+		</a> <a href="javascript:;" id="t-m-mny"> <i class="icons icon-mny">
+		</i> <b> 打赏 </b>
+		</a> <a href="javascript:;" id="t-m-flw"> <i class="icons icon-flw">
+		</i> <b> 送花 </b>
+		</a> <a href="javascript:;" id="t-m-font"> <i class="icon-font">
+				Aa </i> 字体
+		</a> <a href="javascript:;" id="t-m-off"> <i class="icons icon-off">
+		</i> <b> 离线 </b>
+		</a> <a href="javascript:;" id="t-m-mode"> <i class="icons icon-night">
+		</i> <b> 夜间 </b>
+		</a> <a href="javascript:;" id="t-m-scrol"> <i
+			class="icons icon-scrol"> </i> <b> 滚动 </b>
+		</a>
+	</div>
+	<!--评论-->
+	<div class="t-wrap t-cmt">
+		<p class="t_c">作品评论</p>
+		<p class="t_c">
+			<textarea class="t_b" name="comment" id="t-c-a">
+                </textarea>
+		</p>
+		<p class="t_c t-c-b">
+			<span class="t-l" id="t-c-c"> 取消 </span> <span class="t-r" id="t-c-s">
+				提交 </span>
+		</p>
+	</div>
+	<!--打赏-->
+	<div class="t-wrap t-money">
+		<p class="t_c">
+			我的余额： <b class="ye" id="t-u-s"> 0金币 </b>
+		</p>
+		<p class="t_c t-m-s">
+			<span class="t-l" id="t-m-d"> 减少- </span> <b id="t-m-n"> 100金币 </b> <span
+				class="t-r" id="t-m-i"> 增加+ </span>
+		</p>
+		<p class="t_c">
+			<span class="t_b" id="t-m-b"> 确定打赏 </span>
+		</p>
+	</div>
+	<div class="t-wrap t-lack">
+		<p class="t_c">
+			我的余额： <b class="ye" id="t-l-s"> 0金币 </b>
+		</p>
+		<p class="t_c">
+			余额不足 <span class="t_b ml10"> <a href="charge.html"> 充值 </a>
+			</span>
+		</p>
+	</div>
+	<!--送花-->
+	<div class="t-wrap t-flower">
+		<p class="t_c">
+			我的花朵： <b class="ye" id="t-u-f"> 0朵 </b>
+		</p>
+		<p class="t_c t-f-s">
+			<span class="t-l" id="t-fl-d"> 减少- </span> <b id="t-fl-n"> 1朵 </b> <span
+				class="t-r" id="t-fl-i"> 增加+ </span>
+		</p>
+		<p class="t_c">
+			<span class="t_b" id="t-fl-b"> 确定送花 </span>
+		</p>
+	</div>
+	<!--字体-->
+	<div class="t-wrap t-font">
+		<p class="t_c t-f-s">
+			<span class="mr20" id="t-f-d"> Aa- </span> <span id="t-f-i">
+				Aa+ </span>
+		</p>
+		<p class="t_c t-f-b">
+			<span class="t-c-1 mr10" id="t-fc-1"> Aa </span> <span
+				class="t-c-2 mr10" id="t-fc-2"> Aa </span> <span class="t-c-3 mr10"
+				id="t-fc-3"> Aa </span> <span class="t-c-4" id="t-fc-4"> Aa </span>
+		</p>
+	</div>
+	<!--离线-->
+	<div class="t-wrap t-off">
+		<p class="t_c">离线预读取，断网也能读</p>
+		<p class="t_c t-o-s" id="t-o-c">已缓存至0章</p>
+		<p class="t_c">
+			<span class="t_b" id="t-b-o"> 预读取后续20章 </span>
+		</p>
+	</div>
+	<!--滚动-->
+	<div class="t-scrol">
+		<p class="t_c t-sc-n">
+			<span class="t-s-n" id="t-s-n"> 60 </span>
+		</p>
+		<p class="t_c t-sc-s">
+			<span class="t-s-d" id="t-s-d"> - </span> <span class="t-s-i"
+				id="t-s-i"> + </span>
+			<!--<span class="t-s-s" id="t-s-s">▶</span>-->
+		</p>
+	</div>
+	<!--提示-->
+	<div class="t-wrap t-tips"></div>
+	<!--功能提示-->
+	<div class="t-pop-tip" id="t-pop-tip">
+		<div class="t-pop-inner">
+			<div class="t-pop-cont">
+				<p>单击 弹出菜单</p>
+				<p>双击 开始滚动</p>
+			</div>
+		</div>
+	</div>
+	<div class="t-wrap t-flack t-lack">
+		<p class="t_c">
+			我的红花： <b class="ye"> 0朵 </b>
+		</p>
+		<p class="t_c">
+			没有足够的红花 <br /> （每消费100金币获得1朵）
+		</p>
+	</div>
+	<div class="t-wrap t-mlack t-lack">
+		<p class="t_c">
+			我的余额： <b class="ye"> 0金币 </b>
+		</p>
+		<p class="t_c">
+			余额不足 
+			<span class="t_b ml10">
+				<a href="#">充值 </a>
+			</span>
+		</p>
+	</div>
+	<script type="text/javascript">
+		var ks_loginflag = 21;
+		var ks_cid = 2764381;
+		var ks_bkid = 70159;
+		var user_gold = 0;
+		var user_flower = 0;
+	</script>
+	<script src="../public/js/rtools.js">
+		
+	</script>
+	<script src="../public/js/kbook.js">
+		
+	</script>
+	<div class="footer home-bg">
+		<div class="footer_nav clearfix">
+			<a href="#"> 首页 </a> <a
+				href="#"> 书架 </a> <a
+				href="#"> 分类 </a> <a
+				href="#"> 留言 </a> <a
+				href="#"> 个人中心 </a>
+		</div>
+		<p class="edition mt20">
+			<span> 
+				<a href="#">普通版 </a> | <a href="#" class="select"> 触屏版 </a>
+			</span>
+		</p>
+		<p class="copyright mt20">
+			<b> ${webName} </b> ${index}
+		</p>
+		<span id="gotop" class="icons icon-gotop"> </span>
+	</div>
+	<div class="pop_cover"></div>
+	<div class="pop_tip">
+		<div class="pop_inner">
+			<div class="pop_cont"></div>
+		</div>
+	</div>
+</body>
+
+</html>
