@@ -2,7 +2,7 @@ package com.novel.pojo;
 
 public class CrawlerConfig {
 	private Integer id;
-	private String configId;
+	private String crawlerId;
 	private String configName;
 	private String select;
 	private String num;
@@ -22,12 +22,12 @@ public class CrawlerConfig {
 		this.id = id;
 	}
 
-	public String getConfigId() {
-		return configId;
+	public String getCrawlerId() {
+		return crawlerId;
 	}
 
-	public void setConfigId(String configId) {
-		this.configId = configId;
+	public void setCrawlerId(String crawlerId) {
+		this.crawlerId = crawlerId;
 	}
 
 	public String getConfigName() {
@@ -110,11 +110,11 @@ public class CrawlerConfig {
 		this.sort = sort;
 	}
 
-	public CrawlerConfig(Integer id, String configId, String configName, String select, String num, String attrName,
+	public CrawlerConfig(Integer id, String crawlerId, String configName, String select, String num, String attrName,
 			String reg, Integer regGroupNum, String headAppendResult, String tailAppendResult, String replaceResult,
 			Integer sort) {
 		this.id = id;
-		this.configId = configId;
+		this.crawlerId = crawlerId;
 		this.configName = configName;
 		this.select = select;
 		this.num = num;
@@ -132,9 +132,10 @@ public class CrawlerConfig {
 
 	@Override
 	public String toString() {
-		return "CrawlerConfig [id=" + id + ", configId=" + configId + ", configName=" + configName + ", select="
+		return "CrawlerConfig [id=" + id + ", crawlerId=" + crawlerId + ", configName=" + configName + ", select="
 				+ select + ", num=" + num + ", attrName=" + attrName + ", reg=" + reg + ", regGroupNum=" + regGroupNum
 				+ ", headAppendResult=" + headAppendResult + ", tailAppendResult=" + tailAppendResult
 				+ ", replaceResult=" + replaceResult + ", sort=" + sort + "]";
 	}
+
 }

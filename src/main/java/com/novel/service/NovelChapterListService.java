@@ -6,6 +6,8 @@ import com.novel.pojo.NovelChapterList;
 
 public interface NovelChapterListService {
 
-	List<NovelChapterList> selectNovelChapterList(NovelChapterList chapterList);
+	public List<NovelChapterList> selectNovelChapterList(NovelChapterList chapterList);
+
+	public String crawlerNovelChapter(NovelChapterList chapterList);
 
 }

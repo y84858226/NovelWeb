@@ -175,8 +175,9 @@ public class JsoupUtil {
 				}
 			}
 		} catch (Exception e) {
-			set = getHtmlAttr(url, document, select, num, attrName, reg, headAppendResult, tailAppendResult,
-					replaceResult, regGroupNum);
+			e.printStackTrace();
+//			set = getHtmlAttr(url, document, select, num, attrName, reg, headAppendResult, tailAppendResult,
+//					replaceResult, regGroupNum);
 		}
 		return set;
 	}

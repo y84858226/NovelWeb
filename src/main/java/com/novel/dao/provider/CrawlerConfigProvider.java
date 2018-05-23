@@ -20,8 +20,8 @@ public class CrawlerConfigProvider {
 				if (crawlerConfig.getId() != null) {
 					WHERE("id=#{id}");
 				}
-				if (crawlerConfig.getConfigId() != null) {
-					WHERE("configId=#{configId}");
+				if (crawlerConfig.getCrawlerId() != null) {
+					WHERE("crawlerId=#{crawlerId}");
 				}
 				if (crawlerConfig.getSelect() != null) {
 					WHERE("select=#{select}");

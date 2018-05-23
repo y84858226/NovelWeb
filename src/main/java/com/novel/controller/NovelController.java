@@ -14,18 +14,28 @@ import com.novel.service.NovelChapterListService;
 @RestController // 证明是controller层并且返回json
 @EnableAutoConfiguration
 @Scope("prototype") // 原型模式
-public class novelController {
+public class NovelController {
 	// 依赖注入
 	@Autowired
 	NovelChapterListService chapterListService;
 
+	/**
+	 * 传入id
+	 * 
+	 * 通过调用本方法，生成静态文件
+	 * 
+	 * @param chapterList
+	 */
 	@RequestMapping("selectChapter")
-	public void selectChapter(NovelChapterList chapterList) {
-		List<NovelChapterList> chapterLists = chapterListService.selectNovelChapterList(chapterList);
-		// 查询章节原地址
+	public String selectChapter(NovelChapterList novelChapterList) {
+		List<NovelChapterList> list = chapterListService.selectNovelChapterList(novelChapterList);
+		novelChapterList = list.get(0);
 		// 爬取章节内容
+		String content= chapterListService.crawlerNovelChapter(novelChapterList);
 		// 生成静态文件
 
 		// 返回静态文件地址
+		
+		return "https://www.baidu.com";
 	}
 }

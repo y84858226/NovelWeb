@@ -30,6 +30,12 @@ public class NovelChapterListProvider {
 				if (novelChapterList.getChapterLink() != null) {
 					WHERE("chapterLink=#{chapterLink}");
 				}
+				if (novelChapterList.getFilePath() != null) {
+					WHERE("filePath=#{filePath}");
+				}
+				if (novelChapterList.getCrawlerConfigId() != null) {
+					WHERE("crawlerConfigId=#{crawlerConfigId}");
+				}
 			}
 		}.toString();
 	}

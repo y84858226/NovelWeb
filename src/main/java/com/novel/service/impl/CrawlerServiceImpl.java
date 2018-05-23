@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import com.novel.common.ImageUtil;
 import com.novel.common.JsoupUtil;
-import com.novel.common.ParseNum;
 import com.novel.dao.CrawlerConfigDao;
 import com.novel.dao.CrawlerDao;
 import com.novel.dao.NovelChapterListDao;
@@ -40,7 +39,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 	NovelDao novelDao;
 
 	@Autowired
-	NovelChapterListDao chapterListDao;
+	NovelChapterListDao novelChapterListDao;
 
 	@Override
 	public void crawlerNovelData(HttpServletRequest request, Crawler crawler) {
@@ -50,7 +49,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 		 * 查询配置结果
 		 */
 		CrawlerConfig crawlerConfig = new CrawlerConfig();
-		crawlerConfig.setConfigId(String.valueOf(crawler.getId()));
+		crawlerConfig.setCrawlerId(String.valueOf(crawler.getId()));
 		List<CrawlerConfig> list = crawlerConfigDao.selectCrawlerConfig(crawlerConfig);
 
 		/**
@@ -117,8 +116,13 @@ public class CrawlerServiceImpl implements CrawlerService {
 
 				if (novelList.size() > 0) {
 					// 更新章节
-					Novel novel2 = novelList.get(0);
-					Integer novelId = novel2.getId();
+					Integer novelId = novelList.get(0).getId();
+					// 查询小说的最新章节
+					NovelChapterList novelChapterList = new NovelChapterList();
+					novelChapterList.setNovelId(novelId);
+					novelChapterList = novelChapterListDao.selectMaxchapter(novelChapterList);
+					String maxChapterName = novelChapterList.getChapterName();
+
 					// 全部章节列表 起一步过滤
 					Set<String> chapterListSet = util.getHtmlAttr(null, doc, config.get(9).getSelect(),
 							config.get(9).getNum(), config.get(9).getAttrName(), config.get(9).getReg(),
@@ -131,9 +135,12 @@ public class CrawlerServiceImpl implements CrawlerService {
 								config.get(10).getNum(), config.get(10).getAttrName(), config.get(10).getReg(),
 								config.get(10).getHeadAppendResult(), config.get(10).getTailAppendResult(),
 								config.get(10).getReplaceResult(), config.get(10).getRegGroupNum());
+						//设置更新开关
+						boolean updateFlag = false;
 						for (String chapterA : chapterSet) {
 							NovelChapterList chapterList = new NovelChapterList();
-							chapterList.setNovelId(String.valueOf(novelId));
+							// NovelId
+							chapterList.setNovelId(novelId);
 							Document chapterDoc = Jsoup.parse(chapterA);
 
 							Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc, config.get(12).getSelect(),
@@ -142,24 +149,33 @@ public class CrawlerServiceImpl implements CrawlerService {
 									config.get(12).getReplaceResult(), config.get(12).getRegGroupNum());
 							for (String chapterName : chapterNameSet) {
 								System.out.println("章节名称:" + chapterName);
+								if (maxChapterName.equals(chapterName)) {
+									// 找到了最新章节
+									updateFlag = true;
+								}
 								chapterList.setChapterName(chapterName);
 							}
-							// 查询数据库是否存在
-							List<NovelChapterList> chapterLists = chapterListDao.selectNovelChapterList(chapterList);
-							if (chapterLists.size() > 0) {
-								// 已经存下
-							} else {
-								Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc,
-										config.get(11).getSelect(), config.get(11).getNum(),
-										config.get(11).getAttrName(), config.get(11).getReg(),
-										config.get(11).getHeadAppendResult(), config.get(11).getTailAppendResult(),
-										config.get(11).getReplaceResult(), config.get(11).getRegGroupNum());
-								for (String chapterLink : chapterLinkSet) {
-									System.out.println("章节地址:" + chapterLink);
-									chapterList.setChapterLink(chapterLink);
+							if (updateFlag) {
+								// 查询数据库是否存在
+								List<NovelChapterList> chapterLists = novelChapterListDao
+										.selectNovelChapterList(chapterList);
+								if (chapterLists.size() > 0) {
+									// 已经存下
+								} else {
+									Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc,
+											config.get(11).getSelect(), config.get(11).getNum(),
+											config.get(11).getAttrName(), config.get(11).getReg(),
+											config.get(11).getHeadAppendResult(), config.get(11).getTailAppendResult(),
+											config.get(11).getReplaceResult(), config.get(11).getRegGroupNum());
+									for (String chapterLink : chapterLinkSet) {
+										System.out.println("章节地址:" + chapterLink);
+										chapterList.setChapterLink(chapterLink);
+									}
+									// crawlerConfigId
+									chapterList.setCrawlerConfigId(config.get(13).getId());
+									// 执行添加数据库
+									novelChapterListDao.addNovelChapterList(chapterList);
 								}
-								// 执行添加数据库
-								chapterListDao.addNovelChapterList(chapterList);
 							}
 						}
 					}
@@ -245,7 +261,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 								config.get(10).getReplaceResult(), config.get(10).getRegGroupNum());
 						for (String chapterA : chapterSet) {
 							NovelChapterList chapterList = new NovelChapterList();
-							chapterList.setNovelId(String.valueOf(novelId));
+							chapterList.setNovelId(novelId);
 							Document chapterDoc = Jsoup.parse(chapterA);
 							Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc, config.get(11).getSelect(),
 									config.get(11).getNum(), config.get(11).getAttrName(), config.get(11).getReg(),
@@ -264,8 +280,10 @@ public class CrawlerServiceImpl implements CrawlerService {
 								System.out.println("章节名称:" + chapterName);
 								chapterList.setChapterName(chapterName);
 							}
+							// crawlerConfigId
+							chapterList.setCrawlerConfigId(config.get(13).getId());
 							// 执行添加数据库
-							chapterListDao.addNovelChapterList(chapterList);
+							novelChapterListDao.addNovelChapterList(chapterList);
 						}
 					}
 				}
