@@ -1,4 +1,4 @@
-package com.novel.foreground.util;
+package com.novel.util;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;

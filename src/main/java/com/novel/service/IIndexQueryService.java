@@ -23,4 +23,8 @@ public interface IIndexQueryService {
 	 * 获取热门书籍
 	 */
 	JSONArray getHotBooks();
+	/**
+	 * 获取分类的书籍
+	 */
+	JSONArray getClassifyBooks(JSONObject jClassifyName); 
 }

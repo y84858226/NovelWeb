@@ -3,6 +3,7 @@ package com.novel.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -36,4 +37,10 @@ public interface IIndexQueryDao {
 	 */
 	@Select("select * from novel order by clickView limit 5")
 	public List<Novel> selectHotBooks();
+	
+	/**
+	 * 获取分类的书籍
+	 */
+	@Select("select * from novel where typeName = #{typeName}")
+	public List<Novel> selectClassifyBooks(@Param("typeName") String typeName);
 }
