@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.novel.foreground.dao.IIndexQueryDao;
 import com.novel.foreground.pojo.Novel;
 import com.novel.foreground.service.IIndexQueryService;
+import com.novel.foreground.util.EncryptionUtils;
 /**
  * 主页查询
  * @author kainan
@@ -58,6 +59,20 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 	public JSONArray getHotBooks() {
 		long StartTime = System.currentTimeMillis();
 		List<Novel> books = indexQueryDao.selectHotBooks();
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.addAll(books);
+		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		return jsonArray;
+	}
+	/**
+	 * 获取分类的书籍
+	 */
+	@Override
+	public JSONArray getClassifyBooks(JSONObject jClassifyName) {
+		long StartTime = System.currentTimeMillis();
+		String enClassifyName = jClassifyName.getString("");
+		String deClassifyName = EncryptionUtils.base64Decode(enClassifyName);
+		List<Novel> books = indexQueryDao.selectClassifyBooks(deClassifyName);
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.addAll(books);
 		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
