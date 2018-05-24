@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.novel.pojo.Crawler;
 import com.novel.service.CrawlerService;
@@ -24,6 +28,7 @@ import com.novel.service.CrawlerService;
  *
  */
 
+@Component
 @RestController // 证明是controller层并且返回json
 @EnableAutoConfiguration
 @Scope("prototype") // 原型模式
@@ -71,13 +76,29 @@ public class CrawlerController {
 		}
 		return result;
 	}
-	
+
 	@RequestMapping("runCrawler")
-	public String runCrawler(HttpServletRequest request,Crawler crawler) {
+	public String runCrawler(HttpServletRequest request, Crawler crawler) {
 		List<Crawler> list = crawlerService.selectCrawler(crawler);
 		crawler = list.get(0);
-		crawlerService.crawlerNovelData(request,crawler);
+		crawlerService.crawlerNovelData(request, crawler);
 		return crawler.getCrawlerName() + ":运行结束";
 	}
-	
+
+	/**
+	 * 每天凌晨触发更新
+	 * 
+	 * @param request
+	 */
+	@Scheduled(cron = "0 59 23 * * ?")
+	public void scheduleRunCrawler() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+				.getRequest();
+		Crawler crawler = new Crawler();
+		crawler.setCrawlerStatus("1");
+		List<Crawler> list = crawlerService.selectCrawler(crawler);
+		for (Crawler c : list) {
+			crawlerService.crawlerNovelData(request, c);
+		}
+	}
 }

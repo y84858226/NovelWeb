@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
@@ -30,4 +31,7 @@ public interface NovelDao {
 
 	@Update("update novel set updateTime=#{updateTime} where id=#{id}")
 	public void updateTime(Novel novel);
+	
+	@Select("select distinct typeName from novel")
+	public List<Novel> selectType();
 }

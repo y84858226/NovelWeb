@@ -16,9 +16,12 @@
 				<option value="5">小说类型</option>
 				<option value="6">小说描述</option>
 				<option value="7">小说主图地址</option>
-				<option value="8">小说章节标签</option>
-				<option value="9">小说章节地址</option>
-				<option value="10">小说章节名称</option>
+				<option value="8">小说状态</option>
+				<option value="9">小说列表结构</option>
+				<option value="10">小说章节标签</option>
+				<option value="11">小说章节地址</option>
+				<option value="12">小说章节名称</option>
+				<option value="13">小说章节详情</option>
 			</select>
 		</div>
 	</div>
@@ -64,12 +67,28 @@
 		<div class="layui-form-mid layui-word-aux">正则里面()的位置</div>
 	</div>
 	<div class="layui-form-item">
-		<label class="layui-form-label">正则结果补充</label>
+		<label class="layui-form-label">正则前补充</label>
 		<div class="layui-input-inline">
 			<input name="appendResult" lay-verify="required" placeholder="请输入"
 				autocomplete="off" class="layui-input" type="text">
 		</div>
-		<div class="layui-form-mid layui-word-aux">正则不能满足添加，在此处添加，一般添加:https://</div>
+		<div class="layui-form-mid layui-word-aux">正则结果前追加内容</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">正则后补充</label>
+		<div class="layui-input-inline">
+			<input name="appendResult" lay-verify="required" placeholder="请输入"
+				autocomplete="off" class="layui-input" type="text">
+		</div>
+		<div class="layui-form-mid layui-word-aux">对正则结果后追加内容</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">正则替换</label>
+		<div class="layui-input-inline">
+			<input name="appendResult" lay-verify="required" placeholder="请输入"
+				autocomplete="off" class="layui-input" type="text">
+		</div>
+		<div class="layui-form-mid layui-word-aux">多组用逗号(,)分开，替换用&&&&分开,eg:a&&&&A(a替换成A)</div>
 	</div>
 
 	<div class="layui-form-item">
@@ -123,8 +142,8 @@
 </form>
 <script>
 	var $ = layui.jquery;
-    var form = layui.form;
-	var layer= layui.layer;
+	var form = layui.form;
+	var layer = layui.layer;
 	//Demo
 	layui.use('form', function() {
 		form.on('submit(*)', function(data) {

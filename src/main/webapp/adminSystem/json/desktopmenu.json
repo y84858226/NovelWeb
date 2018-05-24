@@ -4,7 +4,7 @@
 	"data": [
 		{
 			"title": "类别",
-			"pageURL": "views/role/list.html",
+			"pageURL": "views/noveltype/noveltypelist.html",
 			"name": "类别",
 			"icon": "fa-tags",
 			"openType": 2,
@@ -23,16 +23,6 @@
 			"extend": false,
 			"childs": null,
 			"id": 2
-		},
-		{
-			"title": "首页轮播",
-			"pageURL": "views/echarts/demo.html",
-			"name": "首页轮播",
-			"icon": "fa-angle-double-right",
-			"openType": 2,
-			"extend": false,
-			"childs": null,
-			"id": 5
 		},
 		{
 			"title": "采集系统",
