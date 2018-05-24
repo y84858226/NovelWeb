@@ -17,7 +17,6 @@ import com.novel.service.IIndexQueryService;
 //证明是controller层并且返回json
 @RestController
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "com.novel.foreground.controller" }) // 添加的注解
 public class indexQueryController {
 	
 	@Autowired
@@ -50,7 +49,7 @@ public class indexQueryController {
 	 * 获取分类的书籍
 	 */
 	@RequestMapping("getClassifyBooks")
-	public JSONArray getClassifyBooks(JSONObject jClassifyName) {
-		return indexQueryService.getClassifyBooks(jClassifyName);
+	public JSONArray getClassifyBooks(String param) {
+		return indexQueryService.getClassifyBooks(param);
 	}
 }

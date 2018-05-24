@@ -11,7 +11,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.novel.dao.IIndexQueryDao;
 import com.novel.pojo.Novel;
 import com.novel.service.IIndexQueryService;
-import com.novel.util.EncryptionUtils;
 /**
  * 主页查询
  * @author kainan
@@ -66,11 +65,9 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 	 * 获取分类的书籍
 	 */
 	@Override
-	public JSONArray getClassifyBooks(JSONObject jClassifyName) {
+	public JSONArray getClassifyBooks(String param) {
 		long StartTime = System.currentTimeMillis();
-		String enClassifyName = jClassifyName.getString("");
-		String deClassifyName = EncryptionUtils.base64Decode(enClassifyName);
-		List<Novel> books = indexQueryDao.selectClassifyBooks(deClassifyName);
+		List<Novel> books = indexQueryDao.selectClassifyBooks(param);
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.addAll(books);
 		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));

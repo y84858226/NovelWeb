@@ -20,7 +20,7 @@ define(function (require, exports, module) {
                 utils.service.doGetAsync('../getRecommendVal','',function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON) && !utils.isNullOrEmpty(result.responseJSON.recommendVal)){
                         //angular强制刷新
-                        $scope.$apply(function () {
+                        $scope.$applyAsync(function () {
                             $scope.recommendVal = result.responseJSON.recommendVal;
                         });
                     }
@@ -35,7 +35,7 @@ define(function (require, exports, module) {
             _that.app.controller('recommondBooksController', function($scope, $http) {
                 utils.service.doPostAsync('../getRecommendBooks','',function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
-                        $scope.$apply(function () {
+                        $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON;
                             $.each(dealWithResult, function(key, val){
                                 dealWithResult[key].description = val.description.replace(/<br>/g,"")
@@ -55,7 +55,7 @@ define(function (require, exports, module) {
             _that.app.controller('hotBookController', function($scope, $http) {
                 utils.service.doPostAsync('../getHotBooks','',function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
-                        $scope.$apply(function () {
+                        $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON;
                             $.each(dealWithResult, function(key, val){
                                 dealWithResult[key].description = val.description.replace(/<br>/g,"")
@@ -71,21 +71,22 @@ define(function (require, exports, module) {
          * 获取首页分类书籍
          */
         initIndexClassifyBooks : function () {
-            var classify_XHQH = base64._encode("玄幻奇幻");
+            var classify_XHQH = "玄幻小说";
             this.getClassifyBooks("xhqhBooksController",classify_XHQH,"$scope.xhqhImageBooks = dealWithResult.slice(0,1);$scope.xhqhBooks = dealWithResult.slice(1,5);")
-            var classify_WXXX = base64._encode("武侠仙侠");
+            var classify_WXXX = "修真小说";
             this.getClassifyBooks("wxxxBooksController",classify_WXXX,"$scope.wxxxImageBooks = dealWithResult.slice(0,1);$scope.wxxxBooks = dealWithResult.slice(1,5);")
-            var classify_DSYN = base64._encode("都市异能");
+            var classify_DSYN = "都市小说";
             this.getClassifyBooks("dsynBooksController",classify_DSYN,"$scope.dsynImageBooks = dealWithResult.slice(0,1);$scope.dsynBooks = dealWithResult.slice(1,5);")
         },
         /**
          * 获取分类书籍通用方法
          */
         getClassifyBooks : function (controller,classifyName,callback) {
+            var _that = this;
             _that.app.controller(controller, function($scope, $http) {
-                utils.service.doPostAsync('../getClassifyBooks',classifyName,function (result) {
+                utils.service.doPost('../getClassifyBooks',classifyName,function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
-                        $scope.$apply(function () {
+                        $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON;
                             $.each(dealWithResult, function(key, val){
                                 dealWithResult[key].description = val.description.replace(/<br>/g,"")

@@ -26,5 +26,5 @@ public interface IIndexQueryService {
 	/**
 	 * 获取分类的书籍
 	 */
-	JSONArray getClassifyBooks(JSONObject jClassifyName); 
+	JSONArray getClassifyBooks(String param); 
 }
