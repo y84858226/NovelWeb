@@ -49,4 +49,9 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 		return chapterContent;
 	}
 
+	@Override
+	public void updateFilePath(NovelChapterList novelChapterList) {
+		chapterListDao.updateFilePath(novelChapterList);		
+	}
+
 }

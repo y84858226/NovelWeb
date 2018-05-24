@@ -10,4 +10,6 @@ public interface NovelChapterListService {
 
 	public String crawlerNovelChapter(NovelChapterList chapterList);
 
+	public void updateFilePath(NovelChapterList novelChapterList);
+
 }

@@ -27,4 +27,7 @@ public interface NovelDao {
 
 	@Update("update novel set path=#{path} , mainImage=#{mainImage} where id=#{id}")
 	public void updatePathAndImage(Novel novel);
+
+	@Update("update novel set updateTime=#{updateTime} where id=#{id}")
+	public void updateTime(Novel novel);
 }

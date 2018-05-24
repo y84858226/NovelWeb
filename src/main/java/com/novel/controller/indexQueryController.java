@@ -2,7 +2,6 @@ package com.novel.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +16,6 @@ import com.novel.service.IIndexQueryService;
 //证明是controller层并且返回json
 @RestController
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "com.novel.foreground.controller" }) // 添加的注解
 public class indexQueryController {
 	
 	@Autowired

@@ -44,7 +44,6 @@ public class CrawlerServiceImpl implements CrawlerService {
 	@Override
 	public void crawlerNovelData(HttpServletRequest request, Crawler crawler) {
 		String webappPath = request.getSession().getServletContext().getRealPath("/");
-
 		/**
 		 * 查询配置结果
 		 */
@@ -135,7 +134,8 @@ public class CrawlerServiceImpl implements CrawlerService {
 								config.get(10).getNum(), config.get(10).getAttrName(), config.get(10).getReg(),
 								config.get(10).getHeadAppendResult(), config.get(10).getTailAppendResult(),
 								config.get(10).getReplaceResult(), config.get(10).getRegGroupNum());
-						//设置更新开关
+						// 设置更新开关
+						boolean searchLastChapter = false;
 						boolean updateFlag = false;
 						for (String chapterA : chapterSet) {
 							NovelChapterList chapterList = new NovelChapterList();
@@ -151,17 +151,18 @@ public class CrawlerServiceImpl implements CrawlerService {
 								System.out.println("章节名称:" + chapterName);
 								if (maxChapterName.equals(chapterName)) {
 									// 找到了最新章节
-									updateFlag = true;
+									searchLastChapter = true;
 								}
 								chapterList.setChapterName(chapterName);
 							}
-							if (updateFlag) {
+							if (searchLastChapter) {
 								// 查询数据库是否存在
 								List<NovelChapterList> chapterLists = novelChapterListDao
 										.selectNovelChapterList(chapterList);
 								if (chapterLists.size() > 0) {
 									// 已经存下
 								} else {
+									updateFlag = true;
 									Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc,
 											config.get(11).getSelect(), config.get(11).getNum(),
 											config.get(11).getAttrName(), config.get(11).getReg(),
@@ -175,8 +176,17 @@ public class CrawlerServiceImpl implements CrawlerService {
 									chapterList.setCrawlerConfigId(config.get(13).getId());
 									// 执行添加数据库
 									novelChapterListDao.addNovelChapterList(chapterList);
+
 								}
 							}
+						}
+						if (updateFlag) {
+							// 更新novel时间
+							Novel novel2 = new Novel();
+							novel2.setId(novelId);
+							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+							novel2.setUpdateTime(format.format(new Date()));
+							novelDao.updateTime(novel2);
 						}
 					}
 				} else {
@@ -223,8 +233,8 @@ public class CrawlerServiceImpl implements CrawlerService {
 					novelDao.addNovel(novel);
 					Integer novelId = novel.getId();
 					// 创建小说所在目录
-					String novelPath = webappPath + "data" + File.separator + novelId;
-					File novelDir = new File(novelPath);
+					String novelPath = "novelSee"+File.separator+"data" + File.separator + novelId;
+					File novelDir = new File(webappPath + novelPath);
 					if (!novelDir.exists()) {
 						novelDir.mkdir();
 					}
@@ -241,7 +251,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 						ImageUtil imageUtil = new ImageUtil();
 						String saveMainImage = novelPath + File.separator + novelId + ".jpg";
 						// 获取当前系统路径
-						imageUtil.download(mainImage, saveMainImage);
+						imageUtil.download(mainImage, webappPath + saveMainImage);
 						novel.setMainImage(saveMainImage);
 					}
 					// 更新主图地址

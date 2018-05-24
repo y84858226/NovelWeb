@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.novel.dao.provider.NovelChapterListProvider;
@@ -25,4 +26,7 @@ public interface NovelChapterListDao {
 	
 	@Select("select * from novelchapterlist where id in(select max(id) as id from novelchapterlist where novelId=#{novelId})")
 	public NovelChapterList selectMaxchapter(NovelChapterList chapterList);
+
+	@Update("update novelchapterlist set filePath=#{filePath} where id=#{id}")
+	public void updateFilePath(NovelChapterList novelChapterList);
 }
