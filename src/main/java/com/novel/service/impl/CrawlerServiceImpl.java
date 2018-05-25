@@ -65,7 +65,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 		 * 
 		 */
 		// 存放类型页的link
-		Set<String> novelTypeSet = util.getHtmlAttr(crawler.getCrawlerUrl(), null, config.get(1).getSelect(),
+		Set<String> novelTypeSet = util.getHtmlAttr(crawler.getCrawlerUrl(), null, config.get(1).getSelector(),
 				config.get(1).getNum(), config.get(1).getAttrName(), config.get(1).getReg(),
 				config.get(1).getHeadAppendResult(), config.get(1).getTailAppendResult(),
 				config.get(1).getReplaceResult(), config.get(1).getRegGroupNum());
@@ -75,7 +75,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 		 */
 		// 存放小说的link
 		for (String novelTypeLink : novelTypeSet) {
-			Set<String> novelSet = util.getHtmlAttr(crawler.getCrawlerUrl(), null, config.get(2).getSelect(),
+			Set<String> novelSet = util.getHtmlAttr(crawler.getCrawlerUrl(), null, config.get(2).getSelector(),
 					config.get(2).getNum(), config.get(2).getAttrName(), config.get(2).getReg(),
 					config.get(2).getHeadAppendResult(), config.get(2).getTailAppendResult(),
 					config.get(2).getReplaceResult(), config.get(2).getRegGroupNum());
@@ -88,7 +88,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 				Novel novel = new Novel();
 
 				// 小说名称
-				Set<String> nameSet = util.getHtmlAttr(null, doc, config.get(3).getSelect(), config.get(3).getNum(),
+				Set<String> nameSet = util.getHtmlAttr(null, doc, config.get(3).getSelector(), config.get(3).getNum(),
 						config.get(3).getAttrName(), config.get(3).getReg(), config.get(3).getHeadAppendResult(),
 						config.get(3).getTailAppendResult(), config.get(3).getReplaceResult(),
 						config.get(3).getRegGroupNum());
@@ -98,7 +98,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 				}
 
 				// 作者
-				Set<String> authorSet = util.getHtmlAttr(null, doc, config.get(4).getSelect(), config.get(4).getNum(),
+				Set<String> authorSet = util.getHtmlAttr(null, doc, config.get(4).getSelector(), config.get(4).getNum(),
 						config.get(4).getAttrName(), config.get(4).getReg(), config.get(4).getHeadAppendResult(),
 						config.get(4).getTailAppendResult(), config.get(4).getReplaceResult(),
 						config.get(4).getRegGroupNum());
@@ -123,14 +123,14 @@ public class CrawlerServiceImpl implements CrawlerService {
 					String maxChapterName = novelChapterList.getChapterName();
 
 					// 全部章节列表 起一步过滤
-					Set<String> chapterListSet = util.getHtmlAttr(null, doc, config.get(9).getSelect(),
+					Set<String> chapterListSet = util.getHtmlAttr(null, doc, config.get(9).getSelector(),
 							config.get(9).getNum(), config.get(9).getAttrName(), config.get(9).getReg(),
 							config.get(9).getHeadAppendResult(), config.get(9).getTailAppendResult(),
 							config.get(9).getReplaceResult(), config.get(9).getRegGroupNum());
 					for (String chapterListHtml : chapterListSet) {
 						Document chapterListDoc = Jsoup.parse(chapterListHtml);
 						// 全部章节
-						Set<String> chapterSet = util.getHtmlAttr(null, chapterListDoc, config.get(10).getSelect(),
+						Set<String> chapterSet = util.getHtmlAttr(null, chapterListDoc, config.get(10).getSelector(),
 								config.get(10).getNum(), config.get(10).getAttrName(), config.get(10).getReg(),
 								config.get(10).getHeadAppendResult(), config.get(10).getTailAppendResult(),
 								config.get(10).getReplaceResult(), config.get(10).getRegGroupNum());
@@ -143,7 +143,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 							chapterList.setNovelId(novelId);
 							Document chapterDoc = Jsoup.parse(chapterA);
 
-							Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc, config.get(12).getSelect(),
+							Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc, config.get(12).getSelector(),
 									config.get(12).getNum(), config.get(12).getAttrName(), config.get(12).getReg(),
 									config.get(12).getHeadAppendResult(), config.get(12).getTailAppendResult(),
 									config.get(12).getReplaceResult(), config.get(12).getRegGroupNum());
@@ -164,7 +164,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 								} else {
 									updateFlag = true;
 									Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc,
-											config.get(11).getSelect(), config.get(11).getNum(),
+											config.get(11).getSelector(), config.get(11).getNum(),
 											config.get(11).getAttrName(), config.get(11).getReg(),
 											config.get(11).getHeadAppendResult(), config.get(11).getTailAppendResult(),
 											config.get(11).getReplaceResult(), config.get(11).getRegGroupNum());
@@ -192,7 +192,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 				} else {
 					// 添加
 					// 类型名称
-					Set<String> typeNameSet = util.getHtmlAttr(null, doc, config.get(5).getSelect(),
+					Set<String> typeNameSet = util.getHtmlAttr(null, doc, config.get(5).getSelector(),
 							config.get(5).getNum(), config.get(5).getAttrName(), config.get(5).getReg(),
 							config.get(5).getHeadAppendResult(), config.get(5).getTailAppendResult(),
 							config.get(5).getReplaceResult(), config.get(5).getRegGroupNum());
@@ -202,7 +202,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 					}
 
 					// 描述
-					Set<String> descriptionSet = util.getHtmlAttr(null, doc, config.get(6).getSelect(),
+					Set<String> descriptionSet = util.getHtmlAttr(null, doc, config.get(6).getSelector(),
 							config.get(6).getNum(), config.get(6).getAttrName(), config.get(6).getReg(),
 							config.get(6).getHeadAppendResult(), config.get(6).getTailAppendResult(),
 							config.get(6).getReplaceResult(), config.get(6).getRegGroupNum());
@@ -212,7 +212,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 					}
 
 					// 状态
-					Set<String> statusSet = util.getHtmlAttr(null, doc, config.get(8).getSelect(),
+					Set<String> statusSet = util.getHtmlAttr(null, doc, config.get(8).getSelector(),
 							config.get(8).getNum(), config.get(8).getAttrName(), config.get(8).getReg(),
 							config.get(8).getHeadAppendResult(), config.get(8).getTailAppendResult(),
 							config.get(8).getReplaceResult(), config.get(8).getRegGroupNum());
@@ -233,7 +233,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 					novelDao.addNovel(novel);
 					Integer novelId = novel.getId();
 					// 创建小说所在目录
-					String novelPath = "novelSee"+File.separator+"data" + File.separator + novelId;
+					String novelPath = "novelSee" + File.separator + "data" + File.separator + novelId;
 					File novelDir = new File(webappPath + novelPath);
 					if (!novelDir.exists()) {
 						novelDir.mkdir();
@@ -242,7 +242,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 					System.out.println("path:" + novelPath);
 					novel.setPath(novelPath);
 					// 主图地址
-					Set<String> mainImageSet = util.getHtmlAttr(null, doc, config.get(7).getSelect(),
+					Set<String> mainImageSet = util.getHtmlAttr(null, doc, config.get(7).getSelector(),
 							config.get(7).getNum(), config.get(7).getAttrName(), config.get(7).getReg(),
 							config.get(7).getHeadAppendResult(), config.get(7).getTailAppendResult(),
 							config.get(7).getReplaceResult(), config.get(7).getRegGroupNum());
@@ -258,14 +258,14 @@ public class CrawlerServiceImpl implements CrawlerService {
 					novelDao.updatePathAndImage(novel);
 
 					// 全部章节列表 起一步过滤
-					Set<String> chapterListSet = util.getHtmlAttr(null, doc, config.get(9).getSelect(),
+					Set<String> chapterListSet = util.getHtmlAttr(null, doc, config.get(9).getSelector(),
 							config.get(9).getNum(), config.get(9).getAttrName(), config.get(9).getReg(),
 							config.get(9).getHeadAppendResult(), config.get(9).getTailAppendResult(),
 							config.get(9).getReplaceResult(), config.get(9).getRegGroupNum());
 					for (String chapterListHtml : chapterListSet) {
 						Document chapterListDoc = Jsoup.parse(chapterListHtml);
 						// 全部章节
-						Set<String> chapterSet = util.getHtmlAttr(null, chapterListDoc, config.get(10).getSelect(),
+						Set<String> chapterSet = util.getHtmlAttr(null, chapterListDoc, config.get(10).getSelector(),
 								config.get(10).getNum(), config.get(10).getAttrName(), config.get(10).getReg(),
 								config.get(10).getHeadAppendResult(), config.get(10).getTailAppendResult(),
 								config.get(10).getReplaceResult(), config.get(10).getRegGroupNum());
@@ -273,7 +273,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 							NovelChapterList chapterList = new NovelChapterList();
 							chapterList.setNovelId(novelId);
 							Document chapterDoc = Jsoup.parse(chapterA);
-							Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc, config.get(11).getSelect(),
+							Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc, config.get(11).getSelector(),
 									config.get(11).getNum(), config.get(11).getAttrName(), config.get(11).getReg(),
 									config.get(11).getHeadAppendResult(), config.get(11).getTailAppendResult(),
 									config.get(11).getReplaceResult(), config.get(11).getRegGroupNum());
@@ -282,7 +282,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 								chapterList.setChapterLink(chapterLink);
 							}
 
-							Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc, config.get(12).getSelect(),
+							Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc, config.get(12).getSelector(),
 									config.get(12).getNum(), config.get(12).getAttrName(), config.get(12).getReg(),
 									config.get(12).getHeadAppendResult(), config.get(12).getTailAppendResult(),
 									config.get(12).getReplaceResult(), config.get(12).getRegGroupNum());
@@ -305,6 +305,18 @@ public class CrawlerServiceImpl implements CrawlerService {
 	@Override
 	public void addCrawler(Crawler crawler) {
 		crawlerDao.addCrawler(crawler);
+		String configNames[] = { "小说列表页", "小说页", "小说名称", "小说作者", "小说类型", "小说描述", "小说主图地址", "小说状态", "小说列表结构", "小说章节标签",
+				"小说章节地址", "小说章节名称", "小说章节详情" };
+		int i = 1;
+		for (String configName : configNames) {
+			CrawlerConfig config = new CrawlerConfig();
+			config.setCrawlerId(crawler.getId() + "");
+			config.setConfigName(configName);
+			config.setSort(i);
+			// 执行添加数据库
+			crawlerConfigDao.addCrawlerConfig(config);
+			i++;
+		}
 	}
 
 	@Override

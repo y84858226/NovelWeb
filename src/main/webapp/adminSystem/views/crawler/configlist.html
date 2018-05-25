@@ -14,37 +14,21 @@
 			<button id="reloadTable" class="winui-toolbtn">
 				<i class="fa fa-refresh" aria-hidden="true"></i>刷新数据
 			</button>
-			<button id="addRole" class="winui-toolbtn">
-				<i class="fa fa-plus" aria-hidden="true"></i>新建爬虫
-			</button>
-			<button id="deleteRole" class="winui-toolbtn">
-				<i class="fa fa-trash" aria-hidden="true"></i>删除选中
-			</button>
 		</div>
 	</div>
 	<div style="margin: auto 10px;">
-		<table id="crawler" lay-filter="crawlerfilter"></table>
-		<script type="text/html" id="crawlerOption">
-			<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="config">配置规则</a>
-			<a class="layui-btn layui-btn-xs" lay-event="config">查看配置</a>
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		<table id="config" lay-filter="configfilter"></table>
+		<!--
+		<script type="text/html" id="configOption">
+			<a class="layui-btn layui-btn-xs" lay-event="update">编辑</a>
         </script>
-		<script type="text/html" id="stateTpl">
-            {{#  if(d.crawlerStatus == 0){ }}
-    	  <input name="close" lay-skin="switch" lay-text="ON|OFF" type="checkbox">
-            {{#  } else if(d.crawlerStatus==1) { }}
-          <input checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF" type="checkbox">
-            {{#  } }}
-        </script>
+        -->
 	</div>
 	<script src="../../lib/layui/layui.js"></script>
 	<script>
 		layui.config({
 			base : '../../js/'
-		}).use('crawlerlist');
-
-		var form = layui.form;
-		form.render();
+		}).use('configlist');
 	</script>
 </body>
 </html>

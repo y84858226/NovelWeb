@@ -14,10 +14,10 @@
 			<button id="reloadTable" class="winui-toolbtn">
 				<i class="fa fa-refresh" aria-hidden="true"></i>刷新数据
 			</button>
-			<button id="addRole" class="winui-toolbtn">
+			<button id="addCrawler" class="winui-toolbtn">
 				<i class="fa fa-plus" aria-hidden="true"></i>新建爬虫
 			</button>
-			<button id="deleteRole" class="winui-toolbtn">
+			<button id="deleteCrawler" class="winui-toolbtn">
 				<i class="fa fa-trash" aria-hidden="true"></i>删除选中
 			</button>
 		</div>
@@ -26,7 +26,6 @@
 		<table id="crawler" lay-filter="crawlerfilter"></table>
 		<script type="text/html" id="crawlerOption">
 			<a class="layui-btn layui-btn-xs" lay-event="run">运行</a>
-			<a class="layui-btn layui-btn-xs" lay-event="config">配置规则</a>
 			<a class="layui-btn layui-btn-xs" lay-event="configList">查看配置</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
@@ -44,8 +43,6 @@
 			base : '../../js/'
 		}).use('crawlerlist');
 
-		var form = layui.form;
-		form.render();
 	</script>
 </body>
 </html>

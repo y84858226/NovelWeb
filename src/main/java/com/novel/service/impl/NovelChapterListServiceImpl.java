@@ -38,7 +38,7 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 		crawlerConfig = configs.get(0);
 		// 爬虫文章内容
 		JsoupUtil util = new JsoupUtil();
-		Set<String> chapterContentSet = util.getHtmlAttr(chapterLink, null, crawlerConfig.getSelect(),
+		Set<String> chapterContentSet = util.getHtmlAttr(chapterLink, null, crawlerConfig.getSelector(),
 				crawlerConfig.getNum(), crawlerConfig.getAttrName(), crawlerConfig.getReg(),
 				crawlerConfig.getHeadAppendResult(), crawlerConfig.getTailAppendResult(),
 				crawlerConfig.getReplaceResult(), crawlerConfig.getRegGroupNum());

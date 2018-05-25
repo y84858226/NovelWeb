@@ -4,7 +4,7 @@ public class CrawlerConfig {
 	private Integer id;
 	private String crawlerId;
 	private String configName;
-	private String select;
+	private String selector;
 	private String num;
 	private String attrName;
 	private String reg;
@@ -38,12 +38,12 @@ public class CrawlerConfig {
 		this.configName = configName;
 	}
 
-	public String getSelect() {
-		return select;
+	public String getSelector() {
+		return selector;
 	}
 
-	public void setSelect(String select) {
-		this.select = select;
+	public void setSelector(String selector) {
+		this.selector = selector;
 	}
 
 	public String getNum() {
@@ -110,13 +110,13 @@ public class CrawlerConfig {
 		this.sort = sort;
 	}
 
-	public CrawlerConfig(Integer id, String crawlerId, String configName, String select, String num, String attrName,
+	public CrawlerConfig(Integer id, String crawlerId, String configName, String selector, String num, String attrName,
 			String reg, Integer regGroupNum, String headAppendResult, String tailAppendResult, String replaceResult,
 			Integer sort) {
 		this.id = id;
 		this.crawlerId = crawlerId;
 		this.configName = configName;
-		this.select = select;
+		this.selector = selector;
 		this.num = num;
 		this.attrName = attrName;
 		this.reg = reg;
@@ -132,8 +132,8 @@ public class CrawlerConfig {
 
 	@Override
 	public String toString() {
-		return "CrawlerConfig [id=" + id + ", crawlerId=" + crawlerId + ", configName=" + configName + ", select="
-				+ select + ", num=" + num + ", attrName=" + attrName + ", reg=" + reg + ", regGroupNum=" + regGroupNum
+		return "CrawlerConfig [id=" + id + ", crawlerId=" + crawlerId + ", configName=" + configName + ", selector="
+				+ selector + ", num=" + num + ", attrName=" + attrName + ", reg=" + reg + ", regGroupNum=" + regGroupNum
 				+ ", headAppendResult=" + headAppendResult + ", tailAppendResult=" + tailAppendResult
 				+ ", replaceResult=" + replaceResult + ", sort=" + sort + "]";
 	}
