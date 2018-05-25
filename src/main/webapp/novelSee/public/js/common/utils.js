@@ -10,8 +10,9 @@ define(function (require, exports, module) {
                 dataType : "json"
             };
             if(parameters){
-                var pValue = $.toJSON(parameters);
-                data.data = pValue;
+                data.data = {
+                    "param" : parameters
+                };
             }
             if (callBack) {
                 data.complete = callBack;
@@ -27,8 +28,9 @@ define(function (require, exports, module) {
                 dataType : "json"
             };
             if(parameters){
-                var pValue = $.toJSON(parameters);
-                data.data = pValue;
+                data.data = {
+                    "param" : parameters
+                };
             }
             if (callBack) {
                 data.complete = callBack
@@ -44,8 +46,9 @@ define(function (require, exports, module) {
                 dataType : "json"
             };
             if(parameters){
-                var pValue = $.toJSON(parameters);
-                data.data = pValue;
+                data.data = {
+                    "param" : parameters
+                };
             }
             if (callBack) {
                 data.complete = callBack
@@ -61,8 +64,9 @@ define(function (require, exports, module) {
                 dataType : "json"
             };
             if(parameters){
-                var pValue = $.toJSON(parameters);
-                data.data = pValue;
+                data.data = {
+                    "param" : parameters
+                };
             }
             if (callBack) {
                 data.complete = callBack

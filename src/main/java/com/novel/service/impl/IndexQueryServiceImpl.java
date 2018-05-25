@@ -61,5 +61,17 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonArray;
 	}
+	/**
+	 * 获取分类的书籍
+	 */
+	@Override
+	public JSONArray getClassifyBooks(String param) {
+		long StartTime = System.currentTimeMillis();
+		List<Novel> books = indexQueryDao.selectClassifyBooks(param);
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.addAll(books);
+		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		return jsonArray;
+	}
 
 }

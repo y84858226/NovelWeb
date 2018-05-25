@@ -493,12 +493,12 @@
         </div>
     </div>
 </div>-->
-<div class="section">
+<div class="section" ng-controller="xhqhBooksController">
     <h3 class="title">
                 <span class="b_l">
-                    男生推荐
+                    玄幻奇幻
                 </span>
-                <span class="b_r tab-nav">
+                <span class="b_r tab-nav" style="display: none">
                     <a href="#" class="cur">
                         热销
                     </a>
@@ -513,72 +513,33 @@
     <div class="box tab-pane clearfix">
         <div class="blist tab-content active">
             <ul>
-                <li>
+                <li ng-repeat="book in xhqhImageBooks">
                     <a href='novelinfo/70159.html'>
                         <div class="bcover fl">
-                            <img src="http://file.kanshu.com/upload/article/67002/67002_m.jpg" alt="混沌天体"
+                            <img ng-src="{{book.mainImage}}" alt="混沌天体"
                                  onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                                  height="130" width="85"/>
                         </div>
                         <div class="bintro pl10">
                             <h4>
-                                混沌天体:茅庐穹顶擒天
+                                {{book.name}}
                             </h4>
                             <p>
-                                玄幻奇幻 . (连载中) . 501.2万字
+                                {{book.typeName}}
                                 <br>
-                                废物？不能修炼？不，我乃是天地间最强大的体质——混沌天体！脚踏大地，肩扛山岳，头顶苍穹！我命由我不由天！天地最强体质的变强之路，一个卑微存在的崛起之路，一个无上存在的升级之路。书友群：107738614，有兴趣的童鞋可以进来吹吹水，男女不限，无限欢迎!！
+                                {{book.description}}
                             </p>
                         </div>
                     </a>
                 </li>
-                <li>
+                <li ng-repeat="book in xhqhBooks">
                     <a href='novelinfo/70159.html'>
                         <div class="bintro">
                             <h4>
-                                乡野小霸王:霸占医仙道
+                                {{book.name}}
                             </h4>
                             <p>
-                                都市言情 . (连载中) . 153.8万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/70159.html'>
-                        <div class="bintro">
-                            <h4>
-                                贴身杀手:暧昧美女总裁
-                            </h4>
-                            <p>
-                                都市言情 . (连载中) . 24.9万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/70159.html'>
-                        <div class="bintro">
-                            <h4>
-                                护天剑仙:心经九天神女
-                            </h4>
-                            <p>
-                                武侠仙侠 . (连载中) . 47.0万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/70159.html'>
-                        <div class="bintro">
-                            <h4>
-                                逆天狂少:嚣张练气至尊
-                            </h4>
-                            <p>
-                                玄幻奇幻 . (连载中) . 139.3万字
+                                {{book.typeName}}
                                 <br>
                             </p>
                         </div>
@@ -591,169 +552,112 @@
                 </li>
             </ul>
         </div>
-        <div class="blist tab-content">
+    </div>
+</div>
+<div class="section" ng-controller="wxxxBooksController">
+    <h3 class="title">
+                <span class="b_l">
+                    武侠仙侠
+                </span>
+                <span class="b_r tab-nav" style="display: none">
+                    <a href="#" class="cur">
+                        热销
+                    </a>
+                    <a href="#">
+                        人气
+                    </a>
+                    <a href="#">
+                        新书
+                    </a>
+                </span>
+    </h3>
+    <div class="box tab-pane clearfix">
+        <div class="blist tab-content active">
             <ul>
-                <li>
-                    <a href='novelinfo/70159.html'>
+                <li ng-repeat="book in wxxxImageBooks">
+                    <a href='novelinfo/60554.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
                         <div class="bcover fl">
-                            <img src="http://file2.kanshu.com/upload/article/86618/86618_m.jpg" alt="天武至尊"
+                            <img ng-src="{{book.mainImage}}"
                                  onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                                  height="130" width="85"/>
                         </div>
                         <div class="bintro pl10">
                             <h4>
-                                疯狂复仇机器:血肉撕裂
+                                {{book.name}}
                             </h4>
                             <p>
-                                玄幻奇幻 . (连载中) . 22.5万字
+                                {{book.typeName}}
                                 <br>
-                                光怪陆离的天武大陆，上古势力，七大帝国，万族林立，一个个被覆灭的势力，一个个浮出水面的世家，一个个被挖掘出的遗迹……
-                                <br/>
-                                亿万生灵由谁主宰？苍茫大陆谁主沉浮！
-                                <br/>
-                                大山里走出的秦楚，身怀让掌控万物的至尊神都为之颤抖的五圣体……且看他如何一步步踏上巅峰，坐拥天下美人，成就天武至尊！
-                                <br/>
-                                更新说明：每日中午11点到1点更新，偶尔会推迟。正常一日一更，爆发另论。
-                                <br/>
-                                读者qq群：294748020 欢迎加入。 那个，之前这个群给弄错了，sorry！
+                                {{book.description}}
                             </p>
                         </div>
                     </a>
                 </li>
-                <li>
-                    <a href='novelinfo/73545.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
+                <li ng-repeat="book in wxxxBooks">
+                    <a href='novelinfo/70154.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
                         <div class="bintro">
                             <h4>
-                                超级玉璧:王为之倾天下
+                                {{book.name}}
                             </h4>
                             <p>
-                                都市言情 . (连载中) . 183.6万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/56706.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                摧花王子爷:转行做好人
-                            </h4>
-                            <p>
-                                都市言情 . (连载中) . 173.3万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/79683.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                极品秘书:官人神秘风流
-                            </h4>
-                            <p>
-                                都市言情 . (连载中) . 33.0万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/74485.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                封印神戒之最强召唤师
-                            </h4>
-                            <p>
-                                玄幻奇幻 . (连载中) . 25.7万字
+                                {{book.typeName}}
                                 <br>
                             </p>
                         </div>
                     </a>
                 </li>
                 <li class="item_more">
-                    <a href="order/3-1-2-4.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="more">
+                    <a href="order/3-2-1-4.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="more">
                         更多作品&gt;
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="blist tab-content">
+    </div>
+</div>
+<div class="section" ng-controller="dsynBooksController">
+    <h3 class="title">
+                <span class="b_l">
+                    都市异能
+                </span>
+    </h3>
+    <div class="box tab-pane clearfix">
+        <div class="blist tab-content active">
             <ul>
-                <li>
-                    <a href='novelinfo/80281.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
+                <li ng-repeat="book in dsynImageBooks">
+                    <a href='novelinfo/88201.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
                         <div class="bcover fl">
-                            <img src="http://file1.kanshu.com/upload/article/80281/80281_m.jpg" alt="绝恋孤独"
+                            <img ng-src="{{book.mainImage}}" alt="辣手相师"
                                  onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                                  height="130" width="85"/>
                         </div>
                         <div class="bintro pl10">
                             <h4>
-                                绝恋孤独:恨嫁豪门恩怨
+                                {{book.name}}
                             </h4>
                             <p>
-                                都市言情 . (连载中) . 57.0万字
+                                {{book.typeName}}
                                 <br>
-                                倾城苦恋，凄然绝世孤独。绝美帅哥、浊世翩翩佳公子狄晓风与绝代娇美佳丽林秀云，虽非青梅竹马，但他们犹似绝代双娇却是“前缘、今生、来世”之三生三世之绝世情恋。为卿倾泪，为爱苦苦寻觅，为人生美好不虚度，为真情铭心刻骨相守。世界上万物都会消亡，永恒的爱情地久天长！绝恋孤独，绝世孤独？为爱为情？谁来理解绝世孤独一颗绝爱无助的心呢？寻寻觅觅，凄凄戚戚，缘聚缘散，心若飘零叶，除却巫山不是云，蜡炬成灰泪始干，天涯海角痴缠约诺，只是，何处可诉断肠相思之爱与恨……
+                                {{book.description}}
                             </p>
                         </div>
                     </a>
                 </li>
-                <li>
-                    <a href='novelinfo/81270.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
+                <li ng-repeat="book in dsynBooks">
+                    <a href='novelinfo/52109.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
                         <div class="bintro">
                             <h4>
-                                神魔天尊:降临惩救三界
+                                {{book.name}}
                             </h4>
                             <p>
-                                玄幻奇幻 . (连载中) . 21.7万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/87960.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                至尊仙途:得道最牛仙人
-                            </h4>
-                            <p>
-                                武侠仙侠 . (连载中) . 25.4万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/75307.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                暗黑组织:尊者天破掌控
-                            </h4>
-                            <p>
-                                武侠仙侠 . (连载中) . 40.4万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/83682.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                我的明星小妹
-                            </h4>
-                            <p>
-                                都市言情 . (连载中) . 27.8万字
+                                {{book.typeName}}
                                 <br>
                             </p>
                         </div>
                     </a>
                 </li>
                 <li class="item_more">
-                    <a href="order/3-1-9-4.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="more">
+                    <a href="order/1-3-2-4.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="more">
                         更多作品&gt;
                     </a>
                 </li>
@@ -764,21 +668,6 @@
 <div class="top_class">
     <div class="list_nav">
         <ul>
-            <li>
-                <a href='list/1.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                    玄幻奇幻
-                </a>
-            </li>
-            <li>
-                <a href='list/2.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                    武侠仙侠
-                </a>
-            </li>
-            <li>
-                <a href='list/3.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                    都市异能
-                </a>
-            </li>
             <li>
                 <a href='list/4.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
                     历史军事
@@ -794,277 +683,6 @@
                     科幻灵异
                 </a>
             </li>
-        </ul>
-    </div>
-</div>
-<div class="section">
-    <h3 class="title">
-                <span class="b_l">
-                    女生推荐
-                </span>
-                <span class="b_r tab-nav">
-                    <a href="#" class="cur">
-                        热销
-                    </a>
-                    <a href="#">
-                        人气
-                    </a>
-                    <a href="#">
-                        新书
-                    </a>
-                </span>
-    </h3>
-    <div class="box tab-pane clearfix">
-        <div class="blist tab-content active">
-            <ul>
-                <li>
-                    <a href='novelinfo/60554.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bcover fl">
-                            <img src="http://file2.kanshu.com/upload/article/60554/60554_m.jpg" alt="染上邪性BOSS"
-                                 onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                                 height="130" width="85"/>
-                        </div>
-                        <div class="bintro pl10">
-                            <h4>
-                                桃色密爱:坏总裁太吃醋
-                            </h4>
-                            <p>
-                                现代言情 . (连载中) . 40.4万字
-                                <br>
-                                为救心爱之人，一纸契约，她成了他的情人。他迷恋她的味道，顺便揽为避婚的工具，却不知她亦是自己悬赏通缉的‘蓝眼’。
-                                得知她心有所属，他醋意顿生，恢复了恶魔本性，开始报复...恶言、打击、甚至伤害、将他们逼入死境！
-                                终于，他成功的分开他们，却发现她不见了... 多年后，她再次出现，他更不愿放手。 她跑，他追，她逃，他逮...
-                                他在她的面前，霸道搂抱，在她的未婚夫面前，强制夺吻，在她的婚礼上，光明正大抢婚...
-                                他对着镜头，向全世界宣誓，她只属于他，任何敢夺她者，杀无赦！
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/70154.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                美人有毒:荼毒妖妃皇后
-                            </h4>
-                            <p>
-                                历史时空 . (连载中) . 95.5万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/63055.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                末日危机:情投花花公子
-                            </h4>
-                            <p>
-                                现代言情 . (连载中) . 95.4万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/28973.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                宝宝发飙:总裁你出局了
-                            </h4>
-                            <p>
-                                现代言情 . (连载中) . 56.1万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/86350.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                盛世妖妃:蛊惑颓唐帝国
-                            </h4>
-                            <p>
-                                历史时空 . (连载中) . 29.6万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li class="item_more">
-                    <a href="order/3-2-1-4.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="more">
-                        更多作品&gt;
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="blist tab-content">
-            <ul>
-                <li>
-                    <a href='novelinfo/54185.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bcover fl">
-                            <img src="http://file5.kanshu.com/upload/article/54185/54185_m.jpg" alt="猎爱失忆小宠儿"
-                                 onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                                 height="130" width="85"/>
-                        </div>
-                        <div class="bintro pl10">
-                            <h4>
-                                服侍我:猎爱失忆小逃妻
-                            </h4>
-                            <p>
-                                现代言情 . (连载中) . 162.8万字
-                                <br>
-                                简介是一部作品非常重要的展示窗口。建议您输入一个文字优美、引人遐思、有悬念、让人眼前一亮，能充分吸引读者的简介。
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/71420.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                无敌腹黑团:杀手酷娘亲
-                            </h4>
-                            <p>
-                                古代言情 . (连载中) . 112.6万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/70876.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                检察长老公:蜜宠偷心妻
-                            </h4>
-                            <p>
-                                现代言情 . (连载中) . 49.9万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/88097.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                惊世毒妃:美艳动倾朝野
-                            </h4>
-                            <p>
-                                历史时空 . (连载中) . 15.7万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/61413.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                吻上错孕新娘:孽子之痛
-                            </h4>
-                            <p>
-                                现代言情 . (连载中) . 106.7万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li class="item_more">
-                    <a href="order/3-2-2-4.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="more">
-                        更多作品&gt;
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="blist tab-content">
-            <ul>
-                <li>
-                    <a href='novelinfo/85311.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bcover fl">
-                            <img src="http://file3.kanshu.com/upload/article/85311/85311_m.jpg" alt="医世狂妃"
-                                 onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                                 height="130" width="85"/>
-                        </div>
-                        <div class="bintro pl10">
-                            <h4>
-                                邪王溺宠:逃妃极度妖娆
-                            </h4>
-                            <p>
-                                古代言情 . (连载中) . 18.0万字
-                                <br>
-                                “凝儿，你可知本王有多恨你！”▲——▲——▲他爱得至深，却又恨得至深。大婚夜，一向对近身女子凌虐致死的他却肆意掠夺着她的美好。从此便一发不可收拾……▲——▲——▲妙手仁心,医世风华.倨傲九天,锋芒绝世!且看一代医圣如何玩转乾坤,风生水起!
-                                粉丝群:163266279 蓝月国欢迎各位亲们的加入！验证是本书书名，或是本书任意角色名字。
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/86906.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                虐爱小甜心:宝贝很嚣张
-                            </h4>
-                            <p>
-                                现代言情 . (连载中) . 14.8万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/79628.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                架构时空:穿梭啸狂历史
-                            </h4>
-                            <p>
-                                历史时空 . (连载中) . 14.9万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/79406.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                青春的刺:写进时光的痛
-                            </h4>
-                            <p>
-                                校园文学 . (连载中) . 16.0万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/81974.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                冷情女婢：我为太子复仇
-                            </h4>
-                            <p>
-                                古代言情 . (连载中) . 11.1万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li class="item_more">
-                    <a href="order/3-2-9-4.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="more">
-                        更多作品&gt;
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="top_class">
-    <div class="list_nav">
-        <ul>
             <li>
                 <a href='list/41.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
                     现代言情
@@ -1096,95 +714,6 @@
                 </a>
             </li>
         </ul>
-    </div>
-</div>
-<div class="section">
-    <h3 class="title">
-                <span class="b_l">
-                    免费小说看个够
-                </span>
-    </h3>
-    <div class="box tab-pane clearfix">
-        <div class="blist tab-content active">
-            <ul>
-                <li>
-                    <a href='novelinfo/88201.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bcover fl">
-                            <img src="http://file1.kanshu.com/upload/article/88201/88201_m.jpg" alt="辣手相师"
-                                 onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                                 height="130" width="85"/>
-                        </div>
-                        <div class="bintro pl10">
-                            <h4>
-                                辣手相师
-                            </h4>
-                            <p>
-                                都市言情 . (连载中) . 9.0万字
-                                <br>
-                                山野小道士邢楠初入大都市，偶遇少妇，邂逅白富美，懵懂的他开始懂得，不对姑娘耍流氓，就是混蛋；不对美女动手动脚，就是神经病！初出茅庐的他，面对骇人的‘血门惊魂局’居然还有心情与美妇玩耍；面对号令相师的‘三省玄门令’，居然敢说‘滚’！诡秘的风水阴阳术，知天命，逆天行，真真假假，机关算尽，步步为营！【八旗晋升群：73207184】【VIP八旗相师军团：56645170】
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/52109.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                桃运兵王
-                            </h4>
-                            <p>
-                                都市言情 . (全本) . 277.4万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/64064.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                天才学生在校园
-                            </h4>
-                            <p>
-                                都市言情 . (全本) . 82.0万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/91843.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                天下武尊
-                            </h4>
-                            <p>
-                                玄幻奇幻 . (连载中) . 0.6万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='novelinfo/89087.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1'>
-                        <div class="bintro">
-                            <h4>
-                                灭武神尊
-                            </h4>
-                            <p>
-                                玄幻奇幻 . (连载中) . 9.3万字
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li class="item_more">
-                    <a href="order/1-3-2-4.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="more">
-                        更多作品&gt;
-                    </a>
-                </li>
-            </ul>
-        </div>
     </div>
 </div>
 <!--<div class="block">

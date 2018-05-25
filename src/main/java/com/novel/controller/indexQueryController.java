@@ -43,4 +43,12 @@ public class indexQueryController {
 	public JSONArray getHotBooks() {
 		return indexQueryService.getHotBooks();
 	}
+	
+	/**
+	 * 获取分类的书籍
+	 */
+	@RequestMapping("getClassifyBooks")
+	public JSONArray getClassifyBooks(String param) {
+		return indexQueryService.getClassifyBooks(param);
+	}
 }
