@@ -39,13 +39,10 @@ public class JsoupUtil {
 	 */
 	public void init() {
 		try {
-			// 构造一个webClient 模拟Chrome 浏览器
 			WebClient webClient = new WebClient(BrowserVersion.CHROME);
-			// 屏蔽日志信息
 			LogFactory.getFactory().setAttribute("org.apache.commons.logging.Log",
 					"org.apache.commons.logging.impl.NoOpLog");
 			java.util.logging.Logger.getLogger("com.gargoylesoftware").setLevel(Level.OFF);
-			// 支持JavaScript
 			webClient.getOptions().setJavaScriptEnabled(false);
 			webClient.getOptions().setCssEnabled(false);
 			webClient.getOptions().setActiveXNative(false);
