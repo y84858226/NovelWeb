@@ -13,10 +13,10 @@
         </title>
         <link href="../favicon.png" rel="apple-touch-icon-precomposed" />
         <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
-        <link rel="stylesheet" href="../public/css/style.css">
+        <link rel="stylesheet" href="public/css/style.css">
     </head>
     
-    <body>
+    <body ng-app="bookDetail">
         <script type="text/javascript">
             var ks_host = "../3g";
             var ks_uid = 0;
@@ -29,7 +29,7 @@
                     返回
                 </a>
             </span>
-            <span class="nav_right">
+            <span class="nav_right" style="display: none">
                 <a rel="internal" href="../nspd@cnl=kanshu">
                     男生
                 </a>
@@ -39,12 +39,12 @@
                 作品简介
             </h1>
         </div>
-        <div class="wrap clearfix">
+        <div class="wrap clearfix" ng-controller="bookDetailController">
             <div class="section bindex">
                 <div class="btitle">
-                    混在美女办公室
+                    {{book.name}}
                     <span>
-                        (连载中)
+                        {{book.status}}
                     </span>
                 </div>
                 <div class="blist">
@@ -52,27 +52,27 @@
                         <li>
                             <div class="bookwrap clearfix">
                                 <div class="bcover fl">
-                                    <img src="http://file1.kanshu.com/upload/article/70159/70159_m.jpg" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
+                                    <img ng-src="{{book.mainImage}}" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                                     height="110" width="75">
                                 </div>
                                 <div class="bintro b_i pl10">
                                     <p>
                                         分类:
                                         <b class="tname">
-                                            <a href="../list/3.html@cnl=kanshu" class="ye">
-                                                都市言情
+                                            <a href="" class="ye">
+                                                {{book.typeName}}
                                             </a>
                                         </b>
                                         <br/>
-                                        作者: 苦哈哈
+                                        {{book.author}}
                                         <br/>
                                         75.3万字 共300章
-                                        <br/>
+<!--                                        <br/>
                                         收藏: 917 &nbsp;&nbsp; 评论: 114
                                         <br/>
                                         红花: 57 &nbsp;&nbsp; 打赏: 1421
                                         <br/>
-                                        粉丝: 198人
+                                        粉丝: 198人-->
                                     </p>
                                 </div>
                             </div>
@@ -80,10 +80,10 @@
                                 <a href='../content/70159.html@cnl=kanshu' class="cur">
                                     马上阅读
                                 </a>
-                                <a href="##" class="book_fav" id="btn_fav">
+                                <a href="##" class="book_fav" id="btn_fav" style="display: none">
                                     收藏
                                 </a>
-                                <a href="../chapter/70159.html" class="last">
+                                <a href="" class="last" id="seeDirectoryBtn">
                                     查看目录
                                 </a>
                             </div>
@@ -99,7 +99,7 @@
                             </span>
                             更新时间：
                             <b class="gy">
-                                (2014-06-15 14:06更新)
+                                {{book.updateTime}}
                             </b>
                         </li>
                         <li>
@@ -108,13 +108,13 @@
                                     <b>
                                         简介：
                                     </b>
-                                    桃花运到，挡也挡不住。钟晓飞先在机场捡了一个青春性感的小姨子，接着又捡到了梦中女神的贴身之物。一时间，美女投怀送抱，艳遇接连不断！美女太多了，应接不暇之际，一个巨大的危险已经悄然而至。为了日后的‘幸’福，他决定发彪，男人统统打倒，美女全部推倒！
+                                    {{book.description}}
                                 </p>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="blink bl4 gyb mt10">
+                <div class="blink bl4 gyb mt10" style="display: none">
                     <a href="../comment/70159.html@cnl=kanshu">
                         <i class="icons icon_cmt">
                         </i>
@@ -140,14 +140,14 @@
             <script type="text/javascript">
                 var ks_bkid = 70159;
             </script>
-            <div class="block">
+            <div class="block" style="display: none">
                 <p class="item ">
                     <a href="../marketing/go-14.html@cnl=kanshu" class="t_b btn_vip">
                         开通VIP，手机全站免费畅读！
                     </a>
                 </p>
             </div>
-            <div class="section">
+            <div class="section" style="display: none">
                 <div class="tab-menu t2">
                     <a href="##" class="cur">
                         粉丝动态
@@ -322,79 +322,40 @@
                     </ul>
                 </div>
             </div>
-            <div class="section">
+            <div class="section" ng-controller="detailRecommendCtrl">
                 <h3 class="title">
                     <span class="b_l">
                         你可能会喜欢
                     </span>
                 </h3>
-                <div class="blist">
+                <div class="blist" >
                     <ul>
-                        <li>
-                            <a href='48826.html@cnl=kanshu'>
+                        <li ng-repeat="book in detailRecommendImageBooks">
+                            <a href=''>
                                 <div class="bcover fl">
-                                    <img src="http://file4.kanshu.com/upload/article/48826/48826_m.jpg" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
+                                    <img ng-src="{{book.mainImage}}" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                                     alt="都市特种兵" height="130" width="85" />
                                 </div>
                                 <div class="bintro pl10">
                                     <h4>
-                                        美女俏房客:都市特种兵
+                                        {{book.name}}
                                     </h4>
                                     <p>
-                                        都市言情 . (连载中) . 400.7万字
+                                        {{book.typeName}}
                                         <br>
-                                        打算退隐的雇佣军首领陈天，带着救下的腹黑可爱小LOLI回到苏杭开了个旅馆修养，却不想卷进了地下世界争斗之中，妖娆火爆的大姐大，冷霜若雪的绝美杀手，霸道娇横的漂亮大小姐，睿智无比的美女总裁，温情脉脉的俏校花齐齐闯进陈天的生活之中……且看一代雇佣兵王，如何携带众美在华夏如腾龙般崛起，威震世界！
+                                        {{book.description}}
                                     </p>
                                 </div>
                             </a>
                         </li>
-                        <li>
-                            <a href='78354.html@cnl=kanshu'>
+                        <li ng-repeat="book in detailRecommendBooks">
+                            <a href=''>
                                 <div class="bintro">
                                     <h4>
-                                        神医救世界:御控神仙界
+                                        {{book.name}}
                                     </h4>
                                     <p>
-                                        都市言情 . (连载中) . 80.8万字
-                                        <br>
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href='42360.html@cnl=kanshu'>
-                                <div class="bintro">
-                                    <h4>
-                                        美女私密护理:医世无双
-                                    </h4>
-                                    <p>
-                                        都市言情 . (连载中) . 362.0万字
-                                        <br>
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href='77694.html@cnl=kanshu'>
-                                <div class="bintro">
-                                    <h4>
-                                        天眼邪医:专治奇术怪症
-                                    </h4>
-                                    <p>
-                                        都市言情 . (连载中) . 53.0万字
-                                        <br>
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href='50260.html@cnl=kanshu'>
-                                <div class="bintro">
-                                    <h4>
-                                        屌丝逆袭之路:权色官途
-                                    </h4>
-                                    <p>
-                                        都市言情 . (连载中) . 287.5万字
+                                        {{book.typeName}}
                                         <br>
                                     </p>
                                 </div>
@@ -403,7 +364,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="block">
+            <div class="block" style="display: none">
                 <p class="item mt15">
                     <a href="84150.html@cnl=kanshu" class="t_b btn_vip">
                         "醉贤梦"送给
@@ -436,25 +397,25 @@
                     <a href="../index@cnl=kanshu">
                         首页
                     </a>
-                    <a href="../bookshelf@cnl=kanshu">
-                        书架
-                    </a>
-                    <a href="../classifi@cnl=kanshu">
-                        分类
-                    </a>
-                    <a href="../feedback@cnl=kanshu">
-                        留言
-                    </a>
-                    <a href="../usercenter@cnl=kanshu">
-                        个人中心
-                    </a>
+                    <!--<a href="../bookshelf@cnl=kanshu">-->
+                        <!--书架-->
+                    <!--</a>-->
+                    <!--<a href="../classifi@cnl=kanshu">-->
+                        <!--分类-->
+                    <!--</a>-->
+                    <!--<a href="../feedback@cnl=kanshu">-->
+                        <!--留言-->
+                    <!--</a>-->
+                    <!--<a href="../usercenter@cnl=kanshu">-->
+                        <!--个人中心-->
+                    <!--</a>-->
                 </div>
                 <p class="edition mt20">
                     <span>
-                        <a href="../20/novelinfo/70159.html@cnl=kanshu">
-                            普通版
-                        </a>
-                        |
+                        <!--<a href="../20/novelinfo/70159.html@cnl=kanshu">-->
+                            <!--普通版-->
+                        <!--</a>-->
+                        <!--|-->
                         <a href="##" class="select">
                             触屏版
                         </a>
@@ -469,10 +430,6 @@
                 <span id="gotop" class="icons icon-gotop">
                 </span>
             </div>
-            <script src="../public/js/mobile.js">
-            </script>
-            <script src="../public/js/common.js">
-            </script>
             <div class="pop_cover">
             </div>
             <div class="pop_tip">
@@ -481,6 +438,10 @@
                     </div>
                 </div>
             </div>
+        </div>
     </body>
-
+<script src="public/js/common/sea.js"></script>
+<script>
+    seajs.use(['cmd.config.js','angular.min.js','./public/js/bookdetail.js']);
+</script>
 </html>

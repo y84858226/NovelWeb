@@ -27,4 +27,16 @@ public interface IIndexQueryService {
 	 * 获取分类的书籍
 	 */
 	JSONArray getClassifyBooks(String param); 
+	/**
+	 * 分页获取分类的书籍
+	 */
+	JSONArray getClassifyBooksByPage(String param); 
+	/**
+	 * 获取书籍详细信息
+	 */
+	JSONObject getBookDetail(String bookName);
+	/**
+	 * 获取目录信息
+	 */
+	JSONArray getBookDirectory(String bookName);
 }

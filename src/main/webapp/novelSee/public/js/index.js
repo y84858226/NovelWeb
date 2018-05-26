@@ -10,6 +10,7 @@ define(function (require, exports, module) {
             this.initRecommendBooks();
             this.initHotBooks();
             this.initIndexClassifyBooks();
+            this.bindEvent();
         },
         /**
          * 获取搜索框推荐值
@@ -96,6 +97,37 @@ define(function (require, exports, module) {
                     }
                 })
             });
+        },
+        /**
+         * 绑定事件
+         */
+        bindEvent : function () {
+            var _that = this;
+            //更多点击事件
+            $(".more").click(function (e) {
+                e.stopPropagation();
+                _that._moreBtnClickEvent(e,_that);
+            });
+            //小说点击事件
+            $(".section").on("click","a",function (e) {
+                _that._bookDetailClickEvent(e,_that);
+            });
+            //分类点击事件
+            $(".top_class a").click(function (e) {
+                _that._moreBtnClickEvent(e,_that);
+            });
+        },
+        _moreBtnClickEvent : function (e,_that) {
+            var target = e.target;
+            var param = $(target).parent('li').attr("classify");
+            var src = "/novel/novelSee/more.html?classifyName=" + param;
+            window.location.href = src;
+        },
+        _bookDetailClickEvent : function (e,_that) {
+            var target = e.target;
+            var bookname = $(target).find('h4').prevObject["0"].innerText;
+            var src = "/novel/novelSee/bookdetail.html?bookname=" + bookname;
+            window.location.href = src;
         }
     }
     controller.initPage();

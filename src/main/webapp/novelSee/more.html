@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="手机小说，网络小说，免费小说，都市小说，言情小说，玄幻小说，网游小说，军事小说，历史小说，穿越小说"
+    />
+    <meta name="description" content="看书网,专业原创小说网站,提供最新言情,都市校园,穿越,网游,玄幻,武侠,科幻,历史等小说免费阅读和小说下载,是最好看的小说阅读网。看小说,就上看书网！"
+    />
+    <link rel="canonical" href="index"/>
+    <title>
+        看书网触屏版手机wap小说网站模板
+    </title>
+    <link href="favicon.png" rel="apple-touch-icon-precomposed"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+
+<body ng-app="more">
+<div class="top">
+    <h1 class="fl">
+        <img src="public/images/logo_ks.png" width="76" height="32"/>
+    </h1>
+    <p class="fr" style="display: none">
+        <a href="usercenter@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="icon_user"
+           title="个人中心">
+            个人中心
+        </a>
+    </p>
+</div>
+<div class="top_menu">
+    <div class="topnav">
+        <a href="index@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="cur">
+            首页
+            <b>
+            </b>
+        </a>
+        <!-- <a href="nspd.html">
+             男生
+             <b>
+             </b>
+         </a>
+         <a href="nvshengpd.html">
+             女生
+             <b>
+             </b>
+         </a>
+         <a href="chubanshe.html">
+             免费
+             <b>
+             </b>
+         </a>
+         <a href="bookshelf@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+             书架
+             <b>
+             </b>
+         </a>-->
+    </div>
+</div>
+<!--<div class="top_sign">
+    <span class="usr_grade">
+        登录查看我的等级
+    </span>
+    <span class="usr_sign">
+        <a href="login@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+            登录
+        </a>
+    </span>
+</div>-->
+<div class="section">
+    <h3 class="title">
+                <span class="b_l">
+                </span>
+    </h3>
+    <div class="blist" ng-controller="moreBooksController">
+        <ul>
+            <li ng-repeat="book in moreBooks">
+                <a href=''>
+                    <div class="bintro">
+                        <h4>
+                            {{book.name}}
+                        </h4>
+                        <p>
+                            {{book.typeName}}
+                            <br>
+                            {{book.description}}
+                        </p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="footer home-bg">
+    <div class="footer_nav clearfix">
+        <a href="index@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+            首页
+        </a>
+        <a href="feedback@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+            读者建议
+        </a>
+        <a href="feedback@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+            广告合作
+        </a>
+        <!-- <a href="bookshelf@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+             书架
+         </a>
+         <a href="classifi@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+             分类
+         </a>
+         <a href="feedback@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+             留言
+         </a>
+         <a href="usercenter@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+             个人中心
+         </a>-->
+    </div>
+    <p class="edition mt20">
+                <span>
+                   <!-- <a href="20/index@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+                        普通版
+                    </a>
+                    |-->
+                    <a href="##" class="select">
+                        触屏版
+                    </a>
+                </span>
+    </p>
+    <p class="copyright mt20">
+        <b>
+            看书网
+        </b>
+        wap.kanshu.com
+    </p>
+            <span id="gotop" class="icons icon-gotop">
+            </span>
+</div>
+<div class="pop_cover">
+</div>
+<div class="pop_tip">
+    <div class="pop_inner">
+        <div class="pop_cont">
+        </div>
+    </div>
+</div>
+</body>
+<script src="public/js/common/sea.js"></script>
+<script>
+    seajs.use(['cmd.config.js','angular.min.js','./public/js/more.js']);
+</script>
+</html>

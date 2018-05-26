@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.novel.dao.IIndexQueryDao;
 import com.novel.pojo.Novel;
+import com.novel.pojo.NovelChapterList;
 import com.novel.service.IIndexQueryService;
 /**
  * 主页查询
@@ -70,6 +71,42 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 		List<Novel> books = indexQueryDao.selectClassifyBooks(param);
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.addAll(books);
+		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		return jsonArray;
+	}
+	/**
+	 * 分页获取分类图书
+	 */
+	@Override
+	public JSONArray getClassifyBooksByPage(String param) {
+		long StartTime = System.currentTimeMillis();
+		JSONObject paramJo = JSONObject.parseObject(param);
+		List<Novel> books = indexQueryDao.selectClassifyBooksByPages(
+				paramJo.getString("classifyName"), paramJo.getIntValue("start"), paramJo.getIntValue("end"));
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.addAll(books);
+		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		return jsonArray;
+	}
+	/**
+	 * 获取书籍详细信息
+	 */
+	@Override
+	public JSONObject getBookDetail(String bookName) {
+		long StartTime = System.currentTimeMillis();
+		Novel bookDetail = indexQueryDao.selectBookDetail(bookName);
+		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		return (JSONObject) JSONObject.toJSON(bookDetail);
+	}
+	/**
+	 * 获取目录信息
+	 */
+	@Override
+	public JSONArray getBookDirectory(String bookName) {
+		long StartTime = System.currentTimeMillis();
+		List<NovelChapterList> bookDirectorys = indexQueryDao.selectBookDirectory(bookName);
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.addAll(bookDirectorys);
 		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonArray;
 	}
