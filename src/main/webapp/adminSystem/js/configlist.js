@@ -13,7 +13,7 @@
 				id : tableId,
 				elem : '#config',
 				url : '../../../selectCrawlerConfig?crawlerId=' + id,
-				even : true, // 隔行变色
+				even : false, // 隔行变色
 				page : false,
 				// height: 'full-65', //自适应高度
 				// size: '', //表格尺寸，可选值sm lg
@@ -76,7 +76,7 @@
 						+ ' 字段更改为：' + value);
 				var configlist = {};
 				configlist[field] = value;
-				configlist[id]=data.id;
+				configlist["id"]=data.id;
 				$.ajax({
 					type : 'post',
 					url : '../../../updateCrawlerConfig',

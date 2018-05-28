@@ -31,9 +31,9 @@
         </script>
 		<script type="text/html" id="stateTpl">
             {{#  if(d.crawlerStatus == 0){ }}
-    	  <input name="close" lay-skin="switch" lay-text="ON|OFF" type="checkbox">
+          <input lay-skin="switch" lay-filter="switchFilter" lay-text="ON|OFF" type="checkbox">
             {{#  } else if(d.crawlerStatus==1) { }}
-          <input checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF" type="checkbox">
+          <input checked="" lay-skin="switch" lay-filter="switchFilter" lay-text="ON|OFF" type="checkbox">
             {{#  } }}
         </script>
 	</div>
@@ -42,7 +42,6 @@
 		layui.config({
 			base : '../../js/'
 		}).use('crawlerlist');
-
 	</script>
 </body>
 </html>

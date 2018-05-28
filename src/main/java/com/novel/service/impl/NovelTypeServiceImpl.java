@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.novel.dao.NovelDao;
 import com.novel.dao.NovelTypeDao;
-import com.novel.pojo.Novel;
 import com.novel.pojo.NovelType;
 import com.novel.service.NovelTypeService;
 
@@ -21,14 +20,8 @@ public class NovelTypeServiceImpl implements NovelTypeService {
 	NovelTypeDao novelTypeDao;
 
 	@Override
-	public void addNovelType() {
-		List<Novel> list = novelDao.selectType();
-		novelTypeDao.truncateNovelType();
-		for (Novel novel : list) {
-			NovelType novelType = new NovelType();
-			novelType.setTypeName(novel.getTypeName());
-			novelTypeDao.addNovelType(novelType);
-		}
+	public void addNovelType(NovelType novelType) {
+		novelTypeDao.addNovelType(novelType);
 	}
 
 	@Override
@@ -41,6 +34,21 @@ public class NovelTypeServiceImpl implements NovelTypeService {
 	@Override
 	public int selectNovelTypeCount() {
 		return novelTypeDao.selectNovelTypeCount();
+	}
+
+	@Override
+	public void updateNovelType() {
+		// 查询type
+		List<NovelType> list = novelTypeDao.selectNovelTypeAll();
+		for (NovelType novelType : list) {
+			// 更新novel里面的type类型
+			novelTypeDao.updateNovelType(novelType);
+		}
+	}
+
+	@Override
+	public void deleteNovelType(NovelType novelType) {
+		novelTypeDao.deleteNovelType(novelType);
 	}
 
 }

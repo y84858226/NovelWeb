@@ -12,8 +12,16 @@
 			"extend": false,
 			"childs": null,
 			"id": 1
-		},
-		{
+		},{
+			"title": "采集系统",
+			"pageURL": "views/crawler/crawlerlist.html",
+			"name": "采集系统",
+			"icon": "fa-bug",
+			"openType": 2,
+			"extend": false,
+			"childs": null,
+			"id": 10
+		},{
 			"title": "数据库",
 			"pageURL": "views/menu/list_iframe.html",
 			"name": "数据库",
@@ -23,18 +31,7 @@
 			"extend": false,
 			"childs": null,
 			"id": 2
-		},
-		{
-			"title": "采集系统",
-			"pageURL": "views/crawler/crawlerlist.html",
-			"name": "采集系统",
-			"icon": "fa-bug",
-			"openType": 2,
-			"extend": false,
-			"childs": null,
-			"id": 10
-		},
-		{
+		},{
 			"title": "搜索管理",
 			"pageURL": "views/echarts/demo.html",
 			"name": "搜索管理",
@@ -43,8 +40,7 @@
 			"extend": false,
 			"childs": null,
 			"id": 10
-		},
-		{
+		},{
 			"title": "流量统计",
 			"pageURL": "views/echarts/demo.html",
 			"name": "流量统计",
@@ -53,8 +49,7 @@
 			"extend": false,
 			"childs": null,
 			"id": 4
-		},
-		{
+		},{
 			"title": "日志",
 			"pageURL": "/systemlog/index",
 			"name": "日志",

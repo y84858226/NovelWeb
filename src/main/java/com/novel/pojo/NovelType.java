@@ -2,6 +2,7 @@ package com.novel.pojo;
 
 public class NovelType {
 	private Integer id;
+	private String originalTypeName;
 	private String typeName;
 
 	public Integer getId() {
@@ -12,6 +13,14 @@ public class NovelType {
 		this.id = id;
 	}
 
+	public String getOriginalTypeName() {
+		return originalTypeName;
+	}
+
+	public void setOriginalTypeName(String originalTypeName) {
+		this.originalTypeName = originalTypeName;
+	}
+
 	public String getTypeName() {
 		return typeName;
 	}
@@ -20,8 +29,9 @@ public class NovelType {
 		this.typeName = typeName;
 	}
 
-	public NovelType(Integer id, String typeName) {
+	public NovelType(Integer id, String originalTypeName, String typeName) {
 		this.id = id;
+		this.originalTypeName = originalTypeName;
 		this.typeName = typeName;
 	}
 
@@ -30,7 +40,7 @@ public class NovelType {
 
 	@Override
 	public String toString() {
-		return "NovelType [id=" + id + ", typeName=" + typeName + "]";
+		return "NovelType [id=" + id + ", originalTypeName=" + originalTypeName + ", typeName=" + typeName + "]";
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.novel.pojo.Crawler;
 import com.novel.pojo.NovelType;
 import com.novel.service.NovelTypeService;
 
@@ -26,16 +27,27 @@ public class NovelTypeController {
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("code", 0);
 		map.put("msg", "");
-		int count=novelTypeService.selectNovelTypeCount();
+		int count = novelTypeService.selectNovelTypeCount();
 		map.put("count", count);
-		List<NovelType> novelTypeList=novelTypeService.selectNovelType(page,limit);
+		List<NovelType> novelTypeList = novelTypeService.selectNovelType(page, limit);
 		map.put("data", novelTypeList);
 		return map;
 	}
-	
-	
+
 	@RequestMapping("addNovelType")
-	public void addNovelType() {
-		novelTypeService.addNovelType();
+	public void addNovelType(NovelType novelType) {
+		novelTypeService.addNovelType(novelType);
+	}
+
+	@RequestMapping("deleteNovelType")
+	public void deleteNovelType(String ids) {
+		String id[] = ids.split(",");
+		for (String string : id) {
+			if (!string.equals("")) {
+				NovelType novelType = new NovelType();
+				novelType.setId(Integer.parseInt(string));
+				novelTypeService.deleteNovelType(novelType);
+			}
+		}
 	}
 }

@@ -5,12 +5,13 @@
 }).define([ 'table', 'jquery', 'winui' ], function(exports) {
 	winui.renderColor();
 	var table = layui.table, $ = layui.$, tableId = 'tableid';
+	var form = layui.form;
 	// 表格渲染
 	table.render({
 		id : tableId,
 		elem : '#crawler',
 		url : '../../../selectCrawler',
-		even : true, // 隔行变色
+		even : false, // 隔行变色
 		page : true,
 		// height: 'full-65', //自适应高度
 		// size: '', //表格尺寸，可选值sm lg
@@ -50,7 +51,7 @@
 			ids += item.id + ',';
 		});
 		if (layEvent === 'del') { // 删除
-			deleteRole(ids, obj);
+			deleteCrawler(ids, obj);
 		} else if (layEvent === 'configList') {// 查看配置
 			top.winui.window.open({
 				id : 'configlist',
@@ -85,17 +86,25 @@
 			});
 		}
 	});
+
+	form.on('switch(switchFilter)', function(data) {
+		console.log(data.elem); // 得到checkbox原始DOM对象
+		console.log(data.elem.checked); // 开关是否开启，true或者false
+		console.log(data.value); // 开关value值，也可以通过data.elem.value得到
+		console.log(data.othis); // 得到美化后的DOM对象
+	});
+
 	// 表格重载
 	function reloadTable() {
 		table.reload(tableId, {});
 	}
 
 	// 删除爬虫
-	function deleteRole(ids, obj) {
+	function deleteCrawler(ids, obj) {
 		var msg = obj ? '确认删除爬虫【' + obj.data.crawlerName + '】吗？' : '确认删除选中数据吗？'
 		top.winui.window.confirm(msg, {
 			icon : 3,
-			title : '删除系统角色'
+			title : '删除爬虫'
 		}, function(index) {
 			layer.close(index);
 			// 向服务端发送删除指令
@@ -124,6 +133,7 @@
 			}
 		});
 	}
+	
 	// 绑定按钮事件
 	$('#addCrawler').on('click', function() {
 		top.winui.window.open({
@@ -135,6 +145,7 @@
 			offset : [ '15vh', '20vw' ],
 		});
 	});
+	
 	$('#deleteCrawler').on('click', function() {
 		var checkStatus = table.checkStatus(tableId);
 		var checkCount = checkStatus.data.length;
@@ -148,7 +159,8 @@
 		$(checkStatus.data).each(function(index, item) {
 			ids += item.id + ',';
 		});
-		deleteRole(ids);
+		deleteCrawler(ids);
 	});
+	
 	$('#reloadTable').on('click', reloadTable);
 });

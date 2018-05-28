@@ -20,6 +20,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.novel.pojo.Crawler;
 import com.novel.service.CrawlerService;
+import com.novel.service.NovelTypeService;
 
 /**
  * 爬虫系统
@@ -36,6 +37,9 @@ public class CrawlerController {
 	// 依赖注入
 	@Autowired
 	CrawlerService crawlerService;
+
+	@Autowired
+	NovelTypeService novelTypeService;
 
 	@RequestMapping("addCrawler")
 	public void addCrawler(Crawler crawler) {
@@ -82,11 +86,13 @@ public class CrawlerController {
 		List<Crawler> list = crawlerService.selectCrawler(crawler);
 		crawler = list.get(0);
 		crawlerService.crawlerNovelData(request, crawler);
+		// 更新类型列表
+		novelTypeService.updateNovelType();
 		return crawler.getCrawlerName() + ":运行结束";
 	}
 
 	/**
-	 * 每天凌晨触发更新
+	 * 每天23点59分 自动爬虫更新
 	 * 
 	 * @param request
 	 */
@@ -100,5 +106,7 @@ public class CrawlerController {
 		for (Crawler c : list) {
 			crawlerService.crawlerNovelData(request, c);
 		}
+		// 更新类型列表
+		novelTypeService.updateNovelType();
 	}
 }

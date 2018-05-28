@@ -136,6 +136,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 								config.get(10).getReplaceResult(), config.get(10).getRegGroupNum());
 						// 设置更新开关
 						boolean searchLastChapter = false;
+						// 判断是否有更新操作，如果有，则更新最新章节和更新日期
 						boolean updateFlag = false;
 						for (String chapterA : chapterSet) {
 							NovelChapterList chapterList = new NovelChapterList();
