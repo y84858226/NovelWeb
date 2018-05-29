@@ -70,13 +70,41 @@
 				},
 				async : true,
 				success : function(data) {
-					layer.close(index);
 					top.winui.window.msg(data, {
 						time : 2000
 					});
 				},
 				error : function(xml) {
-					layer.close(index);
+					top.winui.window.msg("获取页面失败", {
+						icon : 2,
+						time : 2000
+					});
+					console.log(xml.responseText);
+				}
+			});
+		} else if (layEvent === 'testRun') {// 测试运行
+			$.ajax({
+				type : 'post',
+				url : '../../../testRunCrawler',
+				data : {
+					id : data.id
+				},
+				async : true,
+				success : function(data) {
+					alert("小说类型页数量:" + data.novelTypeNumber);
+					alert("第一个类型页的小说数量:" + data.novelNumber);
+					alert("第一本小说:");
+					alert("名称:" + data.novel.name);
+					alert("作者:" + data.novel.author);
+					alert("类型:" + data.novel.typeName);
+					alert("描述:" + data.novel.description);
+					alert("主图:" + data.novel.mainImage);
+					alert("状态:" + data.novel.status);
+					alert("第一章:");
+					alert("名称:" + data.chapterList.chapterName);
+					alert("链接:" + data.chapterList.chapterLink);
+				},
+				error : function(xml) {
 					top.winui.window.msg("获取页面失败", {
 						icon : 2,
 						time : 2000
@@ -88,10 +116,35 @@
 	});
 
 	form.on('switch(switchFilter)', function(data) {
-		console.log(data.elem); // 得到checkbox原始DOM对象
-		console.log(data.elem.checked); // 开关是否开启，true或者false
-		console.log(data.value); // 开关value值，也可以通过data.elem.value得到
-		console.log(data.othis); // 得到美化后的DOM对象
+		var status;
+		if (data.elem.checked) {
+			// 打开
+			status = 1;
+		} else {
+			status = 0;
+		}
+
+		$.ajax({
+			type : 'post',
+			url : '../../../updateCrawler',
+			data : {
+				id : data.value,
+				crawlerStatus : status
+			},
+			async : true,
+			success : function(data) {
+				top.winui.window.msg("操作成功", {
+					time : 2000
+				});
+			},
+			error : function(xml) {
+				top.winui.window.msg("获取页面失败", {
+					icon : 2,
+					time : 2000
+				});
+				console.log(xml.responseText);
+			}
+		});
 	});
 
 	// 表格重载
@@ -133,7 +186,7 @@
 			}
 		});
 	}
-	
+
 	// 绑定按钮事件
 	$('#addCrawler').on('click', function() {
 		top.winui.window.open({
@@ -145,7 +198,7 @@
 			offset : [ '15vh', '20vw' ],
 		});
 	});
-	
+
 	$('#deleteCrawler').on('click', function() {
 		var checkStatus = table.checkStatus(tableId);
 		var checkCount = checkStatus.data.length;
@@ -161,6 +214,6 @@
 		});
 		deleteCrawler(ids);
 	});
-	
+
 	$('#reloadTable').on('click', reloadTable);
 });

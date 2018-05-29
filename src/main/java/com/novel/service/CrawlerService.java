@@ -1,6 +1,7 @@
 package com.novel.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +15,14 @@ public interface CrawlerService {
 	 * @param url
 	 */
 	public void crawlerNovelData(HttpServletRequest requestm, Crawler crawler);
+
+	/**
+	 * 测试运行
+	 * 
+	 * @param requestm
+	 * @param crawler
+	 */
+	public Map<String, Object> testCrawlerNovelData(HttpServletRequest requestm, Crawler crawler);
 
 	/**
 	 * 添加crawler数据
@@ -49,4 +58,11 @@ public interface CrawlerService {
 	 * @param crawler
 	 */
 	public List<Crawler> selectCrawler(Crawler crawler);
+
+	/**
+	 * 更新小说
+	 * 
+	 * @param crawler
+	 */
+	public void updateCrawler(Crawler crawler);
 }

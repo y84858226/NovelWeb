@@ -26,14 +26,15 @@
 		<table id="crawler" lay-filter="crawlerfilter"></table>
 		<script type="text/html" id="crawlerOption">
 			<a class="layui-btn layui-btn-xs" lay-event="run">运行</a>
+			<a class="layui-btn layui-btn-xs" lay-event="testRun">测试运行</a>
 			<a class="layui-btn layui-btn-xs" lay-event="configList">查看配置</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
 		<script type="text/html" id="stateTpl">
             {{#  if(d.crawlerStatus == 0){ }}
-          <input lay-skin="switch" lay-filter="switchFilter" lay-text="ON|OFF" type="checkbox">
+          <input value="{{d.id}}" lay-skin="switch" lay-filter="switchFilter" lay-text="开|关" type="checkbox">
             {{#  } else if(d.crawlerStatus==1) { }}
-          <input checked="" lay-skin="switch" lay-filter="switchFilter" lay-text="ON|OFF" type="checkbox">
+          <input checked="" value="{{d.id}}" lay-skin="switch" lay-filter="switchFilter" lay-text="开|关" type="checkbox">
             {{#  } }}
         </script>
 	</div>

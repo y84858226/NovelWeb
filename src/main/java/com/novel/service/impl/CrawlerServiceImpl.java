@@ -144,10 +144,11 @@ public class CrawlerServiceImpl implements CrawlerService {
 							chapterList.setNovelId(novelId);
 							Document chapterDoc = Jsoup.parse(chapterA);
 
-							Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc, config.get(12).getSelector(),
-									config.get(12).getNum(), config.get(12).getAttrName(), config.get(12).getReg(),
-									config.get(12).getHeadAppendResult(), config.get(12).getTailAppendResult(),
-									config.get(12).getReplaceResult(), config.get(12).getRegGroupNum());
+							Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc,
+									config.get(12).getSelector(), config.get(12).getNum(), config.get(12).getAttrName(),
+									config.get(12).getReg(), config.get(12).getHeadAppendResult(),
+									config.get(12).getTailAppendResult(), config.get(12).getReplaceResult(),
+									config.get(12).getRegGroupNum());
 							for (String chapterName : chapterNameSet) {
 								System.out.println("章节名称:" + chapterName);
 								if (maxChapterName.equals(chapterName)) {
@@ -274,19 +275,21 @@ public class CrawlerServiceImpl implements CrawlerService {
 							NovelChapterList chapterList = new NovelChapterList();
 							chapterList.setNovelId(novelId);
 							Document chapterDoc = Jsoup.parse(chapterA);
-							Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc, config.get(11).getSelector(),
-									config.get(11).getNum(), config.get(11).getAttrName(), config.get(11).getReg(),
-									config.get(11).getHeadAppendResult(), config.get(11).getTailAppendResult(),
-									config.get(11).getReplaceResult(), config.get(11).getRegGroupNum());
+							Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc,
+									config.get(11).getSelector(), config.get(11).getNum(), config.get(11).getAttrName(),
+									config.get(11).getReg(), config.get(11).getHeadAppendResult(),
+									config.get(11).getTailAppendResult(), config.get(11).getReplaceResult(),
+									config.get(11).getRegGroupNum());
 							for (String chapterLink : chapterLinkSet) {
 								System.out.println("章节地址:" + chapterLink);
 								chapterList.setChapterLink(chapterLink);
 							}
 
-							Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc, config.get(12).getSelector(),
-									config.get(12).getNum(), config.get(12).getAttrName(), config.get(12).getReg(),
-									config.get(12).getHeadAppendResult(), config.get(12).getTailAppendResult(),
-									config.get(12).getReplaceResult(), config.get(12).getRegGroupNum());
+							Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc,
+									config.get(12).getSelector(), config.get(12).getNum(), config.get(12).getAttrName(),
+									config.get(12).getReg(), config.get(12).getHeadAppendResult(),
+									config.get(12).getTailAppendResult(), config.get(12).getReplaceResult(),
+									config.get(12).getRegGroupNum());
 							for (String chapterName : chapterNameSet) {
 								System.out.println("章节名称:" + chapterName);
 								chapterList.setChapterName(chapterName);
@@ -301,6 +304,148 @@ public class CrawlerServiceImpl implements CrawlerService {
 			}
 		}
 
+	}
+
+	public Map<String, Object> testCrawlerNovelData(HttpServletRequest request, Crawler crawler) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		/**
+		 * 查询配置结果
+		 */
+		CrawlerConfig crawlerConfig = new CrawlerConfig();
+		crawlerConfig.setCrawlerId(String.valueOf(crawler.getId()));
+		List<CrawlerConfig> list = crawlerConfigDao.selectCrawlerConfig(crawlerConfig);
+
+		/**
+		 * 对配置结果排序
+		 */
+		Map<Integer, CrawlerConfig> config = new HashMap<Integer, CrawlerConfig>();
+		for (CrawlerConfig cc : list) {
+			config.put(cc.getSort(), cc);
+		}
+
+		JsoupUtil util = new JsoupUtil();
+		/**
+		 * 第一步 查找小说列表页
+		 * 
+		 */
+		// 存放类型页的link
+		Set<String> novelTypeSet = util.getHtmlAttr(crawler.getCrawlerUrl(), null, config.get(1).getSelector(),
+				config.get(1).getNum(), config.get(1).getAttrName(), config.get(1).getReg(),
+				config.get(1).getHeadAppendResult(), config.get(1).getTailAppendResult(),
+				config.get(1).getReplaceResult(), config.get(1).getRegGroupNum());
+		map.put("novelTypeNumber", novelTypeSet.size());
+		/**
+		 * 第二步 查找小说页
+		 *
+		 */
+		// 存放小说的link
+		for (String novelTypeLink : novelTypeSet) {
+			Set<String> novelSet = util.getHtmlAttr(crawler.getCrawlerUrl(), null, config.get(2).getSelector(),
+					config.get(2).getNum(), config.get(2).getAttrName(), config.get(2).getReg(),
+					config.get(2).getHeadAppendResult(), config.get(2).getTailAppendResult(),
+					config.get(2).getReplaceResult(), config.get(2).getRegGroupNum());
+			map.put("novelNumber", novelSet.size());
+			// System.out.println("类型页:" + novelTypeLink + ",共抓取小说：" + novelSet.size() +
+			// "本");
+			// 访问每一个小说页面
+			for (String novelLink : novelSet) {
+				JsoupUtil jsoupUtil = new JsoupUtil(novelLink);
+				Document doc = jsoupUtil.getDoc();
+				Novel novel = new Novel();
+				// 小说名称
+				Set<String> nameSet = util.getHtmlAttr(null, doc, config.get(3).getSelector(), config.get(3).getNum(),
+						config.get(3).getAttrName(), config.get(3).getReg(), config.get(3).getHeadAppendResult(),
+						config.get(3).getTailAppendResult(), config.get(3).getReplaceResult(),
+						config.get(3).getRegGroupNum());
+				for (String name : nameSet) {
+					novel.setName(name);
+				}
+
+				// 作者
+				Set<String> authorSet = util.getHtmlAttr(null, doc, config.get(4).getSelector(), config.get(4).getNum(),
+						config.get(4).getAttrName(), config.get(4).getReg(), config.get(4).getHeadAppendResult(),
+						config.get(4).getTailAppendResult(), config.get(4).getReplaceResult(),
+						config.get(4).getRegGroupNum());
+				for (String author : authorSet) {
+					novel.setAuthor(author);
+				}
+
+				// 类型名称
+				Set<String> typeNameSet = util.getHtmlAttr(null, doc, config.get(5).getSelector(),
+						config.get(5).getNum(), config.get(5).getAttrName(), config.get(5).getReg(),
+						config.get(5).getHeadAppendResult(), config.get(5).getTailAppendResult(),
+						config.get(5).getReplaceResult(), config.get(5).getRegGroupNum());
+				for (String typeName : typeNameSet) {
+					novel.setTypeName(typeName);
+				}
+
+				// 描述
+				Set<String> descriptionSet = util.getHtmlAttr(null, doc, config.get(6).getSelector(),
+						config.get(6).getNum(), config.get(6).getAttrName(), config.get(6).getReg(),
+						config.get(6).getHeadAppendResult(), config.get(6).getTailAppendResult(),
+						config.get(6).getReplaceResult(), config.get(6).getRegGroupNum());
+				for (String description : descriptionSet) {
+					novel.setDescription(description);
+				}
+
+				// 主图地址
+				Set<String> mainImageSet = util.getHtmlAttr(null, doc, config.get(7).getSelector(),
+						config.get(7).getNum(), config.get(7).getAttrName(), config.get(7).getReg(),
+						config.get(7).getHeadAppendResult(), config.get(7).getTailAppendResult(),
+						config.get(7).getReplaceResult(), config.get(7).getRegGroupNum());
+				for (String mainImage : mainImageSet) {
+					novel.setMainImage(mainImage);
+				}
+
+				// 状态
+				Set<String> statusSet = util.getHtmlAttr(null, doc, config.get(8).getSelector(), config.get(8).getNum(),
+						config.get(8).getAttrName(), config.get(8).getReg(), config.get(8).getHeadAppendResult(),
+						config.get(8).getTailAppendResult(), config.get(8).getReplaceResult(),
+						config.get(8).getRegGroupNum());
+				for (String status : statusSet) {
+					novel.setStatus(status);
+				}
+
+				// 全部章节列表 过滤
+				Set<String> chapterListSet = util.getHtmlAttr(null, doc, config.get(9).getSelector(),
+						config.get(9).getNum(), config.get(9).getAttrName(), config.get(9).getReg(),
+						config.get(9).getHeadAppendResult(), config.get(9).getTailAppendResult(),
+						config.get(9).getReplaceResult(), config.get(9).getRegGroupNum());
+				for (String chapterListHtml : chapterListSet) {
+					Document chapterListDoc = Jsoup.parse(chapterListHtml);
+					// 全部章节
+					Set<String> chapterSet = util.getHtmlAttr(null, chapterListDoc, config.get(10).getSelector(),
+							config.get(10).getNum(), config.get(10).getAttrName(), config.get(10).getReg(),
+							config.get(10).getHeadAppendResult(), config.get(10).getTailAppendResult(),
+							config.get(10).getReplaceResult(), config.get(10).getRegGroupNum());
+					for (String chapterA : chapterSet) {
+						NovelChapterList chapterList = new NovelChapterList();
+						Document chapterDoc = Jsoup.parse(chapterA);
+						Set<String> chapterLinkSet = util.getHtmlAttr(null, chapterDoc, config.get(11).getSelector(),
+								config.get(11).getNum(), config.get(11).getAttrName(), config.get(11).getReg(),
+								config.get(11).getHeadAppendResult(), config.get(11).getTailAppendResult(),
+								config.get(11).getReplaceResult(), config.get(11).getRegGroupNum());
+						for (String chapterLink : chapterLinkSet) {
+							chapterList.setChapterLink(chapterLink);
+						}
+
+						Set<String> chapterNameSet = util.getHtmlAttr(null, chapterDoc, config.get(12).getSelector(),
+								config.get(12).getNum(), config.get(12).getAttrName(), config.get(12).getReg(),
+								config.get(12).getHeadAppendResult(), config.get(12).getTailAppendResult(),
+								config.get(12).getReplaceResult(), config.get(12).getRegGroupNum());
+						for (String chapterName : chapterNameSet) {
+							chapterList.setChapterName(chapterName);
+						}
+						map.put("chapterList", chapterList);
+						break;
+					}
+				}
+				map.put("novel", novel);
+				break;
+			}
+			break;
+		}
+		return map;
 	}
 
 	@Override
@@ -340,6 +485,11 @@ public class CrawlerServiceImpl implements CrawlerService {
 	@Override
 	public List<Crawler> selectCrawler(Crawler crawler) {
 		return crawlerDao.selectCrawler(crawler);
+	}
+
+	@Override
+	public void updateCrawler(Crawler crawler) {
+		crawlerDao.updateCrawler(crawler);
 	}
 
 }

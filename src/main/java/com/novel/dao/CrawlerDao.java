@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.UpdateProvider;
 import org.springframework.stereotype.Repository;
 
 import com.novel.dao.provider.CrawlerProvider;
@@ -37,4 +39,7 @@ public interface CrawlerDao {
 
 	@SelectProvider(type = CrawlerProvider.class, method = "select")
 	public List<Crawler> selectCrawler(Crawler crawler);
+	
+	@UpdateProvider(type=CrawlerProvider.class,method="update")
+	public void updateCrawler(Crawler crawler);
 }

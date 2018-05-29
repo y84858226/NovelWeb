@@ -58,6 +58,11 @@ public class CrawlerController {
 		return map;
 	}
 
+	@RequestMapping("updateCrawler")
+	public void updateCrawler(Crawler crawler) {
+		crawlerService.updateCrawler(crawler);
+	}
+	
 	@RequestMapping("deleteCrawler")
 	public void deleteCrawler(String ids) {
 		String id[] = ids.split(",");
@@ -89,6 +94,14 @@ public class CrawlerController {
 		// 更新类型列表
 		novelTypeService.updateNovelType();
 		return crawler.getCrawlerName() + ":运行结束";
+	}
+
+	@RequestMapping("testRunCrawler")
+	public Map<String, Object> testRunCrawler(HttpServletRequest request, Crawler crawler) {
+		List<Crawler> list = crawlerService.selectCrawler(crawler);
+		crawler = list.get(0);
+		Map<String, Object> map = crawlerService.testCrawlerNovelData(request, crawler);
+		return map;
 	}
 
 	/**
