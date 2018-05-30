@@ -6,8 +6,8 @@ define(function (require, exports, module) {
     var controller = {
         initPage : function () {
             this.app = angular.module('more', []);
-            var classifyName = this.getQueryString("classifyName");
-            this.initClassifyBooks(classifyName);
+            this.classifyName = this.getQueryString("classifyName");
+            this.initClassifyBooks(this.classifyName);
             this.bindEvent();
         },
         /**
@@ -30,7 +30,7 @@ define(function (require, exports, module) {
             var params = new Object();
             params.classifyName = classifyName;
             params.start = 1;
-            params.end = 50;
+            params.end = 20;
             this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
         },
         /**
@@ -38,19 +38,37 @@ define(function (require, exports, module) {
          */
         getClassifyBooks : function (controller,params,callback) {
             var _that = this;
-            _that.app.controller(controller, function($scope, $http) {
+            if(!_that.booksCtrl){
+                _that.booksCtrl = _that.app.controller(controller, function($scope, $http) {
+                    utils.service.doPost('../getClassifyBooksByPage',params,function (result) {
+                        if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
+                            $scope.$applyAsync(function () {
+                                var dealWithResult = result.responseJSON;
+                                $.each(dealWithResult, function(key, val){
+                                    dealWithResult[key].description = val.description.replace(/<br>/g,"")
+                                });
+                                eval(callback);
+                            });
+                        }
+                    })
+                });
+            }else{
                 utils.service.doPost('../getClassifyBooksByPage',params,function (result) {
+                    var appElement = document.querySelector('[ng-controller=moreBooksController]');
+                    var $scope = angular.element(appElement).scope();
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                         $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON;
                             $.each(dealWithResult, function(key, val){
                                 dealWithResult[key].description = val.description.replace(/<br>/g,"")
                             });
-                            eval(callback);
+
+                            $scope.moreBooks = dealWithResult;
                         });
                     }
                 })
-            });
+            }
+
         },
         /**
          * 绑定事件
@@ -61,12 +79,26 @@ define(function (require, exports, module) {
             $(".section").on("click","a",function (e) {
                 _that._bookDetailClickEvent(e,_that);
             });
+            $(".more").on("click",function (e) {
+                e.stopPropagation();
+                _that._moreBooksBtnClick(e,_that);
+            });
         },
         _bookDetailClickEvent : function (e,_that) {
             var target = e.target;
-            var bookname = $(target).find('h4').prevObject["0"].innerText;
+            var bookname = $(target).parents('li').find('h4')[0].innerText;
             var src = "/novel/novelSee/bookdetail.html?bookname=" + bookname;
             window.location.href = src;
+        },
+        _moreBooksBtnClick : function (e,_that) {
+            var target = e.target;
+            var index = $(target).parents('li').attr("clickNum");
+            var params = new Object();
+            params.classifyName = this.classifyName;
+            params.start = 1;
+            params.end = index * 20;
+            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
+            $(target).parents('li').attr('clickNum',(index+1))
         }
 
     }
