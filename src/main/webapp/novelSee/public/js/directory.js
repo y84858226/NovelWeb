@@ -45,12 +45,20 @@ define(function (require, exports, module) {
         bindEvent : function () {
             var _that = this;
             //目录点击事件
-            $(".section").on("click","a",function (e) {
-                _that._bookDetailClickEvent(e,_that);
+            $(".dir_list").on("click","a",function (e) {
+                _that._directoryClickEvent(e,_that);
             });
         },
-        _bookDetailClickEvent : function (e,_that) {
-
+        _directoryClickEvent : function (e,_that) {
+            var target = e.target;
+            var href = $(target).parents('li').find('a').attr('ng-value');
+            var id = $(target).parents('li').find('a').attr('ng-id');
+            if(utils.isNullOrEmpty(href)){
+                utils.service.doPost('../selectChapter?id=' + id,'','');
+            }else{
+                window.location.href = href;
+            }
+           
         }
     }
     controller.initPage();

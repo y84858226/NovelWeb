@@ -77,6 +77,11 @@
         <ul>
             <li ng-repeat="book in moreBooks">
                 <a href=''>
+                    <div class="bcover fl">
+                        <img ng-src="{{book.mainImage}}" alt=""
+                             onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
+                             height="130" width="85"/>
+                    </div>
                     <div class="bintro">
                         <h4>
                             {{book.name}}
@@ -89,20 +94,20 @@
                     </div>
                 </a>
             </li>
+            <li class="item_more" clickNum="2">
+                <a class="more" href="" >
+                    更多作品&gt;
+                </a>
+            </li>
         </ul>
     </div>
 </div>
 <div class="footer home-bg">
     <div class="footer_nav clearfix">
-        <a href="index@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+        <a href="/novel/novelSee/index.html">
             首页
         </a>
-        <a href="feedback@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-            读者建议
-        </a>
-        <a href="feedback@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-            广告合作
-        </a>
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=836127990&site=qq&menu=yes">广告合作</a>
         <!-- <a href="bookshelf@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
              书架
          </a>
