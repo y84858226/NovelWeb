@@ -21,8 +21,14 @@ public class NovelChapterListProvider {
 				if (novelChapterList.getId() != null) {
 					WHERE("id=#{id}");
 				}
+				if (novelChapterList.getCrawlerConfigId() != null) {
+					WHERE("crawlerConfigId=#{crawlerConfigId}");
+				}
 				if (novelChapterList.getNovelId() != null) {
 					WHERE("novelId=#{novelId}");
+				}
+				if (novelChapterList.getChapterNum() != null) {
+					WHERE("chapterNum=#{chapterNum}");
 				}
 				if (novelChapterList.getChapterName() != null) {
 					WHERE("chapterName=#{chapterName}");
@@ -33,9 +39,7 @@ public class NovelChapterListProvider {
 				if (novelChapterList.getFilePath() != null) {
 					WHERE("filePath=#{filePath}");
 				}
-				if (novelChapterList.getCrawlerConfigId() != null) {
-					WHERE("crawlerConfigId=#{crawlerConfigId}");
-				}
+
 			}
 		}.toString();
 	}

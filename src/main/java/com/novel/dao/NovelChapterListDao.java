@@ -17,13 +17,13 @@ import com.novel.pojo.NovelChapterList;
 @Repository
 public interface NovelChapterListDao {
 
-	@Insert("insert into novelchapterlist(novelId,chapterName,chapterLink,crawlerConfigId) values(#{novelId},#{chapterName},#{chapterLink},#{crawlerConfigId})")
+	@Insert("insert into novelchapterlist(crawlerConfigId,novelId,chapterNum,chapterName,chapterLink) values(#{crawlerConfigId},#{novelId},#{chapterNum},#{chapterName},#{chapterLink})")
 	@Options(useGeneratedKeys = true, keyProperty = "id")
 	public void addNovelChapterList(NovelChapterList novelChapterList);
 
 	@SelectProvider(type = NovelChapterListProvider.class, method = "select")
 	public List<NovelChapterList> selectNovelChapterList(NovelChapterList chapterList);
-	
+
 	@Select("select * from novelchapterlist where id in(select max(id) as id from novelchapterlist where novelId=#{novelId})")
 	public NovelChapterList selectMaxchapter(NovelChapterList chapterList);
 

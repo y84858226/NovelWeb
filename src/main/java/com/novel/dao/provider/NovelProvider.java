@@ -20,9 +20,6 @@ public class NovelProvider {
 				if (novel.getId() != null) {
 					WHERE("id=#{id}");
 				}
-				if (novel.getPath() != null) {
-					WHERE("path=#{path}");
-				}
 				if (novel.getName() != null) {
 					WHERE("name=#{name}");
 				}
@@ -35,8 +32,11 @@ public class NovelProvider {
 				if (novel.getDescription() != null) {
 					WHERE("description=#{description}");
 				}
-				if (novel.getMainImage() != null) {
-					WHERE("mainImage=#{mainImage}");
+				if (novel.getStatus() != null) {
+					WHERE("status=#{status}");
+				}
+				if (novel.getLastChapterNum() != null) {
+					WHERE("lastChapterNum=#{lastChapterNum}");
 				}
 				if (novel.getCreateTime() != null) {
 					WHERE("createTime=#{createTime}");
@@ -44,14 +44,8 @@ public class NovelProvider {
 				if (novel.getUpdateTime() != null) {
 					WHERE("updateTime=#{updateTime}");
 				}
-				if (novel.getUpdateTime() != null) {
-					WHERE("updateTime=#{updateTime}");
-				}
 				if (novel.getClickView() != null) {
 					WHERE("clickView=#{clickView}");
-				}
-				if (novel.getStatus() != null) {
-					WHERE("status=#{status}");
 				}
 				if (novel.getDisplay() != null) {
 					WHERE("display=#{display}");

@@ -1,5 +1,6 @@
 package com.novel.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -65,4 +66,12 @@ public interface CrawlerService {
 	 * @param crawler
 	 */
 	public void updateCrawler(Crawler crawler);
+	
+	/**
+	 * 创建json文件
+	 * @param object
+	 * @param file
+	 */
+	public void createJson(Object object, File file);
+	
 }

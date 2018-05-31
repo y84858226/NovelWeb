@@ -17,21 +17,19 @@ import com.novel.pojo.Novel;
 @Repository
 public interface NovelDao {
 
-	@Insert("insert into novel(path,name,author,typeName,description,mainImage,createTime,"
-			+ "updateTime,clickView,status,display) values(#{path},#{name},#{author},#{typeName},#{description},"
-			+ "#{mainImage},#{createTime},#{updateTime},#{clickView},#{status},#{display})")
+	@Insert("insert into novel(name,author,typeName,description,status,lastChapterNum,createTime,"
+			+ "updateTime,clickView,display) values(#{name},#{author},#{typeName},#{description},"
+			+ "#{status},#{lastChapterNum},#{createTime},#{updateTime},#{clickView},#{display})")
 	@Options(useGeneratedKeys = true, keyProperty = "id")
 	public void addNovel(Novel novel);
 
 	@SelectProvider(type = NovelProvider.class, method = "select")
 	public List<Novel> selectNovel(Novel novel);
 
-	@Update("update novel set path=#{path} , mainImage=#{mainImage} where id=#{id}")
-	public void updatePathAndImage(Novel novel);
+	@Update("update novel set updateTime=#{updateTime} , lastChapterNum=#{lastChapterNum} where id=#{id}")
+	public void updateTimeAndLastChapterNum(Novel novel);
 
-	@Update("update novel set updateTime=#{updateTime} where id=#{id}")
-	public void updateTime(Novel novel);
-	
 	@Select("select distinct typeName from novel")
 	public List<Novel> selectType();
+
 }

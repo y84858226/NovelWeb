@@ -2,16 +2,16 @@ package com.novel.pojo;
 
 public class Novel {
 	private Integer id;
-	private String path;
 	private String name;
 	private String author;
 	private String typeName;
 	private String description;
+	private String status;
 	private String mainImage;
+	private Integer lastChapterNum;
 	private String createTime;
 	private String updateTime;
 	private Integer clickView;
-	private String status;
 	private String display;
 
 	public Integer getId() {
@@ -20,14 +20,6 @@ public class Novel {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
 	}
 
 	public String getName() {
@@ -62,12 +54,20 @@ public class Novel {
 		this.description = description;
 	}
 
-	public String getMainImage() {
-		return mainImage;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setMainImage(String mainImage) {
-		this.mainImage = mainImage;
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Integer getLastChapterNum() {
+		return lastChapterNum;
+	}
+
+	public void setLastChapterNum(Integer lastChapterNum) {
+		this.lastChapterNum = lastChapterNum;
 	}
 
 	public String getCreateTime() {
@@ -94,14 +94,6 @@ public class Novel {
 		this.clickView = clickView;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public String getDisplay() {
 		return display;
 	}
@@ -109,20 +101,27 @@ public class Novel {
 	public void setDisplay(String display) {
 		this.display = display;
 	}
+	
+	public String getMainImage() {
+		return mainImage;
+	}
 
-	public Novel(Integer id, String path, String name, String author, String typeName, String description,
-			String mainImage, String createTime, String updateTime, Integer clickView, String status, String display) {
+	public void setMainImage(String mainImage) {
+		this.mainImage = mainImage;
+	}
+
+	public Novel(Integer id, String name, String author, String typeName, String description, String status,
+			Integer lastChapterNum, String createTime, String updateTime, Integer clickView, String display) {
 		this.id = id;
-		this.path = path;
 		this.name = name;
 		this.author = author;
 		this.typeName = typeName;
 		this.description = description;
-		this.mainImage = mainImage;
+		this.status = status;
+		this.lastChapterNum = lastChapterNum;
 		this.createTime = createTime;
 		this.updateTime = updateTime;
 		this.clickView = clickView;
-		this.status = status;
 		this.display = display;
 	}
 
@@ -131,10 +130,9 @@ public class Novel {
 
 	@Override
 	public String toString() {
-		return "Novel [id=" + id + ", path=" + path + ", name=" + name + ", author=" + author + ", typeName=" + typeName
-				+ ", description=" + description + ", mainImage=" + mainImage + ", createTime=" + createTime
-				+ ", updateTime=" + updateTime + ", clickView=" + clickView + ", status=" + status + ", display="
-				+ display + "]";
+		return "Novel [id=" + id + ", name=" + name + ", author=" + author + ", typeName=" + typeName + ", description="
+				+ description + ", status=" + status + ", lastChapterNum=" + lastChapterNum + ", createTime="
+				+ createTime + ", updateTime=" + updateTime + ", clickView=" + clickView + ", display=" + display + "]";
 	}
 
 }

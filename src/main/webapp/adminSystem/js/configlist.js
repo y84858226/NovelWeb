@@ -71,8 +71,7 @@ table.on('edit(configfilter)', function(obj) {
 	var value = obj.value // 得到修改后的值
 	, data = obj.data // 得到所在行所有键值
 	, field = obj.field; // 得到字段
-	layer.msg('[Name: ' + data.configName + '] ' + field
-			+ ' 字段更改为：' + value);
+	console.log(value);
 	var configlist = {};
 	configlist[field] = value;
 	configlist["id"] = data.id;
@@ -82,10 +81,8 @@ table.on('edit(configfilter)', function(obj) {
 		data : configlist,
 		async : true,
 		success : function(data) {
-			layer.close(index);
-			top.winui.window.msg(data, {
-				time : 2000
-			});
+			layer.msg('更新成功!');
+			reloadTable();
 		},
 		error : function(xml) {
 			top.winui.window.msg("获取页面失败", {
@@ -139,4 +136,5 @@ function getQueryString(name) {
 }
 
 $('#reloadTable').on('click', reloadTable);
+
 });

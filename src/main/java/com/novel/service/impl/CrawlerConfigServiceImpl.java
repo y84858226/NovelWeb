@@ -1,5 +1,6 @@
 package com.novel.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,16 @@ public class CrawlerConfigServiceImpl implements CrawlerConfigService {
 
 	@Override
 	public List<CrawlerConfig> selectConfig(CrawlerConfig crawlerConfig) {
-		return crawlerConfigDao.selectCrawlerConfig(crawlerConfig);
+		List<CrawlerConfig> list = new ArrayList<CrawlerConfig>();
+		List<CrawlerConfig> configs = crawlerConfigDao.selectCrawlerConfig(crawlerConfig);
+		for (CrawlerConfig config : configs) {
+			String reg = config.getReg();
+			reg = reg.replaceAll("<", "&lt");
+			reg = reg.replaceAll(">", "&gt");
+			config.setReg(reg);
+			list.add(config);
+		}
+		return list;
 	}
 
 	@Override

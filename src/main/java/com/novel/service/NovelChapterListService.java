@@ -2,6 +2,8 @@ package com.novel.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.novel.pojo.NovelChapterList;
 
 public interface NovelChapterListService {
@@ -11,5 +13,6 @@ public interface NovelChapterListService {
 	public String crawlerNovelChapter(NovelChapterList chapterList);
 
 	public void updateFilePath(NovelChapterList novelChapterList);
-
+	
+	public String selectChapter(HttpServletRequest request, NovelChapterList novelChapterList);
 }

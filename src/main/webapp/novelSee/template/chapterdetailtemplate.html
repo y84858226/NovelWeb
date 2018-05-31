@@ -12,7 +12,6 @@
 	content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
 	<link rel="stylesheet" href="/novel/novelSee/public/css/style.css">
 </head>
-
 <body>
 	<script type="text/javascript">
 		var ks_host = "../3g";
@@ -21,16 +20,12 @@
 	<div class="wrap">
 		<!--导航区-->
 		<div class="t-nav" id="t-nav">
-			<span class="nav_left"> 
-				<a href="#"> 简介 </a>
-			</span> 
-			<span class="nav_right">
-				<a href="#">首页 </a>
+			<span class="nav_left"> <a href="#"> 简介 </a>
+			</span> <span class="nav_right"> <a href="#">首页 </a>
 			</span>
 			<h1>
-				<a href="#"> 目录 </a> 
-				<a href="#"> 书架 </a> 
-				<a rel="internal" href="#"> 男生 </a>
+				<a href="#"> 目录 </a> <a href="#"> 书架 </a> <a rel="internal" href="#">
+					男生 </a>
 			</h1>
 		</div>
 		<!--翻页-->
@@ -43,15 +38,16 @@
 		<div class="chapter" id="chapter">
 			<div class="chapter-inner">
 				<p class="chapname">
-					<span class="bname" id="chaptitle"> ${chapterName} </span> 
-					<span class="binfo" id="chapbname"> ${novelName} </span>
+					<span class="bname" id="chaptitle"> ${chapterName} </span> <span
+						class="binfo" id="chapbname"> ${novelName} </span>
 				</p>
 				<p id="chapcont">${chapterContent}</p>
 			</div>
 		</div>
 		<div class="chaplink">
 			<a href="${lastChapter}" class="prevchap bggy" id="btn_prev"> 上一章</a>
-			<a href="${nextChapter}" class="nextchap bgye" id="btn_next"> 下一章 </a>
+			<a href="${nextChapter}" class="nextchap bgye" id="btn_next"> 下一章
+			</a>
 		</div>
 	</div>
 	<!-- 功能区 begin -->
@@ -179,9 +175,7 @@
 			我的余额： <b class="ye"> 0金币 </b>
 		</p>
 		<p class="t_c">
-			余额不足 
-			<span class="t_b ml10">
-				<a href="#">充值 </a>
+			余额不足 <span class="t_b ml10"> <a href="#">充值 </a>
 			</span>
 		</p>
 	</div>
@@ -194,15 +188,12 @@
 	</script>
 	<div class="footer home-bg">
 		<div class="footer_nav clearfix">
-			<a href="#"> 首页 </a> <a
-				href="#"> 书架 </a> <a
-				href="#"> 分类 </a> <a
-				href="#"> 留言 </a> <a
-				href="#"> 个人中心 </a>
+			<a href="#"> 首页 </a> <a href="#"> 书架 </a> <a href="#"> 分类 </a> <a
+				href="#"> 留言 </a> <a href="#"> 个人中心 </a>
 		</div>
 		<p class="edition mt20">
-			<span> 
-				<a href="#">普通版 </a> | <a href="#" class="select"> 触屏版 </a>
+			<span> <a href="#">普通版 </a> | <a href="#" class="select">
+					触屏版 </a>
 			</span>
 		</p>
 		<p class="copyright mt20">
@@ -217,5 +208,23 @@
 		</div>
 	</div>
 </body>
-
+<script type="text/javascript"
+	src="/novel/novelSee/public/js/common/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//把当前页面发回服务器，查询下一页和上一页
+		$.ajax({
+			url : "/novel/currentPage",
+			data:{
+				novelId:${novelId},
+				chapterNum:${chapterNum}
+			},
+			dataType : "json",
+			type : "post",
+			success : function(data) {
+				console.log(data)
+			}
+		})
+	});
+</script>
 </html>

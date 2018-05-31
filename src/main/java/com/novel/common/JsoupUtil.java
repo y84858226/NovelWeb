@@ -110,7 +110,6 @@ public class JsoupUtil {
 				JsoupUtil jsoupUtil = new JsoupUtil(url);
 				document = jsoupUtil.getDoc();
 			}
-
 			/**
 			 * 获取全部属性
 			 */
@@ -173,9 +172,8 @@ public class JsoupUtil {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-//			set = getHtmlAttr(url, document, select, num, attrName, reg, headAppendResult, tailAppendResult,
-//					replaceResult, regGroupNum);
 		}
+		
 		return set;
 	}
 }
