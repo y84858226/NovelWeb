@@ -97,6 +97,7 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 		String realPath = request.getSession().getServletContext().getRealPath("/");
 		String outputPath = "data" + File.separator + novel.getId() + File.separator + "chapter" + File.separator
 				+ novelChapterList.getChapterNum() + ".html";
+		
 		try {
 			// 从哪里加载模板文件
 			cfg.setDirectoryForTemplateLoading(new File(path));
@@ -118,8 +119,6 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 					+ "》干净清爽无错字的文字章节:" + novelChapterList.getChapterName());
 			root.put("canonical", "/novel" + File.separator + outputPath);
 			root.put("title", novelChapterList.getChapterName());
-			root.put("lastChapter", "lastChapter");
-			root.put("nextChapter", "nextChapter");
 			root.put("chapterName", novelChapterList.getChapterName());
 			root.put("novelName", novel.getName());
 			root.put("chapterContent", content);
@@ -137,7 +136,7 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 				// 解释模板
 				template.process(root, out);
 				// 创建成功后更新数据库
-				novelChapterList.setFilePath(outputPath);
+				novelChapterList.setFilePath("/novel/"+outputPath);
 				updateFilePath(novelChapterList);
 			} catch (TemplateException e) {
 				e.printStackTrace();
