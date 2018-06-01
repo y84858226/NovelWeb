@@ -30,10 +30,10 @@
 		</div>
 		<!--翻页-->
 		<div class="t-page t-prev" id="t-prev">
-			<a href="${lastChapter}" id="t-b-p"> 上一章 </a>
+			<a href="#" id="t-b-p"> 上一章 </a>
 		</div>
 		<div class="t-page t-next" id="t-next">
-			<a href="${nextChapter}" id="t-b-n"> 下一章 </a>
+			<a href="#" id="t-b-n"> 下一章 </a>
 		</div>
 		<div class="chapter" id="chapter">
 			<div class="chapter-inner">
@@ -45,9 +45,8 @@
 			</div>
 		</div>
 		<div class="chaplink">
-			<a href="${lastChapter}" class="prevchap bggy" id="btn_prev"> 上一章</a>
-			<a href="${nextChapter}" class="nextchap bgye" id="btn_next"> 下一章
-			</a>
+			<a href="#" class="prevchap bggy" id="btn_prev"> 上一章</a> <a href="#"
+				class="nextchap bgye" id="btn_next"> 下一章 </a>
 		</div>
 	</div>
 	<!-- 功能区 begin -->
@@ -222,7 +221,31 @@
 			dataType : "json",
 			type : "post",
 			success : function(data) {
-				console.log(data)
+				$.each(data,function(k,v){
+					if(k=="last"){
+						if(v.id!=null){
+							var link;
+							if(v.filePath==null||v.filePath==""){
+								link="/novel/selectChapter?novelId="+v.novelId+"&chapterNum="+v.chapterNum;
+							}else{
+								link=v.filePath
+							}
+							$("#t-b-p").attr("href",link);
+							$("#btn_prev").attr("href",link);
+						}
+					}else if(k=="next"){
+						if(v.id!=null){
+							var link;
+							if(v.filePath==null||v.filePath==""){
+								link="/novel/selectChapter?novelId="+v.novelId+"&chapterNum="+v.chapterNum;
+							}else{
+								link=v.filePath
+							}
+							$("#t-b-n").attr("href",link);
+							$("#btn_next").attr("href",link);
+						}
+					}
+				})
 			}
 		})
 	});
