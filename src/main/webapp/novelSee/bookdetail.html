@@ -336,7 +336,7 @@
                                     alt="都市特种兵" height="130" width="85" />
                                 </div>
                                 <div class="bintro pl10">
-                                    <h4>
+                                    <h4 ng-value="{{book.id}}"> 
                                         {{book.name}}
                                     </h4>
                                     <p>
@@ -350,7 +350,7 @@
                         <li ng-repeat="book in detailRecommendBooks">
                             <a href=''>
                                 <div class="bintro">
-                                    <h4>
+                                    <h4 ng-value="{{book.id}}">
                                         {{book.name}}
                                     </h4>
                                     <p>

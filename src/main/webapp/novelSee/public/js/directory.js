@@ -6,8 +6,9 @@ define(function (require, exports, module) {
     var controller = {
         initPage : function () {
             this.app = angular.module('directory', []);
-            this.bookName = this.getQueryString("bookname");
-            this.initBookDirectory(this.bookName);
+            this.bookid = this.getQueryString("id");
+            this.bookName = this.getQueryString("bookName");
+            this.initBookDirectory(this.bookid);
         },
         /**
          * 获取url参数
@@ -25,10 +26,10 @@ define(function (require, exports, module) {
         /**
          * 获取书籍目录
          */
-        initBookDirectory : function (bookName) {
+        initBookDirectory : function (id) {
             var _that = this;
             _that.app.controller("directoryCtrl", function($scope, $http) {
-                utils.service.doPost('../getBookDirectory',bookName,function (result) {
+                utils.service.doPost('../getBookDirectory',id,function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                         $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON;

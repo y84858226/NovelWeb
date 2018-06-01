@@ -125,8 +125,8 @@ define(function (require, exports, module) {
         },
         _bookDetailClickEvent : function (e,_that) {
             var target = e.target;
-            var bookname = $(target).parents('li').find('h4')[0].innerText;
-            var src = "/novel/novelSee/bookdetail.html?bookname=" + bookname;
+            var id = $(target).parents('li').find('h4')[0].attr("ng-value");
+            var src = "/novel/novelSee/bookdetail.html?id=" + id;
             window.location.href = src;
         }
     }
