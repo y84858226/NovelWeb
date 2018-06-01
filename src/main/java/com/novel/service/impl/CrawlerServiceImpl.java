@@ -118,7 +118,49 @@ public class CrawlerServiceImpl implements CrawlerService {
 					 * 
 					 * 更新章节
 					 */
+
 					Integer novelId = novelList.get(0).getId();
+					/*
+					 * 检查小说 目录的文件是否存在，不存在进行创建
+					 * 
+					 * 图片、小说json、目录json、章节目录文件
+					 */
+					File file = new File(
+							webappPath + "data" + File.separator + novelId + File.separator + "novel.json");
+					if (!file.exists()) {
+						createJson(novelList.get(0),
+								webappPath + "data" + File.separator + novelId + File.separator + "novel.json");
+					}
+					file = new File(webappPath + "data" + File.separator + novelId + File.separator + "chapter.json");
+					if (!file.exists()) {
+						NovelChapterList validList = new NovelChapterList();
+						validList.setNovelId(novelId);
+						List<NovelChapterList> validLists = novelChapterListDao.selectNovelChapterList(validList);
+						createJson(validLists,
+								webappPath + "data" + File.separator + novelId + File.separator + "chapter.json");
+					}
+					file = new File(webappPath + "data" + File.separator + novelId + File.separator + novelId + ".jpg");
+					if (!file.exists()) {
+						/*
+						 * 主图地址
+						 */
+						Set<String> mainImageSet = util.getHtmlAttr(null, doc, config.get(7).getSelector(),
+								config.get(7).getNum(), config.get(7).getAttrName(), config.get(7).getReg(),
+								config.get(7).getHeadAppendResult(), config.get(7).getTailAppendResult(),
+								config.get(7).getReplaceResult(), config.get(7).getRegGroupNum());
+						for (String mainImage : mainImageSet) {
+							ImageUtil imageUtil = new ImageUtil();
+							/*
+							 * 下载图片
+							 */
+							imageUtil.download(mainImage,
+									webappPath + "data" + File.separator + novelId + File.separator + novelId + ".jpg");
+						}
+					}
+					file = new File(webappPath + "data" + File.separator + novelId + File.separator + "chapter");
+					if (!file.exists()) {
+						file.mkdirs();
+					}
 					/*
 					 * 查询小说的最新章节
 					 */
@@ -247,8 +289,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 							novel2.setId(novelId);
 							novel2 = novelDao.selectNovel(novel2).get(0);
 							String novelPath = "data" + File.separator + novelId;
-							File novelFile = new File(webappPath + novelPath + File.separator + "novel.json");
-							createJson(novel2, novelFile);
+							createJson(novel2, webappPath + novelPath + File.separator + "novel.json");
 							/*
 							 * 创建chapter的json文件
 							 */
@@ -256,8 +297,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 							chapterList.setNovelId(novelId);
 							List<NovelChapterList> novelChapterLists = novelChapterListDao
 									.selectNovelChapterList(chapterList);
-							File chapterFile = new File(webappPath + novelPath + File.separator + "chapter.json");
-							createJson(novelChapterLists, chapterFile);
+							createJson(novelChapterLists, webappPath + novelPath + File.separator + "chapter.json");
 						}
 					}
 				} else {
@@ -414,16 +454,14 @@ public class CrawlerServiceImpl implements CrawlerService {
 					/*
 					 * 创建novel的json文件
 					 */
-					File novelFile = new File(webappPath + novelPath + File.separator + "novel.json");
-					createJson(novel, novelFile);
+					createJson(novel, webappPath + novelPath + File.separator + "novel.json");
 					/*
 					 * 创建chapter的json文件
 					 */
 					NovelChapterList chapterList = new NovelChapterList();
 					chapterList.setNovelId(novelId);
 					List<NovelChapterList> novelChapterLists = novelChapterListDao.selectNovelChapterList(chapterList);
-					File chapterFile = new File(webappPath + novelPath + File.separator + "chapter.json");
-					createJson(novelChapterLists, chapterFile);
+					createJson(novelChapterLists, webappPath + novelPath + File.separator + "chapter.json");
 				} // 添加小说结束
 
 			} // 小说循环结束
@@ -617,7 +655,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 	}
 
 	@Override
-	public void createJson(Object object, File file) {
+	public void createJson(Object object, String savePath) {
 		JSONArray jsonArray = new JSONArray();
 		if (object instanceof List) {
 			jsonArray.addAll((List) object);
@@ -625,8 +663,13 @@ public class CrawlerServiceImpl implements CrawlerService {
 			jsonArray.add(object);
 		}
 		BufferedWriter bufferedWriter = null;
+		String dirPath = savePath.substring(0, savePath.lastIndexOf(File.separator));
+		File file = new File(dirPath);
+		if (!file.exists()) {
+			file.mkdirs();
+		}
 		try {
-			bufferedWriter = new BufferedWriter(new FileWriter(file));
+			bufferedWriter = new BufferedWriter(new FileWriter(new File(savePath)));
 			bufferedWriter.write(jsonArray.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();

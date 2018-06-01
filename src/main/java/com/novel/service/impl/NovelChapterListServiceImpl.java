@@ -149,8 +149,7 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 			chapterList.setNovelId(novelChapterList.getNovelId());
 			List<NovelChapterList> novelChapterLists = chapterListDao.selectNovelChapterList(chapterList);
 			String novelPath = "data" + File.separator + novelChapterList.getNovelId();
-			File chapterFile = new File(webappPath + novelPath + File.separator + "chapter.json");
-			crawlerService.createJson(novelChapterLists, chapterFile);
+			crawlerService.createJson(novelChapterLists, webappPath + novelPath + File.separator + "chapter.json");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

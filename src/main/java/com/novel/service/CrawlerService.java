@@ -72,6 +72,6 @@ public interface CrawlerService {
 	 * @param object
 	 * @param file
 	 */
-	public void createJson(Object object, File file);
+	public void createJson(Object object,String savePath);
 	
 }
