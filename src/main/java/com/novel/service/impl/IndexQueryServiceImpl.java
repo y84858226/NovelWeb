@@ -3,6 +3,8 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONException;
+import org.json.JSONTokener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.novel.dao.IIndexQueryDao;
 import com.novel.pojo.Novel;
-import com.novel.pojo.NovelChapterList;
 import com.novel.service.IIndexQueryService;
 import com.novel.util.JsonReaderUtils;
 /**
@@ -95,10 +96,19 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 	@Override
 	public JSONObject getBookDetail(String bookid) {
 		long StartTime = System.currentTimeMillis();
-		String path = "";
+		String path = "data//" + bookid + "//novel.json";
 		String bookDetailStr = JsonReaderUtils.JsonReader(path);
+		JSONObject jsonObject = null;
+		try {
+			Object json = new JSONTokener(bookDetailStr).nextValue();
+			if(json instanceof JSONObject){  
+				jsonObject = (JSONObject)json;   
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} 
 		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
-		return null;
+		return jsonObject;
 	}
 	/**
 	 * 获取目录信息

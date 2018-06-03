@@ -30,10 +30,10 @@ define(function (require, exports, module) {
         initBookDeatil : function (id) {
             var _that = this;
             _that.app.controller("bookDetailController", function($scope, $http) {
-                utils.service.doPost('../getBookDetail',id,function (result) {
+                utils.service.doGet('../../../../novel/data/' + id + "/novel.json",'',function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                         $scope.$applyAsync(function () {
-                            var dealWithResult = result.responseJSON;
+                            var dealWithResult = result.responseJSON[0];
                             dealWithResult.description = dealWithResult.description.replace(/<br>/g,"");
                             $scope.book = dealWithResult;
                             _that.bookname = dealWithResult.name;
@@ -78,12 +78,12 @@ define(function (require, exports, module) {
         },
         _bookDetailClickEvent : function (e,_that) {
             var target = e.target;
-            var id = $(target).parents('li').find('h4')[0].attr("ng-value");
+            var id = $($(target).parents('li').find('h4')[0]).attr("ng-value");
             var src = "/novel/novelSee/bookdetail.html?id=" + id;
             window.location.href = src;
         },
         _seeDirectoryBtnClickEvent : function (e,_that) {
-            var src = "/novel/novelSee/directory.html?id=" + this.bookid + "bookname=" + this.bookname;
+            var src = "/novel/novelSee/directory.html?id=" + this.bookid + "&bookname=" + this.bookname;
             window.location.href = src;
         }
 

@@ -9,6 +9,7 @@ define(function (require, exports, module) {
             this.bookid = this.getQueryString("id");
             this.bookName = this.getQueryString("bookName");
             this.initBookDirectory(this.bookid);
+            this.bindEvent();
         },
         /**
          * 获取url参数
@@ -28,13 +29,14 @@ define(function (require, exports, module) {
          */
         initBookDirectory : function (id) {
             var _that = this;
-            _that.app.controller("directoryCtrl", function($scope, $http) {
-                utils.service.doPost('../getBookDirectory',id,function (result) {
+            _that.bookDirCtrl =  _that.app.controller("directoryCtrl", function($scope, $http) {
+                utils.service.doGet('../../../../novel/data/' + id + "/chapter.json",'',function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                         $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON;
                             $scope.bookDirectory = dealWithResult;
                             $scope.bookName = _that.bookName;
+                            localStorage.setItem('bookDirectory', JSON.stringify(dealWithResult));
                         });
                     }
                 })
@@ -49,18 +51,51 @@ define(function (require, exports, module) {
             $(".dir_list").on("click","a",function (e) {
                 _that._directoryClickEvent(e,_that);
             });
+            $("#reverseDir").on("click",$.proxy(this.reverseDirBtnClick,this));
+            $("#nomalDir").on("click",$.proxy(this.nomalDirBtnClick,this));
         },
+        /**
+         *  目录点击
+         */
         _directoryClickEvent : function (e,_that) {
             var target = e.target;
-            var href = $(target).parents('li').find('a').attr('ng-value');
+            var href = $($(target).parents('li').find('a')).attr('ng-value');
             var id = $(target).parents('li').find('a').attr('ng-id');
             if(utils.isNullOrEmpty(href)){
                 utils.service.doPost('../selectChapter?id=' + id,'','');
             }else{
                 window.location.href = href;
             }
-           
-        }
+        },
+        /**
+         * 反序点击
+         */
+         reverseDirBtnClick : function(){
+             var _that = this;
+             var data = JSON.parse(localStorage.getItem('bookDirectory'));
+             if(_that.bookDirCtrl){
+                var appElement = document.querySelector('[ng-controller=directoryCtrl]');
+                var $scope = angular.element(appElement).scope();
+                $scope.$applyAsync(function () {
+                     $scope.bookDirectory =  data.reverse();
+                })
+             }
+         },
+        /**
+         * 正序点击
+         */
+         nomalDirBtnClick : function(){
+             var _that = this;
+             var data = JSON.parse(localStorage.getItem('bookDirectory'));
+             if(_that.bookDirCtrl){
+                var appElement = document.querySelector('[ng-controller=directoryCtrl]');
+                var $scope = angular.element(appElement).scope();
+                $scope.$applyAsync(function () {
+                     $scope.bookDirectory = data;
+                })
+             }
+         }
+         
     }
     controller.initPage();
 })
