@@ -6,8 +6,8 @@ define(function (require, exports, module) {
     var controller = {
         initPage : function () {
             this.app = angular.module('bookDetail', []);
-            this.bookName = this.getQueryString("bookname");
-            this.initBookDeatil(this.bookName);
+            this.bookid = this.getQueryString("id");
+            this.initBookDeatil(this.bookid);
             this.initRecommendBooks();
             this.bindEvent();
         },
@@ -27,15 +27,16 @@ define(function (require, exports, module) {
         /**
          * 获取详细书籍信息
          */
-        initBookDeatil : function (bookName) {
+        initBookDeatil : function (id) {
             var _that = this;
             _that.app.controller("bookDetailController", function($scope, $http) {
-                utils.service.doPost('../getBookDetail',bookName,function (result) {
+                utils.service.doGet('../../../../novel/data/' + id + "/novel.json",'',function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                         $scope.$applyAsync(function () {
-                            var dealWithResult = result.responseJSON;
+                            var dealWithResult = result.responseJSON[0];
                             dealWithResult.description = dealWithResult.description.replace(/<br>/g,"");
                             $scope.book = dealWithResult;
+                            _that.bookname = dealWithResult.name;
                         });
                     }
                 })
@@ -77,12 +78,12 @@ define(function (require, exports, module) {
         },
         _bookDetailClickEvent : function (e,_that) {
             var target = e.target;
-            var bookname = $(target).parents('li').find('h4')[0].innerText;
-            var src = "/novel/novelSee/bookdetail.html?bookname=" + bookname;
+            var id = $($(target).parents('li').find('h4')[0]).attr("ng-value");
+            var src = "/novel/novelSee/bookdetail.html?id=" + id;
             window.location.href = src;
         },
         _seeDirectoryBtnClickEvent : function (e,_that) {
-            var src = "/novel/novelSee/directory.html?bookname=" + this.bookName;
+            var src = "/novel/novelSee/directory.html?id=" + this.bookid + "&bookname=" + this.bookname;
             window.location.href = src;
         }
 

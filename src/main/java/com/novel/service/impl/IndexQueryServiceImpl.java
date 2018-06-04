@@ -3,6 +3,8 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONException;
+import org.json.JSONTokener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +12,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.novel.dao.IIndexQueryDao;
 import com.novel.pojo.Novel;
-import com.novel.pojo.NovelChapterList;
 import com.novel.service.IIndexQueryService;
+import com.novel.util.JsonReaderUtils;
 /**
  * 主页查询
  * @author kainan
@@ -92,21 +94,29 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 	 * 获取书籍详细信息
 	 */
 	@Override
-	public JSONObject getBookDetail(String bookName) {
+	public JSONObject getBookDetail(String bookid) {
 		long StartTime = System.currentTimeMillis();
-		Novel bookDetail = indexQueryDao.selectBookDetail(bookName);
+		String path = "data//" + bookid + "//novel.json";
+		String bookDetailStr = JsonReaderUtils.JsonReader(path);
+		JSONObject jsonObject = null;
+		try {
+			Object json = new JSONTokener(bookDetailStr).nextValue();
+			if(json instanceof JSONObject){  
+				jsonObject = (JSONObject)json;   
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		} 
 		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
-		return (JSONObject) JSONObject.toJSON(bookDetail);
+		return jsonObject;
 	}
 	/**
 	 * 获取目录信息
 	 */
 	@Override
-	public JSONArray getBookDirectory(String bookName) {
+	public JSONArray getBookDirectory(String bookid) {
 		long StartTime = System.currentTimeMillis();
-		List<NovelChapterList> bookDirectorys = indexQueryDao.selectBookDirectory(bookName);
 		JSONArray jsonArray = new JSONArray();
-		jsonArray.addAll(bookDirectorys);
 		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonArray;
 	}

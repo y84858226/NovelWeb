@@ -34,9 +34,9 @@ public interface IIndexQueryService {
 	/**
 	 * 获取书籍详细信息
 	 */
-	JSONObject getBookDetail(String bookName);
+	JSONObject getBookDetail(String bookid);
 	/**
 	 * 获取目录信息
 	 */
-	JSONArray getBookDirectory(String bookName);
+	JSONArray getBookDirectory(String bookid);
 }
