@@ -30,7 +30,7 @@ define(function (require, exports, module) {
         initBookDeatil : function (id) {
             var _that = this;
             _that.app.controller("bookDetailController", function($scope, $http) {
-                utils.service.doGet('../../../../novel/data/' + id + "/novel.json",'',function (result) {
+                utils.service.doGet('../../../../data/' + id + "/novel.json",'',function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                         $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON[0];
@@ -79,11 +79,11 @@ define(function (require, exports, module) {
         _bookDetailClickEvent : function (e,_that) {
             var target = e.target;
             var id = $($(target).parents('li').find('h4')[0]).attr("ng-value");
-            var src = "/novel/novelSee/bookdetail.html?id=" + id;
+            var src = "/bookdetail.html?id=" + id;
             window.location.href = src;
         },
         _seeDirectoryBtnClickEvent : function (e,_that) {
-            var src = "/novel/novelSee/directory.html?id=" + this.bookid + "&bookname=" + this.bookname;
+            var src = "/directory.html?id=" + this.bookid + "&bookname=" + this.bookname;
             window.location.href = src;
         }
 

@@ -87,7 +87,7 @@ define(function (require, exports, module) {
         _bookDetailClickEvent : function (e,_that) {
             var target = e.target;
             var id = $($(target).parents('li').find('h4')[0]).attr("ng-value");
-            var src = "/novel/novelSee/bookdetail.html?id=" + id;
+            var src = "/bookdetail.html?id=" + id;
             window.location.href = src;
         },
         _moreBooksBtnClick : function (e,_that) {

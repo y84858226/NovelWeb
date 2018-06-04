@@ -30,7 +30,7 @@ define(function (require, exports, module) {
         initBookDirectory : function (id) {
             var _that = this;
             _that.bookDirCtrl =  _that.app.controller("directoryCtrl", function($scope, $http) {
-                utils.service.doGet('../../../../novel/data/' + id + "/chapter.json",'',function (result) {
+                utils.service.doGet('../../../../data/' + id + "/chapter.json",'',function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                         $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON;

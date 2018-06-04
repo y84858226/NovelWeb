@@ -16,12 +16,6 @@
     </head>
     
     <body ng-app="bookDetail">
-        <script type="text/javascript">
-            var ks_host = "../3g";
-            var ks_uid = 0;
-        </script>
-        <script src="../public/js/require.js">
-        </script>
         <div class="header">
             <span class="nav_left">
                 <a href="javascript:history.go(-1)">
@@ -51,7 +45,7 @@
                         <li>
                             <div class="bookwrap clearfix">
                                 <div class="bcover fl">
-                                    <img ng-src="/novel/data/{{book.id}}/{{book.id}}.jpg" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
+                                    <img ng-src="/data/{{book.id}}/{{book.id}}.jpg" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                                     height="110" width="75">
                                 </div>
                                 <div class="bintro b_i pl10">
@@ -332,7 +326,7 @@
                         <li ng-repeat="book in detailRecommendImageBooks">
                             <a href=''>
                                 <div class="bcover fl">
-                                    <img ng-src="/novel/data/{{book.id}}/{{book.id}}.jpg" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
+                                    <img ng-src="/data/{{book.id}}/{{book.id}}.jpg" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                                     alt="都市特种兵" height="130" width="85" />
                                 </div>
                                 <div class="bintro pl10">
@@ -393,7 +387,7 @@
             </div>
             <div class="footer home-bg">
                 <div class="footer_nav clearfix">
-                    <a href="/novel/novelSee/index.html">
+                    <a href="See/index.html">
                         首页
                     </a>
                     <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=836127990&site=qq&menu=yes">广告合作</a>
@@ -412,7 +406,7 @@
                 </div>
                 <p class="edition mt20">
                     <span>
-                        <!--<a href="../20/novelinfo/70159.html@cnl=kanshu">-->
+                        <!--<a href="../20info/70159.html@cnl=kanshu">-->
                             <!--普通版-->
                         <!--</a>-->
                         <!--|-->
