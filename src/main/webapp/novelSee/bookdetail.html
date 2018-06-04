@@ -51,7 +51,7 @@
                         <li>
                             <div class="bookwrap clearfix">
                                 <div class="bcover fl">
-                                    <img ng-src="{{book.mainImage}}" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
+                                    <img ng-src="/novel/data/{{book.id}}/{{book.id}}.jpg" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                                     height="110" width="75">
                                 </div>
                                 <div class="bintro b_i pl10">
@@ -332,7 +332,7 @@
                         <li ng-repeat="book in detailRecommendImageBooks">
                             <a href=''>
                                 <div class="bcover fl">
-                                    <img ng-src="{{book.mainImage}}" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
+                                    <img ng-src="/novel/data/{{book.id}}/{{book.id}}.jpg" onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
                                     alt="都市特种兵" height="130" width="85" />
                                 </div>
                                 <div class="bintro pl10">
