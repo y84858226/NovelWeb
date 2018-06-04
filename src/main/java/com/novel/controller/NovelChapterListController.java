@@ -65,4 +65,5 @@ public class NovelChapterListController {
 		map.put("next", nextChaptyer);
 		return map;
 	}
+	
 }

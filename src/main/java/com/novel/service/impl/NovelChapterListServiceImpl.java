@@ -61,14 +61,17 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 		List<CrawlerConfig> configs = crawlerConfigDao.selectCrawlerConfig(crawlerConfig);
 		crawlerConfig = configs.get(0);
 		// 爬虫文章内容
-		JsoupUtil util = new JsoupUtil();
-		Set<String> chapterContentSet = util.getHtmlAttr(chapterLink, null, crawlerConfig.getSelector(),
-				crawlerConfig.getNum(), crawlerConfig.getAttrName(), crawlerConfig.getReg(),
-				crawlerConfig.getHeadAppendResult(), crawlerConfig.getTailAppendResult(),
-				crawlerConfig.getReplaceResult(), crawlerConfig.getRegGroupNum());
 		String chapterContent = null;
-		for (String content : chapterContentSet) {
-			chapterContent = content;
+		try {
+			JsoupUtil util = new JsoupUtil();
+			Set<String> chapterContentSet = util.getHtmlAttr(chapterLink, null, crawlerConfig.getSelector(),
+					crawlerConfig.getNum(), crawlerConfig.getAttrName(), crawlerConfig.getReg(),
+					crawlerConfig.getHeadAppendResult(), crawlerConfig.getTailAppendResult(),
+					crawlerConfig.getReplaceResult(), crawlerConfig.getRegGroupNum());
+			for (String content : chapterContentSet) {
+				chapterContent = content;
+			} 
+		} catch (Exception e) {
 		}
 		return chapterContent;
 	}
@@ -85,13 +88,15 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 		novelChapterList = list.get(0);
 		// 爬取章节内容
 		String content = crawlerNovelChapter(novelChapterList);
+		if(content==null) {
+			return "404.html";
+		}
 		// 获取小说内容
 		Novel novel = new Novel();
 		novel.setId(novelChapterList.getNovelId());
 		novel = novelDao.selectNovel(novel).get(0);
 		// 模板文件路径
-		String path = request.getSession().getServletContext().getRealPath("/") + "novelSee" + File.separator
-				+ "template";
+		String path = webappPath + "template";
 		Configuration cfg = new Configuration();
 		// 保存路径
 		String realPath = request.getSession().getServletContext().getRealPath("/");
@@ -117,7 +122,7 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 			root.put("keywords", novel.getName() + "," + novelChapterList.getChapterName());
 			root.put("description", novel.getAuthor() + "创作的" + novel.getTypeName() + "《" + novel.getName()
 					+ "》干净清爽无错字的文字章节:" + novelChapterList.getChapterName());
-			root.put("canonical", "/novel" + File.separator + outputPath);
+			root.put("canonical", File.separator + outputPath);
 			root.put("title", novelChapterList.getChapterName());
 			root.put("chapterName", novelChapterList.getChapterName());
 			root.put("novelName", novel.getName());
@@ -136,7 +141,7 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 				// 解释模板
 				template.process(root, out);
 				// 创建成功后更新数据库
-				novelChapterList.setFilePath("/novel/"+outputPath);
+				novelChapterList.setFilePath(File.separator+outputPath);
 				updateFilePath(novelChapterList);
 			} catch (TemplateException e) {
 				e.printStackTrace();

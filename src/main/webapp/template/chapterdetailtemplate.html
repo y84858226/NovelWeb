@@ -10,7 +10,7 @@
 <title>${title}</title>
 <meta name="viewport"
 	content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
-	<link rel="stylesheet" href="/novel/novelSee/public/css/style.css">
+	<link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
 	<script type="text/javascript">
@@ -208,12 +208,12 @@
 	</div>
 </body>
 <script type="text/javascript"
-	src="/novel/novelSee/public/js/common/jquery.min.js"></script>
+	src="/public/js/common/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		//把当前页面发回服务器，查询下一页和上一页
 		$.ajax({
-			url : "/novel/currentPage",
+			url : "/currentPage",
 			data:{
 				novelId:${novelId},
 				chapterNum:${chapterNum}
@@ -226,7 +226,7 @@
 						if(v.id!=null){
 							var link;
 							if(v.filePath==null||v.filePath==""){
-								link="/novel/selectChapter?novelId="+v.novelId+"&chapterNum="+v.chapterNum;
+								link="/selectChapter?novelId="+v.novelId+"&chapterNum="+v.chapterNum;
 							}else{
 								link=v.filePath
 							}
@@ -237,7 +237,7 @@
 						if(v.id!=null){
 							var link;
 							if(v.filePath==null||v.filePath==""){
-								link="/novel/selectChapter?novelId="+v.novelId+"&chapterNum="+v.chapterNum;
+								link="/selectChapter?novelId="+v.novelId+"&chapterNum="+v.chapterNum;
 							}else{
 								link=v.filePath
 							}
