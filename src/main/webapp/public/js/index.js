@@ -116,6 +116,13 @@ define(function (require, exports, module) {
             $(".top_class a").click(function (e) {
                 _that._moreBtnClickEvent(e,_that);
             });
+            //搜索
+             $("#topSearchbtn").click(function (e) {
+                _that._searchbtnClickEvent(e,_that,1);
+            });
+            $("#bottomSearchbtn").click(function (e) {
+                _that._searchbtnClickEvent(e,_that,2);
+            });
         },
         _moreBtnClickEvent : function (e,_that) {
             var target = e.target;
@@ -127,6 +134,15 @@ define(function (require, exports, module) {
             var target = e.target;
             var id = $($(target).parents('li').find('h4')[0]).attr("ng-value");
             var src = "/bookdetail.html?id=" + id;
+            window.location.href = src;
+        },
+        _searchbtnClickEvent : function(e,_that,flag){
+            if(flag == 1){
+                var searchStr = $($(".t_i")[0]).val();
+            }else{
+                var searchStr = $($(".t_i")[1]).val();
+            }
+            var src = "/more.html?searchStr=" + searchStr;
             window.location.href = src;
         }
     }

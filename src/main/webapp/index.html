@@ -72,10 +72,10 @@
     <div class="searchbox mt10 clearfix">
         <form action="/3g/search?cnl=kanshu" method="get">
             <input type="hidden" name="sid" value="-jlfcT4pLcKDMWGdK6tas1"/>
-            <input name="kw" type="text" class="t_i" placeholder="搜书搜作者" autocomplete="off"
+            <input name="kw" type="text" class="t_i" placeholder="搜书搜作者" autocomplete="off" id="searchImput"
                    ng-value="recommendVal">
             <input type="hidden" name="search" value="aname"/>
-            <div class="searchbtn">
+            <div class="searchbtn" id="topSearchbtn">
                         <span class="t_b">
                         </span>
                         <span class="t_t">
@@ -733,7 +733,7 @@
             <input name="kw" type="text" class="t_i" placeholder="搜书搜作者" autocomplete="off"
                    value=""/>
             <input type="hidden" name="search" value="aname"/>
-            <div class="searchbtn">
+            <div class="searchbtn" id="bottomSearchbtn">
                         <span class="t_b">
                         </span>
                         <span class="t_t">

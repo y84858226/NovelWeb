@@ -62,4 +62,10 @@ public interface IIndexQueryDao {
 	 */
 	@Select("select b.* from novel a,novelchapterlist b where a.name = #{bookName} and a.id = b.novelId")
 	public List<NovelChapterList> selectBookDirectory(@Param("bookName") String bookName);
+	
+	/**
+	 * 获取所有书籍的描述、书名、分类和作者
+	 */
+	@Select("select name,author,description,typeName from novel")
+	public List<Novel> selectAllBooksToSearch();
 }

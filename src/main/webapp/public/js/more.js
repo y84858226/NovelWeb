@@ -7,7 +7,13 @@ define(function (require, exports, module) {
         initPage : function () {
             this.app = angular.module('more', []);
             this.classifyName = this.getQueryString("classifyName");
-            this.initClassifyBooks(this.classifyName);
+            this.searchStr = this.getQueryString("searchStr");
+            if(!utils.isNullOrEmpty(this.classifyName)){
+                this.initClassifyBooks(this.classifyName);
+            }
+            if(!utils.isNullOrEmpty(this.searchStr)){
+                this.initSearchBooks(this.searchStr);
+            }
             this.bindEvent();
         },
         /**
@@ -32,6 +38,24 @@ define(function (require, exports, module) {
             params.start = 1;
             params.end = 20;
             this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
+        },
+        /**
+         * 获取搜索的书籍
+         */
+        initSearchBooks : function(){
+            _that.booksCtrl = _that.app.controller(controller, function($scope, $http) {
+                    utils.service.doPost('../runSearch',this.searchStr,function (result) {
+                        if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
+                            $scope.$applyAsync(function () {
+                                var dealWithResult = result.responseJSON;
+                                $.each(dealWithResult, function(key, val){
+                                    dealWithResult[key].description = val.description.replace(/<br>/g,"")
+                                });
+                                eval(callback);
+                            });
+                        }
+                    })
+                });
         },
         /**
          * 获取分类书籍通用方法

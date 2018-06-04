@@ -30,7 +30,7 @@ define(function (require, exports, module) {
         initBookDeatil : function (id) {
             var _that = this;
             _that.app.controller("bookDetailController", function($scope, $http) {
-                utils.service.doGet('../../../../data/' + id + "/novel.json",'',function (result) {
+                utils.service.doGet('../../../data/' + id + "/novel.json",'',function (result) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                         $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON[0];
