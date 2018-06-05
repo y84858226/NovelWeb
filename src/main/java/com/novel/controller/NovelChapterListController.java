@@ -66,4 +66,13 @@ public class NovelChapterListController {
 		return map;
 	}
 	
+	/*
+	 * 更新小说的章节json文件
+	 */
+	@ResponseBody
+	@RequestMapping("updateChapterListJsonFile")
+	public void updateChapterListJsonFile(HttpServletRequest request,NovelChapterList novelChapterList) {
+		chapterListService.updateChapterListJsonFile(request,novelChapterList);
+	}
+	
 }

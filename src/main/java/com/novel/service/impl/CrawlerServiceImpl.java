@@ -118,7 +118,6 @@ public class CrawlerServiceImpl implements CrawlerService {
 					 * 
 					 * 更新章节
 					 */
-
 					Integer novelId = novelList.get(0).getId();
 					/*
 					 * 检查小说 目录的文件是否存在，不存在进行创建
@@ -135,7 +134,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 					if (!file.exists()) {
 						NovelChapterList validList = new NovelChapterList();
 						validList.setNovelId(novelId);
-						List<NovelChapterList> validLists = novelChapterListDao.selectNovelChapterList(validList);
+						List<NovelChapterList> validLists = novelChapterListDao.selectChapterNameAndPath(validList);
 						createJson(validLists,
 								webappPath + "data" + File.separator + novelId + File.separator + "chapter.json");
 					}
@@ -296,7 +295,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 							NovelChapterList chapterList = new NovelChapterList();
 							chapterList.setNovelId(novelId);
 							List<NovelChapterList> novelChapterLists = novelChapterListDao
-									.selectNovelChapterList(chapterList);
+									.selectChapterNameAndPath(chapterList);
 							createJson(novelChapterLists, webappPath + novelPath + File.separator + "chapter.json");
 						}
 					}
@@ -460,7 +459,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 					 */
 					NovelChapterList chapterList = new NovelChapterList();
 					chapterList.setNovelId(novelId);
-					List<NovelChapterList> novelChapterLists = novelChapterListDao.selectNovelChapterList(chapterList);
+					List<NovelChapterList> novelChapterLists = novelChapterListDao.selectChapterNameAndPath(chapterList);
 					createJson(novelChapterLists, webappPath + novelPath + File.separator + "chapter.json");
 				} // 添加小说结束
 

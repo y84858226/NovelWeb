@@ -10,6 +10,7 @@ define(function (require, exports, module) {
             this.initBookDeatil(this.bookid);
             this.initRecommendBooks();
             this.bindEvent();
+            this.createChapterListJsonFile(this.bookid);
         },
         /**
          * 获取url参数
@@ -85,6 +86,19 @@ define(function (require, exports, module) {
         _seeDirectoryBtnClickEvent : function (e,_that) {
             var src = "/directory.html?id=" + this.bookid + "&bookname=" + this.bookname;
             window.location.href = src;
+        },
+        /**
+         * 更新目录页json文件
+         */
+        createChapterListJsonFile:function(id){
+        	$.ajax({
+        		url:"/updateChapterListJsonFile",
+        		type:"post",
+        		data:{
+        			novelId:id
+        		},
+        		dataType:"json"
+        	})
         }
 
     }

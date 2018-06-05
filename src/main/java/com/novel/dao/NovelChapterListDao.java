@@ -29,4 +29,7 @@ public interface NovelChapterListDao {
 
 	@Update("update novelchapterlist set filePath=#{filePath} where id=#{id}")
 	public void updateFilePath(NovelChapterList novelChapterList);
+	
+	@Select("select novelId,chapterNum,chapterName,filePath from novelchapterlist where novelId =#{novelId}")
+	public List<NovelChapterList> selectChapterNameAndPath(NovelChapterList novelChapterList);
 }

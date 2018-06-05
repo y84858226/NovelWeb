@@ -70,7 +70,7 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 					crawlerConfig.getReplaceResult(), crawlerConfig.getRegGroupNum());
 			for (String content : chapterContentSet) {
 				chapterContent = content;
-			} 
+			}
 		} catch (Exception e) {
 		}
 		return chapterContent;
@@ -88,7 +88,10 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 		novelChapterList = list.get(0);
 		// 爬取章节内容
 		String content = crawlerNovelChapter(novelChapterList);
-		if(content==null) {
+		/*
+		 * 爬虫没抓取到数据，返回404页面
+		 */
+		if (content == null) {
 			return "404.html";
 		}
 		// 获取小说内容
@@ -102,7 +105,7 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 		String realPath = request.getSession().getServletContext().getRealPath("/");
 		String outputPath = "data" + File.separator + novel.getId() + File.separator + "chapter" + File.separator
 				+ novelChapterList.getChapterNum() + ".html";
-		
+
 		try {
 			// 从哪里加载模板文件
 			cfg.setDirectoryForTemplateLoading(new File(path));
@@ -141,23 +144,25 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 				// 解释模板
 				template.process(root, out);
 				// 创建成功后更新数据库
-				novelChapterList.setFilePath(File.separator+outputPath);
+				novelChapterList.setFilePath(File.separator + outputPath);
 				updateFilePath(novelChapterList);
 			} catch (TemplateException e) {
 				e.printStackTrace();
 			}
-			/*
-			 * 更新chapter的json文件
-			 */
-			NovelChapterList chapterList = new NovelChapterList();
-			chapterList.setNovelId(novelChapterList.getNovelId());
-			List<NovelChapterList> novelChapterLists = chapterListDao.selectNovelChapterList(chapterList);
-			String novelPath = "data" + File.separator + novelChapterList.getNovelId();
-			crawlerService.createJson(novelChapterLists, webappPath + novelPath + File.separator + "chapter.json");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return outputPath;
+	}
+
+	@Override
+	public void updateChapterListJsonFile(HttpServletRequest request, NovelChapterList novelChapterList) {
+		String webappPath = request.getSession().getServletContext().getRealPath("/");
+		NovelChapterList chapterList = new NovelChapterList();
+		chapterList.setNovelId(novelChapterList.getNovelId());
+		List<NovelChapterList> novelChapterLists = chapterListDao.selectChapterNameAndPath(chapterList);
+		String novelPath = "data" + File.separator + novelChapterList.getNovelId();
+		crawlerService.createJson(novelChapterLists, webappPath + novelPath + File.separator + "chapter.json");
 	}
 
 }

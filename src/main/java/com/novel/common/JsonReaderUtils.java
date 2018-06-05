@@ -1,4 +1,4 @@
-package com.novel.util;
+package com.novel.common;
 
 import java.io.BufferedReader;
 import java.io.File;

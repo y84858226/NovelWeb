@@ -15,4 +15,6 @@ public interface NovelChapterListService {
 	public void updateFilePath(NovelChapterList novelChapterList);
 	
 	public String selectChapter(HttpServletRequest request, NovelChapterList novelChapterList);
+
+	public void updateChapterListJsonFile(HttpServletRequest request, NovelChapterList novelChapterList);
 }

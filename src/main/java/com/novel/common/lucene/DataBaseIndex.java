@@ -1,4 +1,4 @@
-package com.novel.util.lucene;
+package com.novel.common.lucene;
 
 import java.nio.file.Paths;
 import java.util.List;

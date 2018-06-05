@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.novel.common.lucene.DataBaseIndex;
+import com.novel.common.lucene.DataBaseSearcher;
 import com.novel.pojo.Novel;
-import com.novel.util.lucene.DataBaseIndex;
-import com.novel.util.lucene.DataBaseSearcher;
 
 /**
  * 搜索

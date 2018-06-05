@@ -8,7 +8,7 @@ spring:
 #server的配置
 server:
   port: 8080
-  context-path: / # 访问地址：http://localhost:8080/novel/hi
+  context-path: / # 访问地址：http://localhost:8080/
   tomcat:
     uri-encoding: UTF-8
   session:

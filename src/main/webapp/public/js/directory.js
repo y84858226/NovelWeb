@@ -51,20 +51,21 @@ define(function (require, exports, module) {
             $(".dir_list").on("click","a",function (e) {
                 _that._directoryClickEvent(e,_that);
             });
-            $("#reverseDir").on("click",$.proxy(this.reverseDirBtnClick,this));
-            $("#nomalDir").on("click",$.proxy(this.nomalDirBtnClick,this));
+//            $("#reverseDir").on("click",$.proxy(this.reverseDirBtnClick,this));
+//            $("#nomalDir").on("click",$.proxy(this.nomalDirBtnClick,this));
         },
         /**
          *  目录点击
          */
         _directoryClickEvent : function (e,_that) {
             var target = e.target;
-            var href = $($(target).parents('li').find('a')).attr('ng-value');
-            var id = $(target).parents('li').find('a').attr('ng-id');
-            if(utils.isNullOrEmpty(href)){
-                utils.service.doPost('../selectChapter?id=' + id,'','');
+            var filePath = $(target).attr('ng-filePath');
+            var novelId = $(target).attr('ng-novelId');
+            var chapterNum = $(target).attr('ng-chapterNum');
+            if(utils.isNullOrEmpty(filePath)){
+                window.location.href = '../selectChapter?novelId=' +novelId+'&chapterNum='+chapterNum;
             }else{
-                window.location.href = href;
+                window.location.href = filePath;
             }
         },
         /**

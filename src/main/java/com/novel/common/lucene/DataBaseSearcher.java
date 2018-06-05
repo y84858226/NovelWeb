@@ -1,4 +1,4 @@
-package com.novel.util.lucene;
+package com.novel.common.lucene;
 
 import java.io.IOException;
 import org.apache.lucene.queryparser.classic.ParseException; 

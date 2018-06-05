@@ -1,4 +1,4 @@
-package com.novel.util;
+package com.novel.common;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;

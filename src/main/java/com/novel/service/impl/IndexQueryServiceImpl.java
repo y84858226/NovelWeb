@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.novel.common.JsonReaderUtils;
 import com.novel.dao.IIndexQueryDao;
 import com.novel.pojo.Novel;
 import com.novel.service.IIndexQueryService;
-import com.novel.util.JsonReaderUtils;
 /**
  * 主页查询
  * @author kainan

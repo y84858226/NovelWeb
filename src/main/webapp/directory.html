@@ -50,7 +50,7 @@
 				<ul class="blist">
 					<li>
 						<span class="bname" ng-repeat="directory in bookDirectory">
-							<a href='' ng-value='{{directory.filePath}}' ng-id='{{directory.crawlerConfigId}}'>
+							<a href='' ng-filePath='{{directory.filePath}}' ng-chapterNum='{{directory.chapterNum}}' ng-novelId='{{directory.novelId}}'>
 								{{directory.chapterName}}
 							</a>
 						</span>
