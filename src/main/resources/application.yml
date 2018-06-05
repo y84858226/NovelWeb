@@ -43,8 +43,8 @@ server:
 mybatis:
   mapper-locations: classpath*:mybatis/*Mapper.xml
   type-aliases-package: com.novel.pojo
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl 
+  #configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl 
 #spring:
 #  profiles:
 #    active: dev
