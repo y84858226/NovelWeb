@@ -76,6 +76,10 @@ define(function (require, exports, module) {
                 e.stopPropagation();
                 _that._seeDirectoryBtnClickEvent(e,_that);
             });
+              //搜索
+             $("#bottomSearchbtn").click(function (e) {
+                _that._searchbtnClickEvent(e,_that);
+            });
         },
         _bookDetailClickEvent : function (e,_that) {
             var target = e.target;
@@ -85,6 +89,11 @@ define(function (require, exports, module) {
         },
         _seeDirectoryBtnClickEvent : function (e,_that) {
             var src = "/directory.html?id=" + this.bookid + "&bookname=" + this.bookname;
+            window.location.href = src;
+        },
+        _searchbtnClickEvent : function(e,_that,flag){
+            var searchStr = $($(".t_i")[0]).val();
+            var src = "/more.html?searchStr=" + searchStr;
             window.location.href = src;
         },
         /**

@@ -52,7 +52,8 @@ define(function (require, exports, module) {
                                 $.each(dealWithResult, function(key, val){
                                     dealWithResult[key].description = val.description.replace(/<br>/g,"")
                                 });
-                                eval(callback);
+                                $scope.moreBooks = dealWithResult;
+                                $('.item_more').attr('hidden',true)
                             });
                         }
                     })

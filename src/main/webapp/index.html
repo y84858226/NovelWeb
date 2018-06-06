@@ -42,7 +42,7 @@
 	-->
 	<div class="search" ng-controller="searchController">
 		<div class="searchbox mt10 clearfix">
-			<input type="hidden" name="sid" value="-jlfcT4pLcKDMWGdK6tas1" /> <input
+			<input
 				name="kw" type="text" class="t_i" placeholder="搜书搜作者"
 				autocomplete="off" id="searchImput" ng-value="recommendVal">
 				<input type="hidden" name="search" value="aname" />
@@ -138,7 +138,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="block">
+	<div class="block" id="addFav">
 		<p class="item ">
 			<a href="#" class="t_b btn_vip"> 收藏本站，全站免费畅读！</a>
 		</p>
@@ -557,8 +557,6 @@
 	</div> -->
 	<div class="search">
 		<div class="searchbox mt10 clearfix">
-			<form action="/3g/search?cnl=kanshu" method="get">
-				<input type="hidden" name="sid" value="-jlfcT4pLcKDMWGdK6tas1" />
 				<input name="kw" type="text" class="t_i" placeholder="搜书搜作者"
 					autocomplete="off" value="" />
 				<input type="hidden" name="search" value="aname" />
@@ -566,7 +564,6 @@
 					<span class="t_b"> </span> <span class="t_t"> 搜索 </span> <input
 						type="submit" value="" />
 				</div>
-			</form>
 		</div>
 	</div>
 	<div class="footer home-bg">
@@ -580,11 +577,11 @@
             <a href="#">个人中心</a>
             -->
 		</div>
-		<p class="edition mt20">
+		<!-- <p class="edition mt20">
 			<span> <a href="">普通版</a>|<a href="https://m.5yege.com"
 				class="select"> 触屏版 </a>
 			</span>
-		</p>
+		</p> -->
 		<p class="copyright mt20">
 			<b>午夜阁</b> www.5yege.com
 		</p>

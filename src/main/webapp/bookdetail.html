@@ -16,8 +16,8 @@
 
 <body ng-app="bookDetail">
 	<div class="header">
-		<span class="nav_left"> <a href="javascript:history.go(-1)">
-				返回 </a>
+		<span class="nav_left"> <a href="/index.html">
+				主页 </a>
 		</span> <span class="nav_right" style="display: none"> <a
 			rel="internal" href="../nspd@cnl=kanshu"> 男生 </a>
 			</h1>
@@ -239,15 +239,13 @@
 		</div>
 		<div class="search">
 			<div class="searchbox mt10 clearfix">
-				<form action="/3g/search?cnl=kanshu" method="get">
 					<input name="kw" type="text" class="t_i" placeholder="搜书搜作者"
-						autocomplete="off" value="" />
+						autocomplete="off" value="" id="searchImput" />
 					<input type="hidden" name="search" value="aname" />
-					<div class="searchbtn">
+					<div class="searchbtn" id="bottomSearchbtn">
 						<span class="t_b"> </span> <span class="t_t"> 搜索 </span> <input
 							type="submit" value="" />
 					</div>
-				</form>
 			</div>
 		</div>
 		<div class="footer home-bg">
@@ -261,11 +259,11 @@
             <a href="#">个人中心</a>
             -->
 		</div>
-		<p class="edition mt20">
+		<!-- <p class="edition mt20">
 			<span> <a href="">普通版</a>|<a href="https://m.5yege.com"
 				class="select"> 触屏版 </a>
 			</span>
-		</p>
+		</p> -->
 		<p class="copyright mt20">
 			<b>午夜阁</b> www.5yege.com
 		</p>
