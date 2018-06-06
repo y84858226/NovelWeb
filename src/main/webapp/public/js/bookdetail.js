@@ -92,7 +92,7 @@ define(function (require, exports, module) {
          */
         createChapterListJsonFile:function(id){
         	$.ajax({
-        		url:"/updateChapterListJsonFile",
+        		url:"../updateChapterListJsonFile",
         		type:"post",
         		data:{
         			novelId:id

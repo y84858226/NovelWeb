@@ -66,6 +66,6 @@ public interface IIndexQueryDao {
 	/**
 	 * 获取所有书籍的描述、书名、分类和作者
 	 */
-	@Select("select name,author,description,typeName from novel")
+	@Select("select id,name,author,typeName,description from novel")
 	public List<Novel> selectAllBooksToSearch();
 }

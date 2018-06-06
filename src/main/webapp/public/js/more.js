@@ -7,10 +7,10 @@ define(function (require, exports, module) {
         initPage : function () {
             this.app = angular.module('more', []);
             this.classifyName = this.getQueryString("classifyName");
-            this.searchStr = this.getQueryString("searchStr");
             if(!utils.isNullOrEmpty(this.classifyName)){
                 this.initClassifyBooks(this.classifyName);
             }
+            this.searchStr = this.getQueryString("searchStr");
             if(!utils.isNullOrEmpty(this.searchStr)){
                 this.initSearchBooks(this.searchStr);
             }
@@ -42,9 +42,10 @@ define(function (require, exports, module) {
         /**
          * 获取搜索的书籍
          */
-        initSearchBooks : function(){
-            _that.booksCtrl = _that.app.controller(controller, function($scope, $http) {
-                    utils.service.doPost('../runSearch',this.searchStr,function (result) {
+        initSearchBooks : function(searchStr){
+        	var _that = this;
+            _that.booksCtrl = _that.app.controller("moreBooksController", function($scope, $http) {
+                    utils.service.doPost('../searchIndex',searchStr,function (result) {
                         if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                             $scope.$applyAsync(function () {
                                 var dealWithResult = result.responseJSON;
@@ -107,6 +108,21 @@ define(function (require, exports, module) {
                 e.stopPropagation();
                 _that._moreBooksBtnClick(e,_that);
             });
+            //分类点击事件
+            $(".top_menu a").click(function (e) {
+                _that._moreBtnClickEvent(e,_that);
+            });
+        },
+        _moreBtnClickEvent : function (e,_that) {
+            var target = e.target;
+            var param = $(target).attr("classify");
+            var src;
+            if(!utils.isNullOrEmpty(param)){
+            	src = "/more.html?classifyName=" + param;
+            }else{
+            	src="/index.html"
+            }
+            window.location.href = src;
         },
         _bookDetailClickEvent : function (e,_that) {
             var target = e.target;

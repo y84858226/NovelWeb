@@ -1,5 +1,6 @@
 package com.novel.controller;
 
+import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.novel.pojo.Crawler;
 import com.novel.service.CrawlerService;
 import com.novel.service.NovelTypeService;
+import com.novel.service.SearchIndexService;
 
 /**
  * 爬虫系统
@@ -40,6 +42,9 @@ public class CrawlerController {
 
 	@Autowired
 	NovelTypeService novelTypeService;
+
+	@Autowired
+	SearchIndexService searchIndexService;
 
 	@RequestMapping("addCrawler")
 	public void addCrawler(Crawler crawler) {
@@ -62,7 +67,7 @@ public class CrawlerController {
 	public void updateCrawler(Crawler crawler) {
 		crawlerService.updateCrawler(crawler);
 	}
-	
+
 	@RequestMapping("deleteCrawler")
 	public void deleteCrawler(String ids) {
 		String id[] = ids.split(",");
@@ -88,11 +93,17 @@ public class CrawlerController {
 
 	@RequestMapping("runCrawler")
 	public String runCrawler(HttpServletRequest request, Crawler crawler) {
-		List<Crawler> list = crawlerService.selectCrawler(crawler);
-		crawler = list.get(0);
-		crawlerService.crawlerNovelData(request, crawler);
-		// 更新类型列表
-		novelTypeService.updateNovelType();
+		try {
+			List<Crawler> list = crawlerService.selectCrawler(crawler);
+			crawler = list.get(0);
+			crawlerService.crawlerNovelData(request, crawler);
+			// 更新类型列表
+			novelTypeService.updateNovelType();
+		} finally {
+			String WEB_APP_PATH = request.getSession().getServletContext().getRealPath("/");
+			String INDEX_PATH = WEB_APP_PATH + "data" + File.separator + "index";
+			searchIndexService.createIndex(INDEX_PATH);
+		}
 		return crawler.getCrawlerName() + ":运行结束";
 	}
 

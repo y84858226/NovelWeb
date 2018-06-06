@@ -30,6 +30,7 @@ import com.novel.pojo.CrawlerConfig;
 import com.novel.pojo.Novel;
 import com.novel.pojo.NovelChapterList;
 import com.novel.service.CrawlerService;
+import com.novel.service.SearchIndexService;
 
 @Service
 public class CrawlerServiceImpl implements CrawlerService {
@@ -44,6 +45,9 @@ public class CrawlerServiceImpl implements CrawlerService {
 
 	@Autowired
 	NovelChapterListDao novelChapterListDao;
+
+	@Autowired
+	SearchIndexService indexService;
 
 	@Override
 	public void crawlerNovelData(HttpServletRequest request, Crawler crawler) {
@@ -459,7 +463,8 @@ public class CrawlerServiceImpl implements CrawlerService {
 					 */
 					NovelChapterList chapterList = new NovelChapterList();
 					chapterList.setNovelId(novelId);
-					List<NovelChapterList> novelChapterLists = novelChapterListDao.selectChapterNameAndPath(chapterList);
+					List<NovelChapterList> novelChapterLists = novelChapterListDao
+							.selectChapterNameAndPath(chapterList);
 					createJson(novelChapterLists, webappPath + novelPath + File.separator + "chapter.json");
 				} // 添加小说结束
 

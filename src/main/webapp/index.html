@@ -2,237 +2,181 @@
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="手机小说，网络小说，免费小说，都市小说，言情小说，玄幻小说，网游小说，军事小说，历史小说，穿越小说"
-    />
-    <meta name="description" content="看书网,专业原创小说网站,提供最新言情,都市校园,穿越,网游,玄幻,武侠,科幻,历史等小说免费阅读和小说下载,是最好看的小说阅读网。看小说,就上看书网！"
-    />
-    <link rel="canonical" href="index"/>
-    <title>
-        看书网触屏版手机wap小说网站模板
-    </title>
-    <link href="favicon.png" rel="apple-touch-icon-precomposed"/>
-    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
-    <link rel="stylesheet" href="public/css/style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords"
+	content="手机小说，网络小说，免费小说，都市小说，言情小说，玄幻小说，网游小说，军事小说，历史小说，穿越小说" />
+<meta name="description"
+	content="看书网,专业原创小说网站,提供最新言情,都市校园,穿越,网游,玄幻,武侠,科幻,历史等小说免费阅读和小说下载,是最好看的小说阅读网。看小说,就上看书网！" />
+<link rel="canonical" href="index" />
+<title>看书网触屏版手机wap小说网站模板</title>
+<link href="favicon.png" rel="apple-touch-icon-precomposed" />
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="public/css/style.css">
 </head>
 
 <body ng-app="index">
-<div class="top">
-    <h1 class="fl">
-        <img src="public/images/logo_ks.png" width="76" height="32"/>
-    </h1>
-    <p class="fr" style="display: none">
-        <a href="usercenter@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="icon_user"
-           title="个人中心">
-            个人中心
-        </a>
-    </p>
-</div>
-<div class="top_menu">
-    <div class="topnav">
-        <a href="/index.html" class="cur">
-            首页
-            <b>
-            </b>
-        </a>
-        <!-- <a href="nspd.html">
-             男生
-             <b>
-             </b>
-         </a>
-         <a href="nvshengpd.html">
-             女生
-             <b>
-             </b>
-         </a>
-         <a href="chubanshe.html">
-             免费
-             <b>
-             </b>
-         </a>
-         <a href="bookshelf@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-             书架
-             <b>
-             </b>
-         </a>-->
-    </div>
-</div>
-<!--<div class="top_sign">
-    <span class="usr_grade">
-        登录查看我的等级
-    </span>
-    <span class="usr_sign">
-        <a href="login@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-            登录
-        </a>
-    </span>
-</div>-->
-<div class="search" ng-controller="searchController">
-    <div class="searchbox mt10 clearfix">
-        <form action="/3g/search?cnl=kanshu" method="get">
-            <input type="hidden" name="sid" value="-jlfcT4pLcKDMWGdK6tas1"/>
-            <input name="kw" type="text" class="t_i" placeholder="搜书搜作者" autocomplete="off" id="searchImput"
-                   ng-value="recommendVal">
-            <input type="hidden" name="search" value="aname"/>
-            <div class="searchbtn" id="topSearchbtn">
-                        <span class="t_b">
-                        </span>
-                        <span class="t_t">
-                            搜索
-                        </span>
-                <input type="submit" value=""/>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="section">
-    <h3 class="title">
-                <span class="b_l">
-                </span>
-    </h3>
-    <div class="blist" ng-controller="recommondBooksController">
-        <ul>
-            <li ng-repeat="book in recommendImageBooks">
-                <a href=''>
-                    <div class="bcover fl">
-                        <img ng-src="/data/{{book.id}}/{{book.id}}.jpg"
-                             onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                             alt="" height="130" width="85"/>
-                    </div>
-                    <div class="bintro pl10">
-                        <h4 ng-value="{{book.id}}">
-                            {{book.name}}
-                        </h4>
-                        <p>
-                            {{book.typeName}}
-                            <br>
-                            {{book.description}}
-                        </p>
-                    </div>
-                </a>
-            </li>
-            <li ng-repeat="book in recommendBooks">
-                <a href=''>
-                    <div class="bintro">
-                        <h4 ng-value="{{book.id}}">
-                            {{book.name}}
-                        </h4>
-                        <p>
-                            {{book.typeName}}
-                            <br>
-                            {{book.description}}
-                        </p>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-<!--<div class="block">
-    <p class="item ">
-        <a href="marketing/go-14.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="t_b btn_vip">
-            开通VIP，手机全站免费畅读！
-        </a>
-    </p>
-</div>-->
-<!--<div class="section">
-    <div class="btm_nav">
-        <ul>
-            <li>
-                <a href="order/1-0-1-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-                    热销榜
-                </a>
-            </li>
-            <li>
-                <a href="order/1-0-2-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-                    人气榜
-                </a>
-            </li>
-            <li>
-                <a href="order/1-0-11-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-                    更新榜
-                </a>
-            </li>
-            <li>
-                <a href="order/1-0-9-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-                    新书榜
-                </a>
-            </li>
-            <li>
-                <a href="order/1-0-6-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-                    收藏榜
-                </a>
-            </li>
-            <li>
-                <a href="order/1-0-8-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-                    热评榜
-                </a>
-            </li>
-            <li>
-                <a href="order/1-0-13-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-                    红花榜
-                </a>
-            </li>
-            <li>
-                <a href="order/1-0-14-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-                    打赏榜
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>-->
-<div class="section" ng-controller="hotBookController">
-    <h3 class="title">
-                <span class="b_l">
-                    热门小说
-                </span>
-    </h3>
-    <div class="box tab-pane clearfix">
-        <div class="blist tab-content active">
-            <ul>
-                <li ng-repeat="book in hotImageBooks">
-                    <a href=''>
-                        <div class="bcover fl">
-                            <img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt="超能保镖"
-                                 onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                                 height="130" width="85"/>
-                        </div>
-                        <div class="bintro pl10">
-                            <h4 ng-value="{{book.id}}">
-                                {{book.name}}
-                            </h4>
-                            <p>
-                                {{book.typeName}}
-                                <br>
-                                {{book.description}}
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li ng-repeat="book in hotBooks">
-                    <a href=''>
-                        <div class="bintro">
-                            <h4 ng-value="{{book.id}}">
-                                {{book.name}}
-                            </h4>
-                            <p>
-                                {{book.typeName}}
-                                <br>
-                                {{book.description}}
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <!--<li class="item_more">-->
-                    <!--<a href="" class="more">-->
-                        <!--更多作品&gt;-->
-                    <!--</a>-->
-                <!--</li>-->
-            </ul>
-        </div>
-    </div>
-</div>
-<!--<div class="section">
+	<div class="top">
+		<h1 class="fl">
+			<img src="public/images/logo_ks.png" width="76" height="32" />
+		</h1>
+		<p class="fr" style="display: none">
+			<a href="#"
+				class="icon_user" title="个人中心"> 个人中心 </a>
+		</p>
+	</div>
+	<div class="top_menu">
+		<div class="topnav">
+			<a href="" class="cur"> 首页 <b></b></a> <a href="" classify="玄幻仙侠">玄幻仙侠<b></b></a>
+			<a href="" classify="灵异科幻">灵异科幻<b></b></a> <a href="" classify="青春校园">青春校园<b></b></a>
+			<a href="" classify="历史军事">历史军事<b></b></a> <a href="" classify="网游竞技">网游竞技<b></b></a>
+			<a href="" classify="言情往事">言情往事<b></b></a> <a href="" classify="大家都看">大家都看<b></b></a>
+		</div>
+	</div>
+	<!--  
+	<div class="top_sign">
+		<span class="usr_grade"> 登录查看我的等级 </span> <span class="usr_sign">
+			<a href="login@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1"> 登录 </a>
+		</span>
+	</div>
+	-->
+	<div class="search" ng-controller="searchController">
+		<div class="searchbox mt10 clearfix">
+			<input type="hidden" name="sid" value="-jlfcT4pLcKDMWGdK6tas1" /> <input
+				name="kw" type="text" class="t_i" placeholder="搜书搜作者"
+				autocomplete="off" id="searchImput" ng-value="recommendVal">
+				<input type="hidden" name="search" value="aname" />
+				<div class="searchbtn" id="topSearchbtn">
+					<span class="t_b"> </span> <span class="t_t"> 搜索 </span> <input
+						type="submit" value="" />
+				</div>
+		</div>
+	</div>
+	<!-- 
+	<div class="top_class">
+		<div class="list_nav">
+			<ul>
+				<li classify="玄幻小说"><a href=''> 玄幻小说 </a></li>
+				<li classify="都市小说"><a href=''> 都市小说 </a></li>
+				<li classify="修仙小说"><a href=''> 修仙小说 </a></li>
+				<li classify="历史小说"><a href=''> 历史小说 </a></li>
+				<li classify="网游小说"><a href=''> 网游小说 </a></li>
+				<li classify="恐怖小说"><a href=''> 恐怖小说 </a></li>
+				<li classify="现代小说"><a href=''> 现代小说 </a></li>
+				<li classify="言情小说"><a href=''> 言情小说 </a></li>
+				<li classify="肉肉小说"><a href=''> 肉肉小说 </a></li>
+			</ul>
+		</div>
+	</div>
+	 -->
+	<div class="section" ng-controller="hotBookController">
+		<h3 class="title">
+			<span class="b_l"> 热门小说 </span>
+		</h3>
+		<div class="box tab-pane clearfix">
+			<div class="blist tab-content active">
+				<ul>
+					<li ng-repeat="book in hotImageBooks"><a href=''>
+							<div class="bcover fl">
+								<img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt="超能保镖"
+									onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
+									height="130" width="85" />
+							</div>
+							<div class="bintro pl10">
+								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<p>
+									{{book.typeName}} <br> {{book.description}} 
+								</p>
+							</div>
+					</a></li>
+					<li ng-repeat="book in hotBooks"><a href=''>
+							<div class="bintro">
+								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<p>
+									{{book.typeName}} <br> {{book.description}} 
+								</p>
+							</div>
+					</a></li>
+					<!--
+					<li class="item_more">
+						<a href="" class="more">
+							更多作品&gt;
+						</a>
+					</li>
+					-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<h3 class="title">
+			<span class="b_l">推荐小说</span>
+		</h3>
+		<div class="blist" ng-controller="recommondBooksController">
+			<ul>
+				<li ng-repeat="book in recommendImageBooks"><a href=''>
+						<div class="bcover fl">
+							<img ng-src="/data/{{book.id}}/{{book.id}}.jpg"
+								onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
+								alt="" height="130" width="85" />
+						</div>
+						<div class="bintro pl10">
+							<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+							<p>
+								{{book.typeName}} <br> {{book.description}} 
+							</p>
+						</div>
+				</a></li>
+				<li ng-repeat="book in recommendBooks"><a href=''>
+						<div class="bintro">
+							<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+							<p>
+								{{book.typeName}} <br> {{book.description}} 
+							</p>
+						</div>
+				</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="block">
+		<p class="item ">
+			<a href="#" class="t_b btn_vip"> 收藏本站，全站免费畅读！</a>
+		</p>
+	</div>
+	<!--  
+	<div class="section">
+		<div class="btm_nav">
+			<ul>
+				<li><a
+					href="order/1-0-1-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+						热销榜 </a></li>
+				<li><a
+					href="order/1-0-2-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+						人气榜 </a></li>
+				<li><a
+					href="order/1-0-11-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+						更新榜 </a></li>
+				<li><a
+					href="order/1-0-9-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+						新书榜 </a></li>
+				<li><a
+					href="order/1-0-6-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+						收藏榜 </a></li>
+				<li><a
+					href="order/1-0-8-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+						热评榜 </a></li>
+				<li><a
+					href="order/1-0-13-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+						红花榜 </a></li>
+				<li><a
+					href="order/1-0-14-3-0.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
+						打赏榜 </a></li>
+			</ul>
+		</div>
+	</div>
+	-->
+
+	<!--<div class="section">
     <h3 class="title">
         <span class="b_l">
             粉丝评价榜
@@ -256,7 +200,7 @@
                     <a href=''>
                         <div class="bcover fl">
                             <img src="http://file.kanshu.com/upload/article/77694/77694_m.jpg" alt="天眼邪医"
-                            onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
+                            onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
                             height="130" width="85" />
                         </div>
                         <div class="bintro pl10">
@@ -336,7 +280,7 @@
                     <a href=''>
                         <div class="bcover fl">
                             <img src="http://file4.kanshu.com/upload/article/86020/86020_m.jpg" alt="超级武装"
-                            onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
+                            onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
                             height="130" width="85" />
                         </div>
                         <div class="bintro pl10">
@@ -416,7 +360,7 @@
                     <a href=''>
                         <div class="bcover fl">
                             <img src="http://file.kanshu.com/upload/article/52572/52572_m.jpg" alt="最强神眼"
-                            onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
+                            onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
                             height="130" width="85" />
                         </div>
                         <div class="bintro pl10">
@@ -492,307 +436,169 @@
         </div>
     </div>
 </div>-->
-<div class="section" ng-controller="xhqhBooksController">
-    <h3 class="title">
-                <span class="b_l">
-                    玄幻奇幻
-                </span>
-                <span class="b_r tab-nav" style="display: none">
-                    <a href="#" class="cur">
-                        热销
-                    </a>
-                    <a href="#">
-                        人气
-                    </a>
-                    <a href="#">
-                        新书
-                    </a>
-                </span>
-    </h3>
-    <div class="box tab-pane clearfix">
-        <div class="blist tab-content active">
-            <ul>
-                <li ng-repeat="book in xhqhImageBooks">
-                    <a href=''>
-                        <div class="bcover fl">
-                            <img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt="混沌天体"
-                                 onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                                 height="130" width="85"/>
-                        </div>
-                        <div class="bintro pl10">
-                            <h4 ng-value="{{book.id}}">
-                                {{book.name}}
-                            </h4>
-                            <p>
-                                {{book.typeName}}
-                                <br>
-                                {{book.description}}
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li ng-repeat="book in xhqhBooks">
-                    <a href=''>
-                        <div class="bintro">
-                            <h4 ng-value="{{book.id}}">
-                                {{book.name}}
-                            </h4>
-                            <p>
-                                {{book.typeName}}
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li class="item_more" classify="玄幻小说">
-                    <a class="more" href="" >
-                        更多作品&gt;
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="section" ng-controller="wxxxBooksController">
-    <h3 class="title">
-                <span class="b_l">
-                    武侠仙侠
-                </span>
-                <span class="b_r tab-nav" style="display: none">
-                    <a href="#" class="cur">
-                        热销
-                    </a>
-                    <a href="#">
-                        人气
-                    </a>
-                    <a href="#">
-                        新书
-                    </a>
-                </span>
-    </h3>
-    <div class="box tab-pane clearfix">
-        <div class="blist tab-content active">
-            <ul>
-                <li ng-repeat="book in wxxxImageBooks">
-                    <a href=''>
-                        <div class="bcover fl">
-                            <img ng-src="/data/{{book.id}}/{{book.id}}.jpg"
-                                 onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                                 height="130" width="85"/>
-                        </div>
-                        <div class="bintro pl10">
-                            <h4 ng-value="{{book.id}}"> 
-                                {{book.name}}
-                            </h4>
-                            <p>
-                                {{book.typeName}}
-                                <br>
-                                {{book.description}}
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li ng-repeat="book in wxxxBooks">
-                    <a href=''>
-                        <div class="bintro">
-                            <h4 ng-value="{{book.id}}">
-                                {{book.name}}
-                            </h4>
-                            <p>
-                                {{book.typeName}}
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li class="item_more" classify="修真小说">
-                    <a class="more" href="" >
-                        更多作品&gt;
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="section" ng-controller="dsynBooksController">
-    <h3 class="title">
-                <span class="b_l">
-                    都市异能
-                </span>
-    </h3>
-    <div class="box tab-pane clearfix">
-        <div class="blist tab-content active">
-            <ul>
-                <li ng-repeat="book in dsynImageBooks">
-                    <a href=''>
-                        <div class="bcover fl">
-                            <img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt="辣手相师"
-                                 onerror="this.src='http://img.kanshu.com/articleInfo/images/nopic.jpg';this.onerror='';"
-                                 height="130" width="85"/>
-                        </div>
-                        <div class="bintro pl10">
-                            <h4 ng-value="{{book.id}}">
-                                {{book.name}}
-                            </h4>
-                            <p>
-                                {{book.typeName}}
-                                <br>
-                                {{book.description}}
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li ng-repeat="book in dsynBooks">
-                    <a href=''>
-                        <div class="bintro">
-                            <h4 ng-value="{{book.id}}">
-                                {{book.name}}
-                            </h4>
-                            <p>
-                                {{book.typeName}}
-                                <br>
-                            </p>
-                        </div>
-                    </a>
-                </li>
-                <li class="item_more" classify="都市小说">
-                    <a class="more" href="" >
-                        更多作品&gt;
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="top_class">
-    <div class="list_nav">
-        <ul>
-            <li classify="历史小说">
-                <a href='' >
-                    历史军事
-                </a>
-            </li>
-            <li classify="游戏小说">
-                <a href='' >
-                    游戏竞技
-                </a>
-            </li>
-            <li classify="科幻小说">
-                <a href='' >
-                    科幻灵异
-                </a>
-            </li>
-            <li classify="言情小说">
-                <a href='' >
-                    现代言情
-                </a>
-            </li>
-            <li classify="校园小说">
-                <a href='' >
-                    青春校园
-                </a>
-            </li>
-            <li classify="古代言情">
-                <a href='' >
-                    古代言情
-                </a>
-            </li>
-            <li classify="仙幻奇缘">
-                <a href='' >
-                    仙幻奇缘
-                </a>
-            </li>
-            <li classify="历史时空">
-                <a href='' >
-                    历史时空
-                </a>
-            </li>
-            <li classify="耽美同人">
-                <a href='' >
-                    耽美同人
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-<!--<div class="block">
+	<div class="section" ng-controller="xhqhBooksController">
+		<h3 class="title">
+			<span class="b_l"> 玄幻奇幻 </span> <span class="b_r tab-nav"
+				style="display: none"> <a href="#" class="cur"> 热销 </a> <a
+				href="#"> 人气 </a> <a href="#"> 新书 </a>
+			</span>
+		</h3>
+		<div class="box tab-pane clearfix">
+			<div class="blist tab-content active">
+				<ul>
+					<li ng-repeat="book in xhqhImageBooks"><a href=''>
+							<div class="bcover fl">
+								<img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt="混沌天体"
+									onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
+									height="130" width="85" />
+							</div>
+							<div class="bintro pl10">
+								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<p>
+									{{book.typeName}} <br> {{book.description}} 
+								</p>
+							</div>
+					</a></li>
+					<li ng-repeat="book in xhqhBooks"><a href=''>
+							<div class="bintro">
+								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<p>
+									{{book.typeName}} <br>
+								</p>
+							</div>
+					</a></li>
+					<li class="item_more" classify="玄幻小说"><a class="more" href="">
+							更多作品&gt; </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="section" ng-controller="wxxxBooksController">
+		<h3 class="title">
+			<span class="b_l"> 武侠仙侠 </span> <span class="b_r tab-nav"
+				style="display: none"> <a href="#" class="cur"> 热销 </a> <a
+				href="#"> 人气 </a> <a href="#"> 新书 </a>
+			</span>
+		</h3>
+		<div class="box tab-pane clearfix">
+			<div class="blist tab-content active">
+				<ul>
+					<li ng-repeat="book in wxxxImageBooks"><a href=''>
+							<div class="bcover fl">
+								<img ng-src="/data/{{book.id}}/{{book.id}}.jpg"
+									onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
+									height="130" width="85" />
+							</div>
+							<div class="bintro pl10">
+								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<p>
+									{{book.typeName}} <br> {{book.description}} 
+								</p>
+							</div>
+					</a></li>
+					<li ng-repeat="book in wxxxBooks"><a href=''>
+							<div class="bintro">
+								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<p>
+									{{book.typeName}} <br>
+								</p>
+							</div>
+					</a></li>
+					<li class="item_more" classify="修真小说"><a class="more" href="">
+							更多作品&gt; </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="section" ng-controller="dsynBooksController">
+		<h3 class="title">
+			<span class="b_l"> 都市异能 </span>
+		</h3>
+		<div class="box tab-pane clearfix">
+			<div class="blist tab-content active">
+				<ul>
+					<li ng-repeat="book in dsynImageBooks"><a href=''>
+							<div class="bcover fl">
+								<img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt="辣手相师"
+									onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
+									height="130" width="85" />
+							</div>
+							<div class="bintro pl10">
+								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<p>
+									{{book.typeName}} <br> {{book.description}} 
+								</p>
+							</div>
+					</a></li>
+					<li ng-repeat="book in dsynBooks"><a href=''>
+							<div class="bintro">
+								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<p>
+									{{book.typeName}} <br>
+								</p>
+							</div>
+					</a></li>
+					<li class="item_more" classify="都市小说"><a class="more" href="">
+							更多作品&gt; </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="block">
     <p class="item mt15">
-        <a href="novelinfo/31016.html@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1" class="t_b btn_vip">
+        <a href="" class="t_b btn_vip">
             "仰望星空"收藏了
             <b>
                 <网游洪荒之人道至尊>
             </b>
         </a>
     </p>
-</div>-->
-<div class="search">
-    <div class="searchbox mt10 clearfix">
-        <form action="/3g/search?cnl=kanshu" method="get">
-            <input type="hidden" name="sid" value="-jlfcT4pLcKDMWGdK6tas1"/>
-            <input name="kw" type="text" class="t_i" placeholder="搜书搜作者" autocomplete="off"
-                   value=""/>
-            <input type="hidden" name="search" value="aname"/>
-            <div class="searchbtn" id="bottomSearchbtn">
-                        <span class="t_b">
-                        </span>
-                        <span class="t_t">
-                            搜索
-                        </span>
-                <input type="submit" value=""/>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="footer home-bg">
-    <div class="footer_nav clearfix">
-        <a href="/index.html">
-            首页
-        </a>
-        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=836127990&site=qq&menu=yes">广告合作</a>
-        <!-- <a href="bookshelf@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-             书架
-         </a>
-         <a href="classifi@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-             分类
-         </a>
-         <a href="feedback@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-             留言
-         </a>
-         <a href="usercenter@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-             个人中心
-         </a>-->
-    </div>
-    <p class="edition mt20">
-                <span>
-                   <!-- <a href="20/index@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">
-                        普通版
-                    </a>
-                    |-->
-                    <a href="##" class="select">
-                        触屏版
-                    </a>
-                </span>
-    </p>
-    <p class="copyright mt20">
-        <b>
-            看书网
-        </b>
-        wap.kanshu.com
-    </p>
-            <span id="gotop" class="icons icon-gotop">
-            </span>
-</div>
-<div class="pop_cover">
-</div>
-<div class="pop_tip">
-    <div class="pop_inner">
-        <div class="pop_cont">
-        </div>
-    </div>
-</div>
+	</div> -->
+	<div class="search">
+		<div class="searchbox mt10 clearfix">
+			<form action="/3g/search?cnl=kanshu" method="get">
+				<input type="hidden" name="sid" value="-jlfcT4pLcKDMWGdK6tas1" />
+				<input name="kw" type="text" class="t_i" placeholder="搜书搜作者"
+					autocomplete="off" value="" />
+				<input type="hidden" name="search" value="aname" />
+				<div class="searchbtn" id="bottomSearchbtn">
+					<span class="t_b"> </span> <span class="t_t"> 搜索 </span> <input
+						type="submit" value="" />
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="footer home-bg">
+		<div class="footer_nav clearfix">
+			<a href="/index.html"> 首页 </a> <a target="_blank"
+				href="http://wpa.qq.com/msgrd?v=3&uin=84858226&site=qq&menu=yes">广告合作</a>
+			<!--
+			<a href="bookshelf@cnl=kanshu&sid=-jlfcT4pLcKDMWGdK6tas1">书架 </a>
+            <a href="#">分类</a>
+            <a href="#">留言</a>
+            <a href="#">个人中心</a>
+            -->
+		</div>
+		<p class="edition mt20">
+			<span> <a href="">普通版</a>|<a href="https://m.5yege.com"
+				class="select"> 触屏版 </a>
+			</span>
+		</p>
+		<p class="copyright mt20">
+			<b>午夜阁</b> www.5yege.com
+		</p>
+		<a href="#"><span id="gotop" class="icons icon-gotop"></span></a>
+	</div>
+	<div class="pop_cover"></div>
+	<div class="pop_tip">
+		<div class="pop_inner">
+			<div class="pop_cont"></div>
+		</div>
+	</div>
 </body>
 <script src="public/js/common/sea.js"></script>
 <script>
-    seajs.use(['cmd.config.js','angular.min.js','./public/js/index.js']);
+	seajs.use([ 'cmd.config.js', 'angular.min.js', './public/js/index.js' ]);
 </script>
 </html>

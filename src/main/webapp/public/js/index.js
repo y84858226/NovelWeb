@@ -113,7 +113,7 @@ define(function (require, exports, module) {
                 _that._bookDetailClickEvent(e,_that);
             });
             //分类点击事件
-            $(".top_class a").click(function (e) {
+            $(".top_menu a").click(function (e) {
                 _that._moreBtnClickEvent(e,_that);
             });
             //搜索
@@ -126,8 +126,13 @@ define(function (require, exports, module) {
         },
         _moreBtnClickEvent : function (e,_that) {
             var target = e.target;
-            var param = $(target).parent('li').attr("classify");
-            var src = "/more.html?classifyName=" + param;
+            var param = $(target).attr("classify");
+            var src;
+            if(!utils.isNullOrEmpty(param)){
+            	src = "/more.html?classifyName=" + param;
+            }else{
+            	src="/index.html"
+            }
             window.location.href = src;
         },
         _bookDetailClickEvent : function (e,_that) {
