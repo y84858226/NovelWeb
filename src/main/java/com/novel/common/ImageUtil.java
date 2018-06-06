@@ -68,7 +68,7 @@ public class ImageUtil {
 				dataInputStream.close();
 				fileOutputStream.close();
 			} else {
-				System.out.println("获取不到网页的源码，服务器响应代码为：" + responsecode);
+				System.out.println(urlString+"获取不到网页的源码，服务器响应代码为：" + responsecode);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

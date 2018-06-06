@@ -67,7 +67,7 @@ public class JsoupUtil {
 			// .timeout(600000)
 			// .get();
 		} catch (ScriptException e) {
-			// e.printStackTrace();
+			 e.printStackTrace();
 		} catch (FailingHttpStatusCodeException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
@@ -171,7 +171,7 @@ public class JsoupUtil {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		
 		return set;

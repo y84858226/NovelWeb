@@ -13,6 +13,8 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,8 @@ import com.novel.service.SearchIndexService;
 
 @Service
 public class CrawlerServiceImpl implements CrawlerService {
+	private static Log log = LogFactory.getLog(CrawlerServiceImpl.class);
+	
 	@Autowired
 	CrawlerDao crawlerDao;
 
@@ -48,9 +52,11 @@ public class CrawlerServiceImpl implements CrawlerService {
 
 	@Autowired
 	SearchIndexService indexService;
-
+	
+	
 	@Override
 	public void crawlerNovelData(HttpServletRequest request, Crawler crawler) {
+		int novelNum=0;
 		String webappPath = request.getSession().getServletContext().getRealPath("/");
 		/*
 		 * 查询配置
@@ -112,6 +118,8 @@ public class CrawlerServiceImpl implements CrawlerService {
 				for (String author : authorSet) {
 					novel.setAuthor(author);
 				}
+				log.info("正在爬取:"+novelTypeLink+" 《"+novel.getName()+"》");
+				novelNum++;
 				/*
 				 * 根据小说名称和作者判断数据库是否有这本小说
 				 */
@@ -470,6 +478,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 
 			} // 小说循环结束
 		}
+		
 	}
 
 	public Map<String, Object> testCrawlerNovelData(HttpServletRequest request, Crawler crawler) {

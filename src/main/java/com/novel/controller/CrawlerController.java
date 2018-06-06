@@ -97,9 +97,10 @@ public class CrawlerController {
 			List<Crawler> list = crawlerService.selectCrawler(crawler);
 			crawler = list.get(0);
 			crawlerService.crawlerNovelData(request, crawler);
+		} finally {
 			// 更新类型列表
 			novelTypeService.updateNovelType();
-		} finally {
+			//创建索引
 			String WEB_APP_PATH = request.getSession().getServletContext().getRealPath("/");
 			String INDEX_PATH = WEB_APP_PATH + "data" + File.separator + "index";
 			searchIndexService.createIndex(INDEX_PATH);
