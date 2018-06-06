@@ -51,8 +51,8 @@ define(function (require, exports, module) {
             $(".dir_list").on("click","a",function (e) {
                 _that._directoryClickEvent(e,_that);
             });
-//            $("#reverseDir").on("click",$.proxy(this.reverseDirBtnClick,this));
-//            $("#nomalDir").on("click",$.proxy(this.nomalDirBtnClick,this));
+           $("#reverseDir").on("click",$.proxy(this.reverseDirBtnClick,this));
+           $("#nomalDir").on("click",$.proxy(this.nomalDirBtnClick,this));
         },
         /**
          *  目录点击

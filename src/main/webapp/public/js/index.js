@@ -123,10 +123,24 @@ define(function (require, exports, module) {
             $("#bottomSearchbtn").click(function (e) {
                 _that._searchbtnClickEvent(e,_that,2);
             });
+            $("#addFav").click($.proxy(this.AddFavorite,this));
+        },
+        AddFavorite : function() {
+            try {
+                window.external.addFavorite(location.href, "5夜阁小说");
+            }
+            catch (e) {
+                try {
+                window.sidebar.addPanel("5夜阁小说", location.href, "");
+                }
+                catch (e) {
+                    alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+                }
+            }
         },
         _moreBtnClickEvent : function (e,_that) {
             var target = e.target;
-            var param = $(target).attr("classify");
+            var param = $(target).parents('li').attr("classify");
             var src;
             if(!utils.isNullOrEmpty(param)){
             	src = "/more.html?classifyName=" + param;
