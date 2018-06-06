@@ -35,5 +35,12 @@ public class IndexSearcherController {
 		books = searchIndexService.searchData(param, INDEX_PATH);
 		return books;
 	}
+	
+	@RequestMapping("createIndex")
+	public void createIndex(HttpServletRequest request) {
+		String WEB_APP_PATH = request.getSession().getServletContext().getRealPath("/");
+		String INDEX_PATH = WEB_APP_PATH + "data" + File.separator + "index";
+		searchIndexService.createIndex(INDEX_PATH);
+	}
 
 }

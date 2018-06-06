@@ -165,4 +165,7 @@ public class SearchIndexServiceImpl implements SearchIndexService {
 		}
 		return books;
 	}
+	public static void main(String[] args) {
+		new SearchIndexServiceImpl().searchData("小镇", "C:\\Users\\Administrator\\git\\NovelWeb\\src\\main\\webapp\\data\\index");
+	}
 }
