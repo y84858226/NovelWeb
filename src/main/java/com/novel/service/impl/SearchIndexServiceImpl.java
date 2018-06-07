@@ -59,7 +59,6 @@ public class SearchIndexServiceImpl implements SearchIndexService {
 			IndexWriterConfig config = new IndexWriterConfig(analyzer);
 			config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
 			IndexWriter writer = new IndexWriter(dir, config);
-			Document doc = new Document();
 			List<Novel> list = dao.selectAllBooksToSearch();
 			for (Novel novel : list) {
 				Integer id = novel.getId();
@@ -67,6 +66,7 @@ public class SearchIndexServiceImpl implements SearchIndexService {
 				String description = novel.getDescription();
 				String author = novel.getAuthor();
 				String typeName = novel.getTypeName();
+				Document doc = new Document();
 				doc.add(new TextField("id", id + "", Field.Store.YES));
 				doc.add(new TextField("bookName", bookName, Field.Store.YES));
 				doc.add(new TextField("description", description, Field.Store.YES));
@@ -152,6 +152,7 @@ public class SearchIndexServiceImpl implements SearchIndexService {
 				novel.setDescription(description);
 				novel.setAuthor(author);
 				novel.setTypeName(typeName);
+//				System.out.println(novel);
 				books.add(novel);
 			}
 		} catch (IOException e) {
