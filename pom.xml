@@ -6,7 +6,7 @@
 	<artifactId>ssmspringboot2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<!--<packaging>war</packaging> -->
+	<!-- <packaging>war</packaging> -->
 	<name>ssmspringboot2</name>
 	<description>Demo project for Spring Boot</description>
 	<parent>
@@ -34,7 +34,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<!-- 移除嵌入式tomcat插件 -->
-<!-- 			<exclusions>
+ 			<!-- <exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
