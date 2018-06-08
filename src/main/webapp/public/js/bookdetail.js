@@ -38,6 +38,7 @@ define(function (require, exports, module) {
                             dealWithResult.description = dealWithResult.description.replace(/<br>/g,"");
                             $scope.book = dealWithResult;
                             _that.bookname = dealWithResult.name;
+                            _that.chapterNum = dealWithResult.lastChapterNum;
                         });
                     }
                 })
@@ -76,10 +77,46 @@ define(function (require, exports, module) {
                 e.stopPropagation();
                 _that._seeDirectoryBtnClickEvent(e,_that);
             });
-              //搜索
+            //搜索
              $("#bottomSearchbtn").click(function (e) {
                 _that._searchbtnClickEvent(e,_that);
             });
+            //马上阅读
+            $("#readingBtn").click(function (e) {
+                 e.stopPropagation();
+                _that._readingbtnClickEvent(e,_that);
+            });
+            //分类点击
+            $("#classifyName").click(function (e) {
+                e.stopPropagation();
+                _that._classifyNameClickEvent(e,_that);
+            });
+            //最新章节点击
+            $("#lastChapterBtn").click(function (e) {
+                e.stopPropagation();
+                _that._lastChapterBtnClickEvent(e,_that);
+            });
+        },
+        _lastChapterBtnClickEvent : function (e,_that) {
+            var novelId = this.bookid;
+            var chapterNum = this.chapterNum;
+             window.location.href = '../selectChapter?novelId=' +novelId+'&chapterNum='+chapterNum;
+        },
+        _readingbtnClickEvent : function(e,_that){
+            var novelId = this.bookid;
+            var chapterNum = 1;
+            window.location.href = '../selectChapter?novelId=' +novelId+'&chapterNum='+chapterNum;
+        },
+        _classifyNameClickEvent : function(e,_that){
+             var target = e.target;
+             var classifyName = target.innerText;
+             var src;
+             if(!utils.isNullOrEmpty(classifyName)){
+            	src = "/more.html?classifyName=" + classifyName;
+             }else{
+             	src="/index.html"
+             }
+             window.location.href = src;
         },
         _bookDetailClickEvent : function (e,_that) {
             var target = e.target;

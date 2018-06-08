@@ -57,9 +57,9 @@
 										height="130" width="85" />
 								</div>
 								<div class="bintro pl10">
-									<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+									<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
 									<p>
-										{{book.typeName}} <br> {{book.description}} 
+										<b ng-bind="book.typeName"></b> <br> <span ng-bind="book.description"></span>
 									</p>
 								</div>
 						</a></li>
@@ -79,11 +79,11 @@
             <a href="#">个人中心</a>
             -->
 		</div>
-		<p class="edition mt20">
+		<!-- <p class="edition mt20">
 			<span> <a href="">普通版</a>|<a href="https://m.5yege.com"
 				class="select"> 触屏版 </a>
 			</span>
-		</p>
+		</p> -->
 		<p class="copyright mt20">
 			<b>午夜阁</b> www.5yege.com
 		</p>

@@ -17,18 +17,18 @@
 
 <body ng-app="directory">
 	<div class="header">
-		<span class="nav_left"> <a href="javascript:history.go(-1)">
-				返回 </a>
+		<span class="nav_left"> <a href="/index.html">
+				主页 </a>
 		</span>
 		<h1>作品目录</h1>
 	</div>
 	<div class="wrap" ng-controller="directoryCtrl">
 		<div class="section">
 			<div class="btitle">
-				<a href="" class="ye"> {{bookName}} </a>
+				<a href="" class="ye" ng-bind="bookName"></a>
 			</div>
 			<div class="tab-menu t2 mt15">
-				<a href="" class="cur" id="nomalDir"> 顺序显示 </a> <a href=""
+				<a href="" id="nomalDir"> 顺序显示 </a> <a href=""  class="cur"
 					id='reverseDir'> 倒序显示 </a>
 			</div>
 			<div class="dir_list">
@@ -36,7 +36,7 @@
 					<li><span class="bname" ng-repeat="directory in bookDirectory">
 							<a href='' ng-filePath='{{directory.filePath}}'
 							ng-chapterNum='{{directory.chapterNum}}'
-							ng-novelId='{{directory.novelId}}'> {{directory.chapterName}}
+							ng-novelId='{{directory.novelId}}' ng-bind="directory.chapterName">
 						</a>
 					</span></li>
 				</ul>
@@ -69,11 +69,11 @@
             <a href="#">个人中心</a>
             -->
 		</div>
-		<p class="edition mt20">
+		<!-- <p class="edition mt20">
 			<span> <a href="">普通版</a>|<a href="https://m.5yege.com"
 				class="select"> 触屏版 </a>
 			</span>
-		</p>
+		</p> -->
 		<p class="copyright mt20">
 			<b>午夜阁</b> www.5yege.com
 		</p>

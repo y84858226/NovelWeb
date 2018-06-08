@@ -27,10 +27,10 @@
 	</div>
 	<div class="top_menu">
 		<div class="topnav">
-			<a href="" class="cur"> 首页 <b></b></a> <a href="" classify="玄幻">玄幻<b></b></a>
-			<a href="" classify="都市">都市<b></b></a> <a href="" classify="校园">校园<b></b></a>
-			<a href="" classify="穿越">穿越<b></b></a> <a href="" classify="网游">网游<b></b></a>
-			<a href="" classify="言情">言情<b></b></a> <a href="" classify="热门">热门<b></b></a>
+			<a href="" class="cur"> 首页 <b></b></a> <li classify="玄幻小说"><a href="" >玄幻<b></b></a></li>
+			<li classify="都市小说"><a href="" >都市<b></b></a></li> <li classify="校园小说"><a href="">校园<b></b></a></li>
+			<li classify="穿越小说"><a href="" >穿越<b></b></a></li> <li classify="网游小说"><a href="" >网游<b></b></a></li>
+			<li classify="言情小说"><a href="" >言情<b></b></a></li> <li classify="热门小说"><a href="" >热门<b></b></a></li>
 		</div>
 	</div>
 	<!--  
@@ -78,22 +78,22 @@
 				<ul>
 					<li ng-repeat="book in hotImageBooks"><a href=''>
 							<div class="bcover fl">
-								<img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt="超能保镖"
+								<img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt=""
 									onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
 									height="130" width="85" />
 							</div>
 							<div class="bintro pl10">
-								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
 								<p>
-									{{book.typeName}} <br> {{book.description}} 
+									<b ng-bind="book.typeName"></b> <br> <span ng-bind="book.description"></span>
 								</p>
 							</div>
 					</a></li>
 					<li ng-repeat="book in hotBooks"><a href=''>
 							<div class="bintro">
-								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<h4 ng-value="{{book.id}}"  ng-bind="book.name"></h4>
 								<p>
-									{{book.typeName}} <br> {{book.description}} 
+									<b ng-bind="book.typeName"></b> <br> <span ng-bind="book.description"></span>
 								</p>
 							</div>
 					</a></li>
@@ -121,17 +121,17 @@
 								alt="" height="130" width="85" />
 						</div>
 						<div class="bintro pl10">
-							<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+							<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
 							<p>
-								{{book.typeName}} <br> {{book.description}} 
+								<b ng-bind="book.typeName"></b> <br> <span ng-bind="book.description"></span> 
 							</p>
 						</div>
 				</a></li>
 				<li ng-repeat="book in recommendBooks"><a href=''>
 						<div class="bintro">
-							<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+							<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
 							<p>
-								{{book.typeName}} <br> {{book.description}} 
+								<b ng-bind="book.typeName"></b> <br> <span ng-bind="book.description"></span>
 							</p>
 						</div>
 				</a></li>
@@ -448,22 +448,22 @@
 				<ul>
 					<li ng-repeat="book in xhqhImageBooks"><a href=''>
 							<div class="bcover fl">
-								<img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt="混沌天体"
+								<img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt=""
 									onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
 									height="130" width="85" />
 							</div>
 							<div class="bintro pl10">
-								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
 								<p>
-									{{book.typeName}} <br> {{book.description}} 
+									<b ng-bind="book.typeName"></b> <br> <span ng-bind="book.description"></span>
 								</p>
 							</div>
 					</a></li>
 					<li ng-repeat="book in xhqhBooks"><a href=''>
 							<div class="bintro">
-								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<h4 ng-value="{{book.id}}" ng-bind="book.name">}</h4>
 								<p>
-									{{book.typeName}} <br>
+									<b ng-bind="book.typeName"></b> <br>
 								</p>
 							</div>
 					</a></li>
@@ -490,17 +490,17 @@
 									height="130" width="85" />
 							</div>
 							<div class="bintro pl10">
-								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
 								<p>
-									{{book.typeName}} <br> {{book.description}} 
+									<b ng-bind="book.typeName"></b> <br> <span ng-bind="book.description"></span>
 								</p>
 							</div>
 					</a></li>
 					<li ng-repeat="book in wxxxBooks"><a href=''>
 							<div class="bintro">
-								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
 								<p>
-									{{book.typeName}} <br>
+									<b ng-bind="book.typeName"></b> <br>
 								</p>
 							</div>
 					</a></li>
@@ -524,17 +524,17 @@
 									height="130" width="85" />
 							</div>
 							<div class="bintro pl10">
-								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
 								<p>
-									{{book.typeName}} <br> {{book.description}} 
+									<b ng-bind="book.typeName"></b> <br> <span ng-bind="book.description"></span> 
 								</p>
 							</div>
 					</a></li>
 					<li ng-repeat="book in dsynBooks"><a href=''>
 							<div class="bintro">
-								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
 								<p>
-									{{book.typeName}} <br>
+									<b ng-bind="book.typeName"></b> <br>
 								</p>
 							</div>
 					</a></li>

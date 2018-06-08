@@ -81,6 +81,8 @@ define(function (require, exports, module) {
                      $scope.bookDirectory =  data.reverse();
                 })
              }
+             $("#nomalDir").addClass("cur");
+             $("#reverseDir").removeClass("cur");
          },
         /**
          * 正序点击
@@ -95,6 +97,8 @@ define(function (require, exports, module) {
                      $scope.bookDirectory = data;
                 })
              }
+             $("#reverseDir").addClass("cur");
+             $("#nomalDir").removeClass("cur");
          }
          
     }

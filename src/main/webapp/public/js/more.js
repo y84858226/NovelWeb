@@ -116,7 +116,7 @@ define(function (require, exports, module) {
         },
         _moreBtnClickEvent : function (e,_that) {
             var target = e.target;
-            var param = $(target).attr("classify");
+            var param = $(target).parents('li').attr("classify");
             var src;
             if(!utils.isNullOrEmpty(param)){
             	src = "/more.html?classifyName=" + param;

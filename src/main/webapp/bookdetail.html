@@ -26,8 +26,8 @@
 	</div>
 	<div class="wrap clearfix" ng-controller="bookDetailController">
 		<div class="section bindex">
-			<div class="btitle">
-				{{book.name}} <span> {{book.status}} </span>
+			<div class="btitle" >
+				<b ng-bind="book.name"></b><span ng-bind="book.status"></span>
 			</div>
 			<div class="blist">
 				<ul>
@@ -40,9 +40,9 @@
 							</div>
 							<div class="bintro b_i pl10">
 								<p>
-									分类: <b class="tname"> <a href="" class="ye">
-											{{book.typeName}} </a>
-									</b> <br /> {{book.author}} <br /> 75.3万字 共300章
+									分类: <b class="tname"> <a href="" class="ye" ng-bind="book.typeName" id="classifyName">
+											</a>
+									</b> <br /> <b ng-bind="book.author"></b> <br /> <!-- <b>总字数</b>-->
 									<!--                                        <br/>
                                         收藏: 917 &nbsp;&nbsp; 评论: 114
                                         <br/>
@@ -53,20 +53,20 @@
 							</div>
 						</div>
 						<div class="blink gyb bl3 mt5">
-							<a href='' class="cur"> 马上阅读 </a> <a href="##" class="book_fav"
+							<a href='' class="cur" id="readingBtn"> 马上阅读 </a> <a href="##" class="book_fav"
 								id="btn_fav" style="display: none"> 收藏 </a> <a href=""
 								class="last" id="seeDirectoryBtn"> 查看目录 </a>
 						</div>
 					</li>
 					<li><span class="bname"> <a
-							href="../content/70159-3173220.html@cnl=kanshu"> 最新章节： <b
-								class="ye"> 第299章 生死一刻 </b>
+							href="" id= "lastChapterBtn"> 最新章节： <b>第</b><b
+								class="ye" ng-bind="book.lastChapterNum"></b><b>章</b>
 						</a>
-					</span> 更新时间： <b class="gy"> {{book.updateTime}} </b></li>
+					</span> 更新时间： <b class="gy" ng-bind="book.updateTime"></b></li>
 					<li>
 						<div class="intro">
 							<p>
-								<b> 简介： </b> {{book.description}}
+								<span> 简介： </span> <b ng-bind="book.description"></b>
 							</p>
 						</div>
 					</li>
@@ -212,17 +212,17 @@
 									alt="都市特种兵" height="130" width="85" />
 							</div>
 							<div class="bintro pl10">
-								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
 								<p>
-									{{book.typeName}} <br> {{book.description}} 
+									<b ng-bind="book.typeName"></b> <br> <span ng-bind="book.description"></span> 
 								</p>
 							</div>
 					</a></li>
 					<li ng-repeat="book in detailRecommendBooks"><a href=''>
 							<div class="bintro">
-								<h4 ng-value="{{book.id}}">{{book.name}}</h4>
+								<h4 ng-value="{{book.id}}" ng-bind="book.name">{</h4>
 								<p>
-									{{book.typeName}} <br>
+									<b ng-bind="book.typeName"></b> <br>
 								</p>
 							</div>
 					</a></li>
