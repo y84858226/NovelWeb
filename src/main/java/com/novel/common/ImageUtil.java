@@ -70,10 +70,9 @@ public class ImageUtil {
 			} else {
 				System.out.println(urlString+"获取不到网页的源码，服务器响应代码为：" + responsecode);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
 			urlConnection.disconnect();
+		} catch (Exception e) {
+			System.out.println(urlString+"：错误");
 		}
 	}
 
