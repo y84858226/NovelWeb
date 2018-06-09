@@ -74,10 +74,10 @@ define(function (require, exports, module) {
         initIndexClassifyBooks : function () {
             var classify_XH = "玄幻";
             this.getClassifyBooks("xhqhBooksController",classify_XH,"$scope.xhqhImageBooks = dealWithResult.slice(0,1);$scope.xhqhBooks = dealWithResult.slice(1,5);")
-            var classify_XZ = "修真";
-            this.getClassifyBooks("wxxxBooksController",classify_XZ,"$scope.wxxxImageBooks = dealWithResult.slice(0,1);$scope.wxxxBooks = dealWithResult.slice(1,5);")
             var classify_DS = "都市";
-            this.getClassifyBooks("dsynBooksController",classify_DS,"$scope.dsynImageBooks = dealWithResult.slice(0,1);$scope.dsynBooks = dealWithResult.slice(1,5);")
+            this.getClassifyBooks("wxxxBooksController",classify_DS,"$scope.wxxxImageBooks = dealWithResult.slice(0,1);$scope.wxxxBooks = dealWithResult.slice(1,5);")
+            var classify_CY = "穿越";
+            this.getClassifyBooks("dsynBooksController",classify_CY,"$scope.dsynImageBooks = dealWithResult.slice(0,1);$scope.dsynBooks = dealWithResult.slice(1,5);")
         },
         /**
          * 获取分类书籍通用方法
