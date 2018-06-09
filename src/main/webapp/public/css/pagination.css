@@ -1,19 +1,19 @@
 @charset "utf-8";
-.pages {
+.limitpages {
 	width:720px;
-	margin:40px auto 0 auto;
+	margin:0px auto 60px auto;
 }
-.pages #Pagination {
+.limitpages #Pagination {
   float: left;
   overflow: hidden;
 }
-.pages #Pagination .pagination {
+.limitpages #Pagination .pagination {
   height: 40px;
   text-align: right;
   font-family: \u5b8b\u4f53,Arial;
 }
-.pages #Pagination .pagination a,
-.pages #Pagination .pagination span {
+.limitpages #Pagination .pagination a,
+.limitpages #Pagination .pagination span {
   float: left;
   display: inline;
   padding: 11px 13px;
@@ -25,12 +25,12 @@
   font-size: 14px;
   cursor: pointer;
 }
-.pages #Pagination .pagination .current {
+.limitpages #Pagination .pagination .current {
   background: #ffac59;
   color: #fff;
 }
-.pages #Pagination .pagination .prev,
-.pages #Pagination .pagination .next {
+.limitpages #Pagination .pagination .prev,
+.limitpages #Pagination .pagination .next {
   float: left;
   padding: 11px 13px;
   border: 1px solid #e6e6e6;
@@ -38,43 +38,43 @@
   color: #666666;
   cursor: pointer;
 }
-.pages #Pagination .pagination .prev i,
-.pages #Pagination .pagination .next i {
+.limitpages #Pagination .pagination .prev i,
+.limitpages #Pagination .pagination .next i {
   display: inline-block;
   width: 4px;
   height: 11px;
   margin-right: 5px;
   background: url(../images/icon.fw.png) no-repeat;
 }
-.pages #Pagination .pagination .prev {
+.limitpages #Pagination .pagination .prev {
   border-right: none;
 }
-.pages #Pagination .pagination .prev i {
+.limitpages #Pagination .pagination .prev i {
   background-position: -144px -1px;
   *background-position: -144px -4px;
 }
-.pages #Pagination .pagination .next i {
+.limitpages #Pagination .pagination .next i {
   background-position: -156px -1px;
   *background-position: -156px -4px;
 }
-.pages #Pagination .pagination .pagination-break {
+.limitpages #Pagination .pagination .pagination-break {
   padding: 11px 5px;
   border: none;
   border-left: 1px solid #e6e6e6;
   background: none;
   cursor: default;
 }
-.pages .searchPage {
+.limitpages .searchPage {
   float: left;
   padding: 8px 0;
 }
-.pages .searchPage .page-sum {
+.limitpages .searchPage .page-sum {
   padding: 11px 13px;
   color: #999999;
   font-family: \u5b8b\u4f53,Arial;
   font-size: 14px;
 }
-.pages .searchPage .page-go {
+.limitpages .searchPage .page-go {
   padding: 8px 0;
   color: #999999;
   font-family: \u5b8b\u4f53,Arial;
@@ -82,14 +82,14 @@
   padding: 10px 0\9;
   *padding: 6px 0;
 }
-.pages .searchPage .page-go input {
+.limitpages .searchPage .page-go input {
   width: 21px;
   height: 20px;
   margin: 0 5px;
   padding-left: 5px;
   border: 1px solid #e4e4e4;
 }
-.pages .searchPage .page-btn {
+.limitpages .searchPage .page-btn {
   margin: 9px 0 5px 5px;
   padding: 2px 5px;
   background: #ffac59;

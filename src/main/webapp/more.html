@@ -12,8 +12,9 @@
 <title>看书网触屏版手机wap小说网站模板</title>
 <link href="favicon.png" rel="apple-touch-icon-precomposed" />
 <meta name="viewport"
-	content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
-	<link rel="stylesheet" href="public/css/style.css">
+	content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="public/css/style.css" />
+<link rel="stylesheet" href="public/css/pagination.css" />
 </head>
 
 <body ng-app="more">
@@ -28,10 +29,14 @@
 	</div>
 	<div class="top_menu">
 		<div class="topnav">
-			<a href="" class="cur"> 首页 <b></b></a> <a href="" classify="玄幻">玄幻<b></b></a>
-			<a href="" classify="都市">都市<b></b></a> <a href="" classify="校园">校园<b></b></a>
-			<a href="" classify="穿越">穿越<b></b></a> <a href="" classify="网游">网游<b></b></a>
-			<a href="" classify="言情">言情<b></b></a> <a href="" classify="热门">热门<b></b></a>
+			<a href="" class="cur"> 首页 <b></b></a>
+			<li classify="玄幻"><a href="">玄幻<b></b></a></li>
+			<li classify="都市"><a href="">都市<b></b></a></li>
+			<li classify="校园"><a href="">校园<b></b></a></li>
+			<li classify="穿越"><a href="">穿越<b></b></a></li>
+			<li classify="网游"><a href="">网游<b></b></a></li>
+			<li classify="言情"><a href="">言情<b></b></a></li>
+			<li classify="热门"><a href="">热门<b></b></a></li>
 		</div>
 	</div>
 	<!--<div class="top_sign">
@@ -49,23 +54,32 @@
 			<span class="b_l"></span>
 		</h3> -->
 		<div class="blist" ng-controller="moreBooksController">
-					<ul>
-						<li ng-repeat="book in moreBooks"><a href=''>
-								<div class="bcover fl">
-									<img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt=""
-										onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
-										height="130" width="85" />
-								</div>
-								<div class="bintro pl10">
-									<h4 ng-value="{{book.id}}" ng-bind="book.name"></h4>
-									<p>
-										<b ng-bind="book.typeName"></b> <br> <span ng-bind="book.description"></span>
-									</p>
-								</div>
-						</a></li>
-						<li class="item_more" clickNum="2"><a class="more" href="">
-								更多作品&gt; </a></li>
-					</ul>
+			<ul>
+				<li ng-repeat="book in moreBooks"><a href=''>
+						<div class="bcover fl">
+							<img ng-src="/data/{{book.id}}/{{book.id}}.jpg" alt=""
+								onerror="this.src='/public/img/nopic.jpg';this.onerror='';"
+								height="130" width="85" />
+						</div>
+						<div class="bintro pl10">
+							<h4 ng-value="{{book.id}}" ng-bind-html="html(book.name)"></h4>
+							<p>
+								<b ng-bind-html="html(book.typeName)"></b> <br> <span
+									ng-bind-html="html(book.description)"></span>
+							</p>
+						</div>
+				</a></li>
+				<!-- 				<li class="item_more" clickNum="2"><a class="more" href="">
+						更多作品&gt; </a></li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="limitpages">
+		<div id="Pagination"></div>
+		<div class="searchPage">
+			<span class="page-sum">共<strong class="allPage">15</strong>页
+			</span> <span class="page-go">跳转<input type="text">页</span> <a
+				href="javascript:;" class="page-btn">GO</a>
 		</div>
 	</div>
 	<div class="footer home-bg">
@@ -97,7 +111,12 @@
 	</div>
 </body>
 <script src="public/js/common/sea.js"></script>
+<script type="text/javascript" src="./public/js/common/jquery.min.js"></script>
+<script type="text/javascript" src="./public/js/jquery.pagination.js"></script>
 <script>
-	seajs.use([ 'cmd.config.js', 'angular.min.js', './public/js/more.js' ]);
+	$(document).ready(function() {
+		$("#Pagination").pagination("15");
+	});
+	seajs.use([ 'cmd.config.js', 'angular.min.js', './public/js/more.js', ]);
 </script>
 </html>

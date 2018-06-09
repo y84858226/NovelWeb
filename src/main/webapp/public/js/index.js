@@ -72,12 +72,12 @@ define(function (require, exports, module) {
          * 获取首页分类书籍
          */
         initIndexClassifyBooks : function () {
-            var classify_XHQH = "玄幻小说";
-            this.getClassifyBooks("xhqhBooksController",classify_XHQH,"$scope.xhqhImageBooks = dealWithResult.slice(0,1);$scope.xhqhBooks = dealWithResult.slice(1,5);")
-            var classify_WXXX = "修真小说";
-            this.getClassifyBooks("wxxxBooksController",classify_WXXX,"$scope.wxxxImageBooks = dealWithResult.slice(0,1);$scope.wxxxBooks = dealWithResult.slice(1,5);")
-            var classify_DSYN = "都市小说";
-            this.getClassifyBooks("dsynBooksController",classify_DSYN,"$scope.dsynImageBooks = dealWithResult.slice(0,1);$scope.dsynBooks = dealWithResult.slice(1,5);")
+            var classify_XH = "玄幻";
+            this.getClassifyBooks("xhqhBooksController",classify_XH,"$scope.xhqhImageBooks = dealWithResult.slice(0,1);$scope.xhqhBooks = dealWithResult.slice(1,5);")
+            var classify_XZ = "修真";
+            this.getClassifyBooks("wxxxBooksController",classify_XZ,"$scope.wxxxImageBooks = dealWithResult.slice(0,1);$scope.wxxxBooks = dealWithResult.slice(1,5);")
+            var classify_DS = "都市";
+            this.getClassifyBooks("dsynBooksController",classify_DS,"$scope.dsynImageBooks = dealWithResult.slice(0,1);$scope.dsynBooks = dealWithResult.slice(1,5);")
         },
         /**
          * 获取分类书籍通用方法

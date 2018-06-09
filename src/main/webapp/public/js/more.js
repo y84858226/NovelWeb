@@ -44,15 +44,15 @@ define(function (require, exports, module) {
          */
         initSearchBooks : function(searchStr){
         	var _that = this;
-            _that.booksCtrl = _that.app.controller("moreBooksController", function($scope, $http) {
+            _that.booksCtrl = _that.app.controller("moreBooksController", function($scope, $http,$sce) {
                     utils.service.doPost('../searchIndex',searchStr,function (result) {
                         if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                             $scope.$applyAsync(function () {
                                 var dealWithResult = result.responseJSON;
-                                $.each(dealWithResult, function(key, val){
-                                    dealWithResult[key].description = val.description.replace(/<br>/g,"")
-                                });
                                 $scope.moreBooks = dealWithResult;
+                                $scope.html = function(n){
+                                    return $sce.trustAsHtml(n);  
+                                }
                                 $('.item_more').attr('hidden',true)
                             });
                         }
@@ -65,36 +65,35 @@ define(function (require, exports, module) {
         getClassifyBooks : function (controller,params,callback) {
             var _that = this;
             if(!_that.booksCtrl){
-                _that.booksCtrl = _that.app.controller(controller, function($scope, $http) {
+                _that.booksCtrl = _that.app.controller(controller, function($scope, $http, $sce) {
+                	console.log($sce)
                     utils.service.doPost('../getClassifyBooksByPage',params,function (result) {
                         if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                             $scope.$applyAsync(function () {
                                 var dealWithResult = result.responseJSON;
-                                $.each(dealWithResult, function(key, val){
-                                    dealWithResult[key].description = val.description.replace(/<br>/g,"")
-                                });
                                 eval(callback);
+                                $scope.html = function(n){
+                                    return $sce.trustAsHtml(n);  
+                                }
                             });
                         }
                     })
                 });
             }else{
+            	var appElement = document.querySelector('[ng-controller=moreBooksController]');
+            	var $scope = angular.element(appElement).scope();
                 utils.service.doPost('../getClassifyBooksByPage',params,function (result) {
-                    var appElement = document.querySelector('[ng-controller=moreBooksController]');
-                    var $scope = angular.element(appElement).scope();
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
-                        $scope.$applyAsync(function () {
+                        $scope.$applyAsync(function ($sce) {
                             var dealWithResult = result.responseJSON;
-                            $.each(dealWithResult, function(key, val){
-                                dealWithResult[key].description = val.description.replace(/<br>/g,"")
-                            });
-
                             $scope.moreBooks = dealWithResult;
+                            $scope.html = function(n){
+                                return $sce.trustAsHtml(n);  
+                            }
                         });
                     }
                 })
             }
-
         },
         /**
          * 绑定事件

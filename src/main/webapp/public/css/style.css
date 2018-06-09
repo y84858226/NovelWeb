@@ -347,7 +347,7 @@ a:link, a:activied{color:#000000}
 .chapter .chapname .binfo{top:0;}
 
 /* footer */
-.footer{margin:0; padding:15px 0; position:relative;}
+.footer{margin:0; padding:15px 0; position:relative;clear: both;}
 .footer .icons{position:absolute; right:10%; bottom:10px; cursor:pointer}
 .footer.home-bg .icon-gotop{background-position:-124px -445px}
 .footer p, .footer a{font-size:1em;}
