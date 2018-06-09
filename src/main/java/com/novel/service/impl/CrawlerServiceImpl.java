@@ -178,14 +178,23 @@ public class CrawlerServiceImpl implements CrawlerService {
 					NovelChapterList novelChapterList = new NovelChapterList();
 					novelChapterList.setNovelId(novelId);
 					novelChapterList = novelChapterListDao.selectMaxchapter(novelChapterList);
-					/*
-					 * 最新章节名称
-					 */
-					String maxChapterName = novelChapterList.getChapterName();
-					/*
-					 * 最新章节编号
-					 */
-					chapterNum = novelChapterList.getChapterNum();
+					String maxChapterName="";
+					if(novelChapterList!=null) {
+						/*
+						 * 最新章节名称
+						 */
+						maxChapterName = novelChapterList.getChapterName();
+						/*
+						 * 最新章节编号
+						 */
+						chapterNum = novelChapterList.getChapterNum();
+					}else {
+						/*
+						 * 最新章节编号
+						 */
+						chapterNum = 0;
+					}
+				
 					/*
 					 * 
 					 */
@@ -225,17 +234,24 @@ public class CrawlerServiceImpl implements CrawlerService {
 									config.get(12).getReg(), config.get(12).getHeadAppendResult(),
 									config.get(12).getTailAppendResult(), config.get(12).getReplaceResult(),
 									config.get(12).getRegGroupNum());
-							for (String chapterName : chapterNameSet) {
-								/*
-								 * 匹配上最新章节
-								 */
-								if (maxChapterName.equals(chapterName)) {
-									/*
-									 * 开启更新开关
-									 */
+							if(maxChapterName.equals("")) {
+								for (String chapterName : chapterNameSet) {
 									searchLastChapter = true;
+									chapterList.setChapterName(chapterName);
 								}
-								chapterList.setChapterName(chapterName);
+							}else {
+								for (String chapterName : chapterNameSet) {
+									/*
+									 * 匹配上最新章节
+									 */
+									if (maxChapterName.equals(chapterName)) {
+										/*
+										 * 开启更新开关
+										 */
+										searchLastChapter = true;
+									}
+									chapterList.setChapterName(chapterName);
+								}
 							}
 							if (searchLastChapter) {
 								/*
