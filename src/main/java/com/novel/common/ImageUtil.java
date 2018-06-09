@@ -72,7 +72,8 @@ public class ImageUtil {
 			}
 			urlConnection.disconnect();
 		} catch (Exception e) {
-			System.out.println(urlString+"：错误");
+			System.out.println("image:"+urlString+"：错误");
+			
 		}
 	}
 

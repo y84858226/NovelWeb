@@ -494,7 +494,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 
 			} // 小说循环结束
 		}
-		
+		log.info("爬虫结束,共爬取："+novelNum+"本小说");
 	}
 
 	public Map<String, Object> testCrawlerNovelData(HttpServletRequest request, Crawler crawler) {
