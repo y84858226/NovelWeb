@@ -31,7 +31,6 @@ import com.novel.service.SearchIndexService;
  *
  */
 
-@Component
 @RestController // 证明是controller层并且返回json
 @EnableAutoConfiguration
 @Scope("prototype") // 原型模式

@@ -5,7 +5,10 @@ define(function (require, exports, module) {
     'use strict'
     var controller = {
         initPage : function () {
-            this.app = angular.module('bookDetail', []);
+            this.app = angular.module('bookDetail', []).config(function($compileProvider){
+                //注:有些版本的angularjs为$compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript):/);,两种都试一下可以即可
+                $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|itms\-apps|ftp|mailto|file|javascript):/);
+            });
             this.bookid = this.getQueryString("id");
             this.initBookDeatil(this.bookid);
             this.initRecommendBooks();

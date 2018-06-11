@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,7 @@ import com.novel.service.SearchIndexService;
 // 证明是controller层并且返回json
 @RestController
 @EnableAutoConfiguration
+@Scope("prototype") // 原型模式
 public class IndexSearcherController {
 	@Autowired
 	SearchIndexService searchIndexService;
