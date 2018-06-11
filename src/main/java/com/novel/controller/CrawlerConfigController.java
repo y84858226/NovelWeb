@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.novel.pojo.CrawlerConfig;
-import com.novel.pojo.NovelType;
 import com.novel.service.CrawlerConfigService;
-import com.novel.service.NovelTypeService;
 
 @RestController // 证明是controller层并且返回json
 @EnableAutoConfiguration

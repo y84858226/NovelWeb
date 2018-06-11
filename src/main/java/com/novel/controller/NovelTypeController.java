@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.novel.pojo.Crawler;
 import com.novel.pojo.NovelType;
 import com.novel.service.NovelTypeService;
 
