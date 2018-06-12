@@ -11,7 +11,7 @@ public interface WebService {
 	 *            百度收录api的更新接口
 	 * @return
 	 */
-	public String addBaiduIndex(String webUrl, String addUrl, String updateUrl);
+	public void addBaiduIndex(String webUrl, String addUrl);
 
 	/**
 	 * 
@@ -21,6 +21,6 @@ public interface WebService {
 	 *            百度的api接口地址
 	 * @return
 	 */
-	public String Post(String indexUrl, String baiduUrl);
+	public void Post(String indexUrl, String baiduUrl);
 
 }

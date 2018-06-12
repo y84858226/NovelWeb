@@ -4,6 +4,7 @@ public class NovelType {
 	private Integer id;
 	private String originalTypeName;
 	private String typeName;
+	private String isBaiduIndex;
 
 	public Integer getId() {
 		return id;
@@ -29,10 +30,19 @@ public class NovelType {
 		this.typeName = typeName;
 	}
 
-	public NovelType(Integer id, String originalTypeName, String typeName) {
+	public String getIsBaiduIndex() {
+		return isBaiduIndex;
+	}
+
+	public void setIsBaiduIndex(String isBaiduIndex) {
+		this.isBaiduIndex = isBaiduIndex;
+	}
+
+	public NovelType(Integer id, String originalTypeName, String typeName, String isBaiduIndex) {
 		this.id = id;
 		this.originalTypeName = originalTypeName;
 		this.typeName = typeName;
+		this.isBaiduIndex = isBaiduIndex;
 	}
 
 	public NovelType() {
@@ -40,7 +50,8 @@ public class NovelType {
 
 	@Override
 	public String toString() {
-		return "NovelType [id=" + id + ", originalTypeName=" + originalTypeName + ", typeName=" + typeName + "]";
+		return "NovelType [id=" + id + ", originalTypeName=" + originalTypeName + ", typeName=" + typeName
+				+ ", isBaiduIndex=" + isBaiduIndex + "]";
 	}
 
 }

@@ -20,41 +20,13 @@
 			"openType": 2,
 			"extend": false,
 			"childs": null,
-			"id": 10
-		},{
-			"title": "数据库",
-			"pageURL": "views/menu/list_iframe.html",
-			"name": "数据库",
-			"icon": "fa-database",
-			"openType": 2,
-			"maxOpen": -1,
-			"extend": false,
-			"childs": null,
 			"id": 2
 		},{
-			"title": "搜索管理",
-			"pageURL": "views/echarts/demo.html",
+			"title": "百度录入",
+			"pageURL": "../addBaiduIndex?webUrl=http://www.5yege.com&addUrl=http://data.zz.baidu.com/urls?site=www.5yege.com&token=HzU35eNxy14Klgpu",
 			"name": "搜索管理",
 			"icon": "fa-search",
-			"openType": 2,
-			"extend": false,
-			"childs": null,
-			"id": 10
-		},{
-			"title": "流量统计",
-			"pageURL": "views/echarts/demo.html",
-			"name": "流量统计",
-			"icon": "fa-bar-chart",
-			"openType": 2,
-			"extend": false,
-			"childs": null,
-			"id": 4
-		},{
-			"title": "日志",
-			"pageURL": "/systemlog/index",
-			"name": "日志",
-			"icon": "fa-file-word-o",
-			"openType": 2,
+			"openType": 1,
 			"extend": false,
 			"childs": null,
 			"id": 3

@@ -29,7 +29,11 @@ public interface NovelDao {
 	@Update("update novel set updateTime=#{updateTime} , lastChapterNum=#{lastChapterNum} where id=#{id}")
 	public void updateTimeAndLastChapterNum(Novel novel);
 
-	@Select("select distinct typeName from novel")
-	public List<Novel> selectType();
+	@Select("select distinct id from novel where isBaiduIndex is null")
+	public List<Novel> selectBaiduIndex();
 
+	@Update("update novel set isBaiduIndex=true where id=#{id}")
+	public void updateBaiduIndex(Novel novel);
+	
+	
 }

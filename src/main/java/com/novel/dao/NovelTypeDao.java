@@ -33,5 +33,10 @@ public interface NovelTypeDao {
 
 	@Delete("delete from noveltype where id=#{id}")
 	public void deleteNovelType(NovelType novelType);
-
+	
+	@Select("select distinct typeName from noveltype where isBaiduIndex is null")
+	public List<NovelType> selectDisType();
+	
+	@Update("update noveltype set isBaiduIndex=true where typeName=#{typeName}")
+	public void updateBaiduIndex(NovelType novelType);
 }

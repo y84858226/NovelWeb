@@ -6,16 +6,25 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.novel.dao.NovelChapterListDao;
 import com.novel.dao.NovelDao;
 import com.novel.dao.NovelTypeDao;
+import com.novel.pojo.Novel;
+import com.novel.pojo.NovelChapterList;
+import com.novel.pojo.NovelType;
 import com.novel.service.WebService;
 
 @Service
 public class WebServiceImpl implements WebService {
+
+	private static Log log = LogFactory.getLog(WebServiceImpl.class);
 
 	@Autowired
 	NovelDao novelDao;
@@ -32,27 +41,34 @@ public class WebServiceImpl implements WebService {
 	 * @param Parameters
 	 * @return
 	 */
-	public String addBaiduIndex(String webUrl, String addUrl, String updateUrl) {
+	public void addBaiduIndex(String webUrl, String addUrl) {
 		/*
 		 * 首页
 		 */
-		
+		Post(webUrl, addUrl);
 		/*
-		 *类型页 
+		 * 类型页
 		 */
-		
+		List<NovelType> novelTypeList = novelTypeDao.selectDisType();
+		for (NovelType novelType : novelTypeList) {
+			String url = webUrl + "/more.html?classifyName=" + novelType.getTypeName();
+			Post(url, addUrl);
+			// 更新
+			novelTypeDao.updateBaiduIndex(novelType);
+		}
 		/*
 		 * 小说页面
 		 */
-		
-		/*
-		 * 章节页面
-		 */
-		return updateUrl;
+		List<Novel> novelIdList = novelDao.selectBaiduIndex();
+		for (Novel novel : novelIdList) {
+			String url = webUrl + "/bookdetail.html?id=" + novel.getId();
+			Post(url, addUrl);
+			novelDao.updateBaiduIndex(novel);
+		}
 	}
 
 	@Override
-	public String Post(String indexUrl, String baiduUrl) {
+	public void Post(String indexUrl, String baiduUrl) {
 		String result = "";
 		PrintWriter out = null;
 		BufferedReader in = null;
@@ -97,6 +113,6 @@ public class WebServiceImpl implements WebService {
 				ex.printStackTrace();
 			}
 		}
-		return result;
+		log.info(result);
 	}
 }

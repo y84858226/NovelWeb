@@ -32,4 +32,5 @@ public interface NovelChapterListDao {
 	
 	@Select("select novelId,chapterNum,chapterName,filePath from novelchapterlist where novelId =#{novelId}")
 	public List<NovelChapterList> selectChapterNameAndPath(NovelChapterList novelChapterList);
+	
 }

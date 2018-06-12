@@ -13,6 +13,7 @@ public class Novel {
 	private String updateTime;
 	private Integer clickView;
 	private String display;
+	private String isBaiduIndex;
 
 	public Integer getId() {
 		return id;
@@ -62,6 +63,14 @@ public class Novel {
 		this.status = status;
 	}
 
+	public String getMainImage() {
+		return mainImage;
+	}
+
+	public void setMainImage(String mainImage) {
+		this.mainImage = mainImage;
+	}
+
 	public Integer getLastChapterNum() {
 		return lastChapterNum;
 	}
@@ -101,28 +110,31 @@ public class Novel {
 	public void setDisplay(String display) {
 		this.display = display;
 	}
-	
-	public String getMainImage() {
-		return mainImage;
+
+	public String getIsBaiduIndex() {
+		return isBaiduIndex;
 	}
 
-	public void setMainImage(String mainImage) {
-		this.mainImage = mainImage;
+	public void setIsBaiduIndex(String isBaiduIndex) {
+		this.isBaiduIndex = isBaiduIndex;
 	}
 
 	public Novel(Integer id, String name, String author, String typeName, String description, String status,
-			Integer lastChapterNum, String createTime, String updateTime, Integer clickView, String display) {
+			String mainImage, Integer lastChapterNum, String createTime, String updateTime, Integer clickView,
+			String display, String isBaiduIndex) {
 		this.id = id;
 		this.name = name;
 		this.author = author;
 		this.typeName = typeName;
 		this.description = description;
 		this.status = status;
+		this.mainImage = mainImage;
 		this.lastChapterNum = lastChapterNum;
 		this.createTime = createTime;
 		this.updateTime = updateTime;
 		this.clickView = clickView;
 		this.display = display;
+		this.isBaiduIndex = isBaiduIndex;
 	}
 
 	public Novel() {
@@ -131,8 +143,9 @@ public class Novel {
 	@Override
 	public String toString() {
 		return "Novel [id=" + id + ", name=" + name + ", author=" + author + ", typeName=" + typeName + ", description="
-				+ description + ", status=" + status + ", lastChapterNum=" + lastChapterNum + ", createTime="
-				+ createTime + ", updateTime=" + updateTime + ", clickView=" + clickView + ", display=" + display + "]";
+				+ description + ", status=" + status + ", mainImage=" + mainImage + ", lastChapterNum=" + lastChapterNum
+				+ ", createTime=" + createTime + ", updateTime=" + updateTime + ", clickView=" + clickView
+				+ ", display=" + display + ", isBaiduIndex=" + isBaiduIndex + "]";
 	}
 
 }

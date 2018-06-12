@@ -12,22 +12,13 @@ import com.novel.service.WebService;
 @EnableAutoConfiguration
 @Scope("prototype") // 原型模式
 public class WebController {
-	
+
 	@Autowired
 	WebService service;
-	
-	
-	/*public static void main(String[] args) {
-		String url = "http://data.zz.baidu.com/urls?site=www.5yege.com&token=HzU35eNxy14Klgpu";// 网站的服务器连接
-		String[] param = { "http://5yege.com/index.html", "http://5yege.com/bookdetail.html?id=256" };
-		String json = service.Post(url, param);// 执行推送方法
-	}*/
-	
-	/**
-	 * 
-	 */
+
 	@RequestMapping("addBaiduIndex")
-	public void addBaiduIndex(String webUrl,String addUrl,String updateUrl) {
-//		service.Post(PostUrl);
+	public String addBaiduIndex(String webUrl, String addUrl, String token) {
+		service.addBaiduIndex(webUrl, addUrl + "&token=" + token);
+		return "<h1>百度检索录入成功！</h1>";
 	}
 }
