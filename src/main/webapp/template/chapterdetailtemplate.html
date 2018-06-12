@@ -233,8 +233,8 @@ var _hmt = _hmt || [];
 		$.ajax({
 			url : "/currentPage",
 			data:{
-				novelId:${novelId},
-				chapterNum:${chapterNum}
+				novelId:${novelId?c},
+				chapterNum:${chapterNum?c}
 			},
 			dataType : "json",
 			type : "post",

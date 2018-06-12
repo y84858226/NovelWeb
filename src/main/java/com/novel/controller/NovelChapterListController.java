@@ -33,8 +33,9 @@ public class NovelChapterListController {
 	 */
 	@RequestMapping("selectChapter")
 	public String selectChapter(HttpServletRequest request, NovelChapterList novelChapterList) {
+		String url=chapterListService.selectChapter(request, novelChapterList);
 		// 返回静态文件地址
-		return chapterListService.selectChapter(request, novelChapterList);
+		return "redirect:"+url;
 	}
 
 	@ResponseBody

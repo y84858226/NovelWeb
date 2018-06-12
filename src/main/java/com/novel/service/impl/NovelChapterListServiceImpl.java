@@ -126,14 +126,14 @@ public class NovelChapterListServiceImpl implements NovelChapterListService {
 			root.put("description", novel.getAuthor() + "创作的" + novel.getTypeName() + "《" + novel.getName()
 					+ "》干净清爽无错字的文字章节:" + novelChapterList.getChapterName());
 			root.put("canonical", File.separator + outputPath);
-			root.put("title", novelChapterList.getChapterName());
+			root.put("title", novelChapterList.getChapterName()+"_"+novel.getName());
 			root.put("chapterName", novelChapterList.getChapterName());
 			root.put("novelName", novel.getName());
 			root.put("chapterContent", content);
 			root.put("novelId", novel.getId());
 			root.put("chapterNum", novelChapterList.getChapterNum());
-			root.put("webName", "待定内容");
-			root.put("index", "待定内容");
+			root.put("webName", "5夜歌");
+			root.put("index", "http://www.5yege.com");
 
 			// 通过freemarker解释模板，首先需要获得Template对象
 			Template template = cfg.getTemplate("chapterdetailtemplate.html");
