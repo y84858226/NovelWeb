@@ -37,6 +37,6 @@ public interface NovelTypeDao {
 	@Select("select distinct typeName from noveltype where isBaiduIndex is null")
 	public List<NovelType> selectDisType();
 	
-	@Update("update noveltype set isBaiduIndex=true where typeName=#{typeName}")
+	@Update("update noveltype set isBaiduIndex=1 where typeName=#{typeName}")
 	public void updateBaiduIndex(NovelType novelType);
 }

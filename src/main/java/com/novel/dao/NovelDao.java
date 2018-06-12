@@ -32,7 +32,7 @@ public interface NovelDao {
 	@Select("select distinct id from novel where isBaiduIndex is null")
 	public List<Novel> selectBaiduIndex();
 
-	@Update("update novel set isBaiduIndex=true where id=#{id}")
+	@Update("update novel set isBaiduIndex=1 where id=#{id}")
 	public void updateBaiduIndex(Novel novel);
 	
 	
