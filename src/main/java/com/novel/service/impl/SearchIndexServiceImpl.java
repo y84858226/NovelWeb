@@ -35,7 +35,6 @@ import org.apache.lucene.store.FSDirectory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.novel.dao.IIndexQueryDao;
 import com.novel.pojo.Novel;
 import com.novel.service.SearchIndexService;
