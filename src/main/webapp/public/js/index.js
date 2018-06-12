@@ -130,7 +130,7 @@ define(function (require, exports, module) {
         },
         AddFavorite : function() {
             try {
-                window.external.addFavorite(location.href, "5夜阁小说");
+                window.external.addFavorite(location.href, "5夜歌小说");
             }
             catch (e) {
                 try {
