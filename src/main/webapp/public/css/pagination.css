@@ -67,6 +67,7 @@
 .limitpages .searchPage {
   float: left;
   padding: 8px 0;
+  clear:both;
 }
 .limitpages .searchPage .page-sum {
   padding: 11px 6px;
