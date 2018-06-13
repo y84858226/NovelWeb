@@ -23,6 +23,7 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.highlight.Fragmenter;
 import org.apache.lucene.search.highlight.Highlighter;
@@ -95,7 +96,7 @@ public class SearchIndexServiceImpl implements SearchIndexService {
 			parser.setDefaultOperator(QueryParser.AND_OPERATOR);
 			Query query = parser.parse(queryStr);
 			int count = reader.maxDoc();// 所有文档数
-			TopDocs hits = searcher.search(query, count); // 查找操作
+			TopDocs hits = searcher.search(query, count, Sort.RELEVANCE, true, false); // 查找操作
 
 			// 算分
 			QueryScorer scorer = new QueryScorer(query);
@@ -151,7 +152,7 @@ public class SearchIndexServiceImpl implements SearchIndexService {
 				novel.setDescription(description);
 				novel.setAuthor(author);
 				novel.setTypeName(typeName);
-//				System.out.println(novel);
+				// System.out.println(novel);
 				books.add(novel);
 			}
 		} catch (IOException e) {
@@ -163,7 +164,9 @@ public class SearchIndexServiceImpl implements SearchIndexService {
 		}
 		return books;
 	}
+
 	public static void main(String[] args) {
-		new SearchIndexServiceImpl().searchData("小镇", "C:\\Users\\Administrator\\git\\NovelWeb\\src\\main\\webapp\\data\\index");
+		new SearchIndexServiceImpl().searchData("小镇",
+				"C:\\Users\\Administrator\\git\\NovelWeb\\src\\main\\webapp\\data\\index");
 	}
 }

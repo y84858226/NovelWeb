@@ -16,7 +16,7 @@
 .limitpages #Pagination .pagination span {
   float: left;
   display: inline;
-  padding: 11px 13px;
+  padding: 11px 6px;
   border: 1px solid #e6e6e6;
   border-right: none;
   background: #f6f6f6;
@@ -32,7 +32,7 @@
 .limitpages #Pagination .pagination .prev,
 .limitpages #Pagination .pagination .next {
   float: left;
-  padding: 11px 13px;
+  padding: 11px 6px;
   border: 1px solid #e6e6e6;
   background: #f6f6f6;
   color: #666666;
@@ -69,7 +69,7 @@
   padding: 8px 0;
 }
 .limitpages .searchPage .page-sum {
-  padding: 11px 13px;
+  padding: 11px 6px;
   color: #999999;
   font-family: \u5b8b\u4f53,Arial;
   font-size: 14px;
