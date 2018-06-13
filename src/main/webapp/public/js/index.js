@@ -127,6 +127,14 @@ define(function (require, exports, module) {
                 _that._searchbtnClickEvent(e,_that,2);
             });
             $("#addFav").click($.proxy(this.AddFavorite,this));
+            $(".top_menu li").click(function (e) {
+                _that._menuBarClickEvent(e,_that);
+            })
+        },
+        _menuBarClickEvent : function(e,_that){
+            $(".cur").removeClass("cur");
+            var target = $(e.target);
+            target.addClass("cur");
         },
         AddFavorite : function() {
             try {

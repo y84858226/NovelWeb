@@ -12,6 +12,9 @@ define(function (require, exports, module) {
             this.classifyName = this.getQueryString("classifyName");
             if(!utils.isNullOrEmpty(this.classifyName)){
                 this.initClassifyBooks(this.classifyName);
+                $(".cur").removeClass("cur");
+                $("[classify="+this.classifyName+"]").find("a").addClass("cur");
+                this.getClassifyBooksCount();
             }
             this.searchStr = this.getQueryString("searchStr");
             if(!utils.isNullOrEmpty(this.searchStr)){
@@ -41,6 +44,19 @@ define(function (require, exports, module) {
             params.start = 1;
             params.end = 20;
             this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
+        },
+        getClassifyBooksCount : function(){
+            var _that = this;
+            _that.app.controller("paginationController", function($scope, $http,$sce) {
+                utils.service.doPost('../getClassifyBooksCount',_that.classifyName,function (result) {
+                    if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
+                        $scope.$applyAsync(function () {
+                            _that.booksCount = result.responseJSON;
+                            $scope.allPage = _that.booksCount;
+                        });
+                    }
+                })
+            });
         },
         /**
          * 获取搜索的书籍
@@ -76,7 +92,8 @@ define(function (require, exports, module) {
                                 var dealWithResult = result.responseJSON;
                                 eval(callback);
                                 $scope.html = function(n){
-                                    return $sce.trustAsHtml(n);  
+                                    _that.$sce = $sce;
+                                    return _that.$sce.trustAsHtml(n);  
                                 }
                             });
                         }
@@ -91,7 +108,7 @@ define(function (require, exports, module) {
                             var dealWithResult = result.responseJSON;
                             $scope.moreBooks = dealWithResult;
                             $scope.html = function(n){
-                                return $sce.trustAsHtml(n);  
+                                return _that.$sce.trustAsHtml(n);  
                             }
                         });
                     }
@@ -115,6 +132,92 @@ define(function (require, exports, module) {
             $(".top_menu a").click(function (e) {
                 _that._moreBtnClickEvent(e,_that);
             });
+            this.bindPaginationEvent();
+        },
+        bindPaginationEvent :function(){
+            var _that = this;
+            $("#Pagination a").unbind('click').click(function (e) {
+                _that._paginationBtnClickEvent(e,_that);
+                _that.bindPaginationEvent();
+            });
+            //上一页点击事件
+            $(".prev").unbind('click').click(function (e) {
+                e.stopPropagation();
+                _that._prevBtnClickEvent(e,_that);
+                _that.bindPaginationEvent();
+            });
+            //下一页点击事件
+            $(".next").unbind('click').click(function (e) {
+                e.stopPropagation();
+                _that._nextBtnClickEvent(e,_that);
+                _that.bindPaginationEvent();
+            });
+            $(".page-btn").unbind('click').click(function (e) {
+                _that._pageBtnClickEvent(e,_that);
+                _that.bindPaginationEvent();
+            });
+        },
+        _pageBtnClickEvent : function(e,_that){
+            var target = $(e.target);
+            var $go = $(".page-go input").val();
+            var re = /^[1-9]+[0-9]*]*$/; 
+            if(utils.isNullOrEmpty($go)  || !re.test($go) || Number($go) < 0 || Number($go) >15) {
+                return
+            }
+            var $cur = $(".current")[0].innerHTML;
+            var params = {};            ;
+            params.classifyName = this.classifyName;
+            params.start = (Number($go) - 1) * 20 + 1;
+            params.end = Number($go) * 20;
+            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
+        },
+        _paginationBtnClickEvent : function(e,_that){
+            var target = $(e.target);
+            if(target.hasClass('next') || target.hasClass('prev')){
+                return
+            }
+            var $curPage = $(".current");
+            var $cur = $(".current")[0].innerHTML;
+            if($curPage.length > 1){
+                $cur = $(".current")[1].innerHTML;
+            }
+            var params = {};         ;
+            params.classifyName = this.classifyName;
+            params.start = (Number($cur) - 1) * 20 + 1;
+            params.end = Number($cur) * 20;
+            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
+        },
+        _prevBtnClickEvent : function(e,_that){
+            var target = $(e.target);
+            if(target.hasClass('current')){
+                return
+            }
+            var params = {};
+            var $curPage = $(".current");
+            var $cur = $(".current")[0].innerHTML;
+            if($curPage.length > 1){
+                $cur = $(".current")[1].innerHTML;
+            }            ;
+            params.classifyName = this.classifyName;
+            params.start = (Number($cur) - 1) * 20 + 1;
+            params.end = Number($cur) * 20;
+            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
+        },
+        _nextBtnClickEvent : function(e,_that){
+            var target = $(e.target);
+            if(target.hasClass('current')){
+                return
+            }
+            var params = {};
+            var $curPage = $(".current");
+            var $cur = $(".current")[0].innerHTML;
+            if($curPage.length > 1){
+                $cur = $(".current")[1].innerHTML;
+            }            ;
+            params.classifyName = this.classifyName;
+            params.start = (Number($cur) -1) * 20 + 1;
+            params.end = Number($cur) * 20;
+            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
         },
         _moreBtnClickEvent : function (e,_that) {
             var target = e.target;

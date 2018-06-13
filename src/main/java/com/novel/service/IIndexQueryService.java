@@ -39,4 +39,9 @@ public interface IIndexQueryService {
 	 * 获取目录信息
 	 */
 	JSONArray getBookDirectory(String bookid);
+	
+	/**
+	 * 获取分类的书籍总条数
+	 */
+	int getClassifyBooksCount(String param);
 }

@@ -120,5 +120,12 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonArray;
 	}
+	
+	public int getClassifyBooksCount(String param) {
+		long StartTime = System.currentTimeMillis();
+		int count = indexQueryDao.selectClassifyBooksCount(param);
+		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		return count;
+	}
 
 }

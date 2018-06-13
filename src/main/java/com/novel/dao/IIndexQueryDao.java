@@ -52,6 +52,12 @@ public interface IIndexQueryDao {
 	public List<Novel> selectClassifyBooksByPages(@Param("classifyName") String typeName,@Param("start") int start, @Param("end") int end);
 	
 	/**
+	 * 分页获取分类的书籍
+	 */
+	@Select("select count(*) from novel where typeName = #{classifyName}")
+	public int selectClassifyBooksCount(@Param("classifyName") String typeName);
+	
+	/**
 	 * 获取书籍详细信息
 	 */
 	@Select("select * from novel where name = #{bookName}")

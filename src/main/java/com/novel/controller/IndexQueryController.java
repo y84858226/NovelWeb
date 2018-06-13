@@ -65,6 +65,13 @@ public class IndexQueryController {
 		return indexQueryService.getClassifyBooksByPage(param);
 	}
 	/**
+	 * 获取分类的书籍总条数
+	 */
+	@RequestMapping("getClassifyBooksCount")
+	public int getClassifyBooksCount(String param) {
+		return indexQueryService.getClassifyBooksCount(param);
+	}
+	/**
 	 * 获取书籍详细信息
 	 * @param bookName
 	 * @return

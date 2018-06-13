@@ -151,7 +151,7 @@
 			renderer, links, current_page;
 
 		//goto
-    $(".page-btn").one("click",function(){
+    /*$(".page-btn").one("click",function(){
     	var allPage = $(".allPage").text();
     	//console.log(allPage);
       var goPage = $(".page-go input").val() - 1; //跳转页数
@@ -161,9 +161,7 @@
       }else {
       	$("#Pagination").pagination(allPage);
       }
-      //清空用户跳转页数
-      $(".page-go input").val("");
-    });
+    });*/
 		
 		/**
 		 * This is the event handling function for the pagination links. 
@@ -199,7 +197,7 @@
 		// -----------------------------------
 		// Initialize containers
 		// -----------------------------------
-                current_page = parseInt(opts.current_page);
+        current_page = parseInt(opts.current_page);
 		containers.data('current_page', current_page);
 		// Create a sane value for maxentries and items_per_page
 		maxentries = (!maxentries || maxentries < 0)?1:maxentries;
