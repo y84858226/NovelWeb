@@ -135,6 +135,7 @@ define(function (require, exports, module) {
             this.bindPaginationEvent();
         },
         bindPaginationEvent :function(){
+        	/*$("#Pagination").pagination("100");*/
             var _that = this;
             $("#Pagination a").unbind('click').click(function (e) {
                 _that._paginationBtnClickEvent(e,_that);
