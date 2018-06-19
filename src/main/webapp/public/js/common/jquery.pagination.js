@@ -9,7 +9,9 @@
  * @param {Object} opts Several options (see README for documentation)
  * @return {Object} jQuery Object
  */
- (function($){
+define(function (require, exports, module) {
+	var $ = require('jquery');
+ 	(function($){
 	/**
 	 * @class Class for calculating pagination values
 	 */
@@ -242,6 +244,6 @@
 		if(opts.load_first_page) {
 			opts.callback(current_page, containers);
 		}
-	} // End of $.fn.pagination block
-	
-})(jQuery);
+	} // End of $.fn.pagination block		
+	})($);
+})

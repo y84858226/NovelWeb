@@ -41,8 +41,8 @@ define(function (require, exports, module) {
         initClassifyBooks : function (classifyName) {
             var params = new Object();
             params.classifyName = classifyName;
-            params.start = 1;
-            params.end = 20;
+            params.start = 0;
+            params.end = 9;
             this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
         },
         getClassifyBooksCount : function(){
@@ -52,10 +52,32 @@ define(function (require, exports, module) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                         $scope.$applyAsync(function () {
                             _that.booksCount = result.responseJSON;
+                            _that.initPagination();                                        
                             $scope.allPage = _that.booksCount;
                         });
                     }
                 })
+            });
+        },
+        /**
+         * 初始化分页
+         */
+        initPagination : function(){
+            var _that = this;
+            $("#Pagination").pagination(_that.booksCount,{
+                jump: false, //跳转到指定页数
+                jumpIptCls: 'jump-ipt', //文本框内容
+                jumpBtnCls: 'page-btn', //跳转按钮
+                jumpBtn: '跳转', //跳转按钮文本
+                callback: function (index) {
+                    pageIndex = index + 1;
+                    pageSize = 10;
+                    var params = {};         ;
+                    params.classifyName = _that.classifyName;
+                    params.start = (pageIndex - 1) * 10;
+                    params.end = pageIndex * 10 - 1;
+                    _that.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
+                }
             });
         },
         /**
@@ -124,101 +146,16 @@ define(function (require, exports, module) {
             $(".section").on("click","a",function (e) {
                 _that._bookDetailClickEvent(e,_that);
             });
-            $(".more").on("click",function (e) {
-                e.stopPropagation();
-                _that._moreBooksBtnClick(e,_that);
-            });
             //分类点击事件
             $(".top_menu a").click(function (e) {
                 _that._moreBtnClickEvent(e,_that);
             });
-            this.bindPaginationEvent();
         },
-        bindPaginationEvent :function(){
-        	/*$("#Pagination").pagination("100");*/
-            var _that = this;
-            $("#Pagination a").unbind('click').click(function (e) {
-                _that._paginationBtnClickEvent(e,_that);
-                _that.bindPaginationEvent();
-            });
-            //上一页点击事件
-            $(".prev").unbind('click').click(function (e) {
-                e.stopPropagation();
-                _that._prevBtnClickEvent(e,_that);
-                _that.bindPaginationEvent();
-            });
-            //下一页点击事件
-            $(".next").unbind('click').click(function (e) {
-                e.stopPropagation();
-                _that._nextBtnClickEvent(e,_that);
-                _that.bindPaginationEvent();
-            });
-            $(".page-btn").unbind('click').click(function (e) {
-                _that._pageBtnClickEvent(e,_that);
-                _that.bindPaginationEvent();
-            });
-        },
-        _pageBtnClickEvent : function(e,_that){
-            var target = $(e.target);
-            var $go = $(".page-go input").val();
-            var re = /^[1-9]+[0-9]*]*$/; 
-            if(utils.isNullOrEmpty($go)  || !re.test($go) || Number($go) < 0 || Number($go) >15) {
-                return
-            }
-            var $cur = $(".current")[0].innerHTML;
-            var params = {};            ;
-            params.classifyName = this.classifyName;
-            params.start = (Number($go) - 1) * 20 + 1;
-            params.end = Number($go) * 20;
-            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
-        },
-        _paginationBtnClickEvent : function(e,_that){
-            var target = $(e.target);
-            if(target.hasClass('next') || target.hasClass('prev')){
-                return
-            }
-            var $curPage = $(".current");
-            var $cur = $(".current")[0].innerHTML;
-            if($curPage.length > 1){
-                $cur = $(".current")[1].innerHTML;
-            }
-            var params = {};         ;
-            params.classifyName = this.classifyName;
-            params.start = (Number($cur) - 1) * 20 + 1;
-            params.end = Number($cur) * 20;
-            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
-        },
-        _prevBtnClickEvent : function(e,_that){
-            var target = $(e.target);
-            if(target.hasClass('current')){
-                return
-            }
-            var params = {};
-            var $curPage = $(".current");
-            var $cur = $(".current")[0].innerHTML;
-            if($curPage.length > 1){
-                $cur = $(".current")[1].innerHTML;
-            }            ;
-            params.classifyName = this.classifyName;
-            params.start = (Number($cur) - 1) * 20 + 1;
-            params.end = Number($cur) * 20;
-            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
-        },
-        _nextBtnClickEvent : function(e,_that){
-            var target = $(e.target);
-            if(target.hasClass('current')){
-                return
-            }
-            var params = {};
-            var $curPage = $(".current");
-            var $cur = $(".current")[0].innerHTML;
-            if($curPage.length > 1){
-                $cur = $(".current")[1].innerHTML;
-            }            ;
-            params.classifyName = this.classifyName;
-            params.start = (Number($cur) -1) * 20 + 1;
-            params.end = Number($cur) * 20;
-            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
+        _bookDetailClickEvent : function (e,_that) {
+            var target = e.target;
+            var id = $($(target).parents('li').find('h4')[0]).attr("ng-value");
+            var src = "/bookdetail.html?id=" + id;
+            window.location.href = src;
         },
         _moreBtnClickEvent : function (e,_that) {
             var target = e.target;
@@ -230,24 +167,7 @@ define(function (require, exports, module) {
             	src="/index.html"
             }
             window.location.href = src;
-        },
-        _bookDetailClickEvent : function (e,_that) {
-            var target = e.target;
-            var id = $($(target).parents('li').find('h4')[0]).attr("ng-value");
-            var src = "/bookdetail.html?id=" + id;
-            window.location.href = src;
-        },
-        _moreBooksBtnClick : function (e,_that) {
-            var target = e.target;
-            var index = $(target).parents('li').attr("clickNum");
-            var params = new Object();
-            params.classifyName = this.classifyName;
-            params.start = 1;
-            params.end = index * 20;
-            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
-            $(target).parents('li').attr('clickNum',(index+1))
         }
-
     }
     controller.initPage();
 })
