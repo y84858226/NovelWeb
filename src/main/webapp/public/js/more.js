@@ -65,10 +65,6 @@ define(function (require, exports, module) {
         initPagination : function(){
             var _that = this;
             $("#Pagination").pagination(_that.booksCount,{
-                jump: false, //跳转到指定页数
-                jumpIptCls: 'jump-ipt', //文本框内容
-                jumpBtnCls: 'page-btn', //跳转按钮
-                jumpBtn: '跳转', //跳转按钮文本
                 callback: function (index) {
                     pageIndex = index + 1;
                     pageSize = 10;
@@ -79,6 +75,9 @@ define(function (require, exports, module) {
                     _that.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
                 }
             });
+            
+            //跳转页
+            //$("#Pagination").trigger('setPage', [5]);
         },
         /**
          * 获取搜索的书籍
