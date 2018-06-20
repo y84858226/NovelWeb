@@ -76,8 +76,6 @@ define(function (require, exports, module) {
                 }
             });
             
-            //跳转页
-            //$("#Pagination").trigger('setPage', [5]);
         },
         /**
          * 获取搜索的书籍
@@ -149,6 +147,27 @@ define(function (require, exports, module) {
             $(".top_menu a").click(function (e) {
                 _that._moreBtnClickEvent(e,_that);
             });
+            //分页点击跳转事件
+            $('.page-btn').click(function(e){
+                _that._pagebtnClickEvent(e,_that);
+            })
+        },
+        _pagebtnClickEvent : function(e,_that){
+            var $go = $(".page-go input").val();
+            if(utils.isNullOrEmpty($go)) {
+                 return
+            }
+            var goNum = Number($go),re = /^[1-9]+[0-9]*]*$/; 
+            if(!re.test($go) || goNum < 0 || goNum > _that.booksCount){
+                return 
+            }
+            //跳转页
+            $("#Pagination").trigger('setPage', [goNum - 1]);
+            var params = {};            ;
+            params.classifyName = this.classifyName;
+            params.start = (goNum - 1) * 10;
+            params.end = goNum * 10 - 1;
+            this.getClassifyBooks("moreBooksController",JSON.stringify(params),"$scope.moreBooks = dealWithResult;")
         },
         _bookDetailClickEvent : function (e,_that) {
             var target = e.target;

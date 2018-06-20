@@ -36,7 +36,7 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 		List<Novel> books = indexQueryDao.selectRecommendBooks();
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.addAll(books);
-		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		log.info("获取推荐书籍查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonArray;
 	}
 	/**
@@ -49,7 +49,7 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 		String bookName = indexQueryDao.selectRecommendValue();
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("recommendVal", bookName);
-		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		log.info("获取搜索框推荐值查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonObject;
 	}
 	/**
@@ -61,7 +61,7 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 		List<Novel> books = indexQueryDao.selectHotBooks();
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.addAll(books);
-		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		log.info("获取热门书籍查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonArray;
 	}
 	/**
@@ -73,7 +73,7 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 		List<Novel> books = indexQueryDao.selectClassifyBooks(param);
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.addAll(books);
-		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		log.info("获取分类的书籍查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonArray;
 	}
 	/**
@@ -87,7 +87,7 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 				paramJo.getString("classifyName"), paramJo.getIntValue("start"), paramJo.getIntValue("end"));
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.addAll(books);
-		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		log.info("分页获取分类图书查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonArray;
 	}
 	/**
@@ -107,7 +107,7 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} 
-		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		log.info("获取书籍详细信息查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonObject;
 	}
 	/**
@@ -117,15 +117,26 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 	public JSONArray getBookDirectory(String bookid) {
 		long StartTime = System.currentTimeMillis();
 		JSONArray jsonArray = new JSONArray();
-		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		log.info("获取目录信息查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return jsonArray;
 	}
-	
+	/**
+	 * 获取分类的书籍总条数
+	 */
 	public int getClassifyBooksCount(String param) {
 		long StartTime = System.currentTimeMillis();
 		int count = indexQueryDao.selectClassifyBooksCount(param);
-		log.info("查询耗时：" + (System.currentTimeMillis() - StartTime));
+		log.info("获取分类的书籍总条数查询耗时：" + (System.currentTimeMillis() - StartTime));
 		return count;
+	}
+	/**
+	 * 增加点击率
+	 */
+	@Override
+	public void setBookClickNum(String param) {
+		long StartTime = System.currentTimeMillis();
+		indexQueryDao.setBookClickNum(Integer.parseInt(param));
+		log.info("setBookClickNum(增加点击率)耗时：" + (System.currentTimeMillis() - StartTime));
 	}
 
 }

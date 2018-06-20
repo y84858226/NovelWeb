@@ -36,7 +36,7 @@ public interface IIndexQueryDao {
 	/**
 	 * 获取热门书籍
 	 */
-	@Select("select * from novel order by clickView limit 5")
+	@Select("select * from novel order by clickView desc limit 5")
 	public List<Novel> selectHotBooks();
 	
 	/**
@@ -74,4 +74,10 @@ public interface IIndexQueryDao {
 	 */
 	@Select("select id,name,author,typeName,description from novel")
 	public List<Novel> selectAllBooksToSearch();
+	
+	/**
+	 * 增加点击率
+	 */
+	@Select("update novel set clickView = clickView + 1 where id = #{bookid};")
+	public void setBookClickNum(@Param("bookid") int bookid);
 }

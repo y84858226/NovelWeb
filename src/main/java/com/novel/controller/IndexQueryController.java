@@ -87,4 +87,11 @@ public class IndexQueryController {
 	public JSONArray getBookDirectory(String param) {
 		return indexQueryService.getBookDirectory(param);
 	}
+	/**
+	 * 增加点击率
+	 */
+	@RequestMapping("setBookClickNum")
+	public void setBookClickNum(String param) {
+		indexQueryService.setBookClickNum(param);
+	}
 }

@@ -12,6 +12,7 @@ define(function (require, exports, module) {
             this.bookid = this.getQueryString("id");
             this.initBookDeatil(this.bookid);
             this.initRecommendBooks();
+            this.addBookClickNum();
             this.bindEvent();
             this.createChapterListJsonFile(this.bookid);
         },
@@ -42,6 +43,9 @@ define(function (require, exports, module) {
                             $scope.book = dealWithResult;
                             _that.bookname = dealWithResult.name;
                             _that.chapterNum = dealWithResult.lastChapterNum;
+                            for (x in dealWithResult){
+                                $("head").append('<meta property='+ x +' content='+ dealWithResult[x] +' />');                                
+                            }
                         });
                     }
                 })
@@ -66,6 +70,12 @@ define(function (require, exports, module) {
                     }
                 })
             });
+        },
+         /**
+         * 增加点击率
+         */
+        addBookClickNum : function(){
+            utils.service.doPostAsync("../setBookClickNum", this.bookid);
         },
         /**
          * 绑定事件

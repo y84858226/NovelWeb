@@ -37,13 +37,35 @@ define(function (require, exports, module) {
                     if(!utils.isNullOrEmpty(result) && !utils.isNullOrEmpty(result.responseJSON)){
                         $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON;
-                            $scope.bookDirectory = dealWithResult;
+                            _that.directoryCount = dealWithResult.length;
+                            $scope.allPage = _that.directoryCount;
+                            $scope.bookDirectory = dealWithResult.slice(0,49);
                             $scope.bookName = _that.bookName;
+                            _that.initPagination();
                             localStorage.setItem('bookDirectory', JSON.stringify(dealWithResult));
                         });
                     }
                 })
             });
+        },
+        /**
+         * 初始化分页
+         */
+        initPagination : function(){
+            var _that = this;
+            $("#Pagination").pagination(_that.directoryCount,{
+                callback: function (index) {
+                    var start =  index * 50 ,end = (index + 1) * 50 - 1;
+                    var appElement = document.querySelector('[ng-controller=directoryCtrl]');
+                    var $scope = angular.element(appElement).scope();
+                    var dealWithResult = JSON.parse(localStorage.getItem('bookDirectory'));
+                    $scope.$applyAsync(function () {
+                        $scope.bookDirectory = dealWithResult.slice(start,end);
+                    })
+                }
+            });
+            
+            
         },
         /**
          * 绑定事件
@@ -56,6 +78,29 @@ define(function (require, exports, module) {
             });
            $("#reverseDir").on("click",$.proxy(this.reverseDirBtnClick,this));
            $("#nomalDir").on("click",$.proxy(this.nomalDirBtnClick,this));
+           //分页点击跳转事件
+           $('.page-btn').click(function(e){
+               _that._pagebtnClickEvent(e,_that);
+           })
+        },
+        _pagebtnClickEvent : function(e,_that){
+            var $go = $(".page-go input").val();
+            if(utils.isNullOrEmpty($go)) {
+                 return
+            }
+            var goNum = Number($go),re = /^[1-9]+[0-9]*]*$/; 
+            if(!re.test($go) || goNum < 0 || goNum > _that.booksCount){
+                return 
+            }
+            //跳转页
+            $("#Pagination").trigger('setPage', [goNum - 1]);
+            var start =  (goNum -1) * 50 ,end = goNum * 50 - 1;
+            var appElement = document.querySelector('[ng-controller=directoryCtrl]');
+            var $scope = angular.element(appElement).scope();
+            var dealWithResult = JSON.parse(localStorage.getItem('bookDirectory'));
+            $scope.$applyAsync(function () {
+                $scope.bookDirectory = dealWithResult.slice(start,end);
+            })
         },
         /**
          *  目录点击
@@ -81,8 +126,11 @@ define(function (require, exports, module) {
                 var appElement = document.querySelector('[ng-controller=directoryCtrl]');
                 var $scope = angular.element(appElement).scope();
                 $scope.$applyAsync(function () {
-                     $scope.bookDirectory =  data.reverse();
-                })
+                    var tempData = data.reverse();
+                    // $scope.bookDirectory =  tempData.slice(0,49);
+                    localStorage.setItem('bookDirectory', JSON.stringify( tempData));
+                    $("#Pagination").trigger('setPage', [0]); 
+                })    
              }
              $("#nomalDir").addClass("cur");
              $("#reverseDir").removeClass("cur");
@@ -97,8 +145,11 @@ define(function (require, exports, module) {
                 var appElement = document.querySelector('[ng-controller=directoryCtrl]');
                 var $scope = angular.element(appElement).scope();
                 $scope.$applyAsync(function () {
-                     $scope.bookDirectory = data;
-                })
+                    var tempData = data.reverse();
+                    // $scope.bookDirectory = tempData.slice(0,49);
+                    localStorage.setItem('bookDirectory', JSON.stringify( tempData));
+                    $("#Pagination").trigger('setPage', [0]);
+                }) 
              }
              $("#reverseDir").addClass("cur");
              $("#nomalDir").removeClass("cur");

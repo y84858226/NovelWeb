@@ -44,4 +44,8 @@ public interface IIndexQueryService {
 	 * 获取分类的书籍总条数
 	 */
 	int getClassifyBooksCount(String param);
+	/**
+	 * 增加点击率
+	 */
+	void setBookClickNum(String param);
 }
