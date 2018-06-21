@@ -127,7 +127,7 @@ public class IndexQueryServiceImpl implements IIndexQueryService {
 		long StartTime = System.currentTimeMillis();
 		int count = indexQueryDao.selectClassifyBooksCount(param);
 		log.info("获取分类的书籍总条数查询耗时：" + (System.currentTimeMillis() - StartTime));
-		return count;
+		return (int) Math.ceil(count/10);
 	}
 	/**
 	 * 增加点击率

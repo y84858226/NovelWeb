@@ -38,7 +38,7 @@ define(function (require, exports, module) {
                         $scope.$applyAsync(function () {
                             var dealWithResult = result.responseJSON;
                             _that.directoryCount = dealWithResult.length;
-                            $scope.allPage = _that.directoryCount;
+                            $scope.allPage = Math.ceil(_that.directoryCount/50);
                             $scope.bookDirectory = dealWithResult.slice(0,49);
                             $scope.bookName = _that.bookName;
                             _that.initPagination();
@@ -53,7 +53,7 @@ define(function (require, exports, module) {
          */
         initPagination : function(){
             var _that = this;
-            $("#Pagination").pagination(_that.directoryCount,{
+            $("#Pagination").pagination(Math.ceil(_that.directoryCount/50),{
                 callback: function (index) {
                     var start =  index * 50 ,end = (index + 1) * 50 - 1;
                     var appElement = document.querySelector('[ng-controller=directoryCtrl]');
